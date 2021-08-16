@@ -2,12 +2,11 @@ import Head from 'next/head';
 import Layout from '../components-material-ui/templates/layout';
 import TelaTodosProjetos from '../components-material-ui/templates/telaTodosProjetos';
 
-
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { CookiesProvider,withCookies,useCookies } from 'react-cookie';
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
 	const url = process.env.SERVER_HOST+"project/getAll";
 	const projects = await axios.get(url).then(response=>response.data);
@@ -46,4 +45,4 @@ const Projetos = (props) => {
 	)
 }
 
-export default withCookies(Projetos);
+export default Projetos;
