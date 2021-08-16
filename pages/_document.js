@@ -2,8 +2,6 @@ import Document, { Html, Main,NextScript, Head } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 
-const NODE_ENV = process.env.NODE_ENV
-
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const sheet = new ServerStyleSheet()
@@ -44,7 +42,6 @@ export default class MyDocument extends Document {
 		//console.log('this.props ------------>', this.props)
 		const { inAmpMode,  __NEXT_DATA__} = this.props
 		var mobile = !!__NEXT_DATA__.props.pageProps.isMobile ? 'true' : null;
-		console.log('NODE_ENV',NODE_ENV)
 		console.log('isMobile Document ------------>', mobile)
 		console.log('inAmpMode Document ------------>',inAmpMode)
 		var testmobile = mobile
@@ -53,8 +50,6 @@ export default class MyDocument extends Document {
 		console.log('(!!inAmpMode || !mobile)',!!inAmpMode , !mobile)
 		return (
 			<Html lang="pt-br">
-				<Head {...headProps}>
-				</Head>
 				<body className={!inAmpMode ? 'notAmp' : ''}>
 					<Main />
                     <NextScript/> 
