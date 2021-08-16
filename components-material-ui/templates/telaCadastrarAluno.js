@@ -11,7 +11,7 @@ const TelaCadastrarAluno = ({projects, usuario}) => {
                 <h1>Cadastrar Aluno no TAEP4.0</h1>
                 <form>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField
                                 id="cadastrar-aluno-nome"
                                 name="nomeAluno"
@@ -22,7 +22,7 @@ const TelaCadastrarAluno = ({projects, usuario}) => {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField
                                 id="cadastrar-aluno-apelido"
                                 name="apelidoAluno"
@@ -33,7 +33,7 @@ const TelaCadastrarAluno = ({projects, usuario}) => {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField
                                 id="cadastrar-aluno-email"
                                 name="emailAluno"
@@ -46,7 +46,7 @@ const TelaCadastrarAluno = ({projects, usuario}) => {
                     </Grid>
 
                     <Grid container spacing={3}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <Button variant="contained" color="primary" type="submit" size="large">
                                 Confirmar Cadastro
                             </Button>

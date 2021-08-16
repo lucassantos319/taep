@@ -13,7 +13,6 @@ const Login = ({}) => {
         router.push("/home");
         return(
             <>
-                {/* TODO: COLOCAR MENSAGEM DE LOADING  */}
             </>
         );
     }

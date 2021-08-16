@@ -59,7 +59,7 @@ const TelaPerfil = ({userCookie}) => {
                 <h1>Informações de usuário - {userCookie.user.user_type==1? 'Professor':'Aluno'}</h1>
 
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item={true} xs={12} sm={6}>
                         <TextField
                             id="perfil-nome-sobrenome"
                             label="Nome"
@@ -72,7 +72,7 @@ const TelaPerfil = ({userCookie}) => {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item={true} xs={12} sm={6}>
                         <TextField
                             id="perfil-apelido"
                             label="Apelido"
@@ -85,7 +85,7 @@ const TelaPerfil = ({userCookie}) => {
                         />
                     </Grid>
 
-                    <Grid item xs={6} sm={6}>
+                    <Grid item={true} xs={6} sm={6}>
                         <TextField
                             id="perfil-email"
                             label="E-mail"
@@ -98,13 +98,13 @@ const TelaPerfil = ({userCookie}) => {
                         />
                     </Grid>
 
-                    <Grid item xs={6} sm={6} className={classes.centralizaEsquerda}>
+                    <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
                         <Button color="primary" onClick={handleOpenModalEmail}>
                             Alterar o e-mail
                         </Button>
                     </Grid>
 
-                    <Grid item xs={6} sm={6}>
+                    <Grid item={true} xs={6} sm={6}>
                         <TextField
                             id="perfil-senha"
                             label="Senha"
@@ -117,7 +117,7 @@ const TelaPerfil = ({userCookie}) => {
                         />
                     </Grid>
 
-                    <Grid item xs={6} sm={6} className={classes.centralizaEsquerda}>
+                    <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
                         <Button color="primary" onClick={handleOpenModalSenha}>
                             Alterar a senha
                         </Button>
@@ -142,7 +142,7 @@ const TelaPerfil = ({userCookie}) => {
                         <form>
                             <h2 id="perfil-modal-email">Alteração de E-mail</h2>
                             <Grid container spacing={3} className={classes.centralizaItens}>
-                                <Grid item sm={12}>
+                                <Grid item={true} sm={12}>
                                     <TextField
                                         id="perfil-modal-novo-email"
                                         label="Novo e-mail"
@@ -152,7 +152,7 @@ const TelaPerfil = ({userCookie}) => {
                                     />
                                 </Grid>
 
-                                <Grid item sm={12}>
+                                <Grid item={true} sm={12}>
                                     <TextField
                                         id="perfil-modal-confirmar-novo-email"
                                         label="Confirmar E-mail"
@@ -162,7 +162,7 @@ const TelaPerfil = ({userCookie}) => {
                                     />
                                 </Grid>
                                 
-                                <Grid item sm={12}>
+                                <Grid item={true} sm={12}>
                                     <Button variant="contained" color="primary" type="submit" size="large">
                                         Confirmar mudança
                                     </Button>
@@ -190,7 +190,7 @@ const TelaPerfil = ({userCookie}) => {
                         <form>
                             <h2 id="perfil-modal-senha">Alteração de senha</h2>
                             <Grid container spacing={3} className={classes.centralizaItens}>
-                                <Grid item sm={12}>
+                                <Grid item={true} sm={12}>
                                     <TextField
                                         id="perfil-modal-senha-antiga"
                                         label="Senha antiga"
@@ -200,7 +200,7 @@ const TelaPerfil = ({userCookie}) => {
                                     />
                                 </Grid>
                                 
-                                <Grid item sm={12}>
+                                <Grid item={true} sm={12}>
                                     <TextField
                                         id="perfil-modal-nova-senha"
                                         label="Nova senha"
@@ -210,7 +210,7 @@ const TelaPerfil = ({userCookie}) => {
                                     />
                                 </Grid>
 
-                                <Grid item sm={12}>
+                                <Grid item={true} sm={12}>
                                     <TextField
                                         id="perfil-modal-confirma-nova-senha"
                                         label="Repita a nova senha"
@@ -220,7 +220,7 @@ const TelaPerfil = ({userCookie}) => {
                                     />
                                 </Grid>
                                 
-                                <Grid item sm={12}>
+                                <Grid item={true} sm={12}>
                                     <Button variant="contained" color="primary" type="submit" size="large">
                                         Confirmar mudança
                                     </Button>

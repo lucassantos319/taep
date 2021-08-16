@@ -53,7 +53,7 @@ const FormularioCadastroProfessor = ({}) => {
                     />
 
                     <Grid container xs={12}>
-                        <Grid item xs={12} className="centraliza">
+                        <Grid item={true} xs={12} className="centraliza">
                             <Button className="m-12" variant="contained" color="primary" type="submit" size="large">
                                 Realizar cadastro
                             </Button>
@@ -61,7 +61,7 @@ const FormularioCadastroProfessor = ({}) => {
                     </Grid>
                     <Link href="./">
                         <Grid container xs={12}>
-                            <Grid item xs={12} className="centraliza">
+                            <Grid item={true} xs={12} className="centraliza">
                                 <Button color="primary" size="large">
                                     Voltar para tela de login
                                 </Button>

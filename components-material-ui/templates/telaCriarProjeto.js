@@ -73,7 +73,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
 
                 <form>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField
                                 id="cadastrar-projeto-titulo"
                                 label="Titulo do projeto"
@@ -84,7 +84,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField
                                 id="cadastrar-projeto-turma"
                                 label="Turma"
@@ -95,7 +95,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <div className={classes.root}>
                                 <Autocomplete
                                     id="cadastrar-projeto-disciplinas-relacionadas"
@@ -114,7 +114,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             </div>
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField
                                 id="cadastrar-projeto-conteudo"
                                 label="Conteúdo"
@@ -125,7 +125,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             />
                         </Grid>
                         
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <div className={classes.root}>
                                 <Autocomplete
                                     multiple
@@ -144,7 +144,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             </div>
                         </Grid>
                         
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <div className={classes.root}>
                                 <Autocomplete
                                     multiple
@@ -163,7 +163,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             </div>
                         </Grid>
                         
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField 
                                 id="cadastrar-projeto-tecnologias"
                                 label="Tecnologias a serem utilizadas"
@@ -176,7 +176,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <TextField 
                                 id="cadastrar-projeto-objetivos"
                                 label="Objetivos do projeto"
@@ -189,7 +189,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={12}>
+                        <Grid item={true} xs={12} sm={12}>
                             <TextField 
                                 id="cadastrar-projeto-materiais-apoio"
                                 label="Materiais de apoio"
@@ -201,7 +201,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item={true} xs={12} sm={6}>
                             <Button variant="contained" color="primary" type="submit" size="large">
                                 Criar projeto
                             </Button>

@@ -15,7 +15,7 @@ const TelaLogin = ({}) => {
                 <FormularioLogin />
             </BoxInputLogin>
         </Tela>
-    )
+    )   
 };
 export default TelaLogin;
 

@@ -26,7 +26,7 @@ const TelaMeusProjetos = ({projects, usuario}) => {
             <Container maxWidth="lg">
                 <Grid container spacing={4}>
                     {projects.map((item, i) => (
-                        <Grid item xs={12} sm={4}>
+                        <Grid item={true} xs={12} sm={4}>
                             <BoxProjeto 
                                 id={item.id}
                                 // imgProjeto = {img1}
