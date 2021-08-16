@@ -1,15 +1,27 @@
 import styled from "styled-components";
-import Paragrafo from "../atoms/tipografia/paragrafo";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Mensagens from "./mensagens";
+import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
+import Button from 'react-bootstrap/Button'
+import { useForm } from "react-hook-form";
+import DescricaoProjeto from '../../components-material-ui/organism/descricaoProjeto'
+import UsuariosProjetos from "./usuariosProjeto";
 
-const TabsProjetoAluno = ({idProjeto}) => {
+function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo}){
+    
+    const [cookieUser, setCookieUser] = useCookies(["user"])
+    const router = useRouter();
+
     return(
-        
+        <>
+
         <Div1>
             <Tabs>
                 <TabList>
                     <Tab>Descrição</Tab>
+                    <Tab>Alunos</Tab>
                     <Tab>Atividades</Tab>
                     <Tab>Avaliações do Projeto</Tab>
                     <Tab>Avisos</Tab>
@@ -18,14 +30,35 @@ const TabsProjetoAluno = ({idProjeto}) => {
                 {/*Descrição*/}
                 <TabPanel>
                     <DivInterna>
-                        <h2>Any content 1</h2>
+                        <DescricaoProjeto projectInfo={projectInfo}/>
+                    </DivInterna>
+                </TabPanel>
+
+                {/* Alunos */}
+                <TabPanel>
+                    <DivInterna>
+                        <UsuariosProjetos 
+                            projectInfo={projectInfo}
+                            type={cookieUser.user.user_type}
+                            onClick={showModalUsuario}
+                            usuarios={usuarios}
+                            userId={cookieUser.user.id}
+                        />
+
                     </DivInterna>
                 </TabPanel>
 
                 {/*Atividade*/}
                 <TabPanel>
                     <DivInterna>
-                        <h2>Any content 3</h2>
+                        {
+                            cookieUser.user.user_type != 1 ? 
+                                <div></div>:
+                                <div >
+                                    <Button onClick={showModalAtividade}>Criar Atividades</Button> 
+                                </div>
+                        }
+                       <Mensagens messagesData={atividadeData}></Mensagens>
                     </DivInterna>
                 </TabPanel>
                 
@@ -33,7 +66,7 @@ const TabsProjetoAluno = ({idProjeto}) => {
                 {/* Avaliação */}
                 <TabPanel>
                     <DivInterna>
-                        <h2>Any content 4</h2>
+                        <Mensagens messagesData={avaliacoes}></Mensagens>
                     </DivInterna>
                 </TabPanel>
 
@@ -45,30 +78,32 @@ const TabsProjetoAluno = ({idProjeto}) => {
                 </TabPanel>
             </Tabs>
         </Div1>
+        </>
     )
 }
 
-export default TabsProjetoAluno
+
+export default TabsProjetoProfessor
 
 const Div1 = styled.div`
-    padding: 36px;
-    height: 100%;
-    width: 80%;
+padding: 36px;
+height: 100%;
+width: 80%;
 
-    ul{
-        margin: 0px;
-        li{
-            font-weight: 600;
-        }
+ul{
+    margin: 0px;
+    li{
+        font-weight: 600;
     }
+}
 `
 const DivInterna = styled.div`
-    padding: 12px;
-    border-top-color: transparent;
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-right-color: rgb(170, 170, 170);
-    border-right-style: solid;
+padding: 12px;
+border-top-color: transparent;
+border-top-style: solid;
+border-top-width: 1px;
+border-right-color: rgb(170, 170, 170);
+border-right-style: solid;
     border-right-width: 1px;
     border-bottom-color: rgb(170, 170, 170);
     border-bottom-style: solid;
@@ -81,4 +116,4 @@ const DivInterna = styled.div`
     border-image-width: initial;
     border-image-outset: initial;
     border-image-repeat: initial;
-`
+    `

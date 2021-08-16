@@ -7,7 +7,9 @@ import { useCookies } from 'react-cookie';
 const CriacaoAtividade = ({}) => {
 
     const [userCookie, setCookie] = useCookies(["user"]);
-	if ( Object.keys(userCookie).length !== 0 ){
+    const [atividadeCookie, setAtividadeCookie] = useCookies(["atividade"])
+	console.log(atividadeCookie);
+    if ( Object.keys(userCookie).length !== 0 ){
 		const userInfoLogin= userCookie.user.login;
 		if ( userInfoLogin ){
             return (
@@ -20,7 +22,7 @@ const CriacaoAtividade = ({}) => {
                     <div style={{marginLeft:"15%",marginTop:"2%",width:"70%"}}>
         
 
-                        <DemoBar userIdCreator={userCookie.user.id} postUrl={process.env.SERVER_HOST+"project/"+userCookie.user.id+"/criarAtividade"} />
+                        <DemoBar userIdCreator={userCookie.user.id} postUrl={process.env.SERVER_HOST+"project/"+atividadeCookie.atividade.projectId+"/criarAtividade"} />
 
                         <FormBuilder.ReactFormBuilder /> 
                     </div>

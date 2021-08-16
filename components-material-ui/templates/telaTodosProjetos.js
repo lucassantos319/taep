@@ -4,8 +4,11 @@ import { Grid, Container, Button } from '@material-ui/core';
 import Link from 'next/link'  
 
 import BoxProjeto from '../molecules/boxProjeto';
+import { useRouter } from 'next/router';
 
 const TelaTodosProjetos = ({projects, usuario}) => {
+    
+    const router = useRouter();
     return(
         <Tela>
             <h1>TODOS OS PROJETOSSSSSSSSSSSSSSSSSSSSS</h1>
@@ -24,7 +27,7 @@ const TelaTodosProjetos = ({projects, usuario}) => {
                                     item.descricao.substring(0,32)+'...':
                                     item.descricao 
                                 }
-                                onClick={()=>{ router.push('/meus-projetos/'+item.id)} }
+                                onClick={()=>{ router.push('/projetos/'+item.id)} }
                             />
                         </Grid>
 					))}

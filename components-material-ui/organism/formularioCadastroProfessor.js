@@ -1,12 +1,60 @@
 import styled from 'styled-components';
 import { Container, Grid, TextField, Button } from '@material-ui/core';
 import Link from 'next/link'
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import { useCookies } from "react-cookie";
 
 const FormularioCadastroProfessor = ({}) => {
+   
+    const {register,handleSubmit} = useForm();
+    const router = useRouter();
+    const [cookie, setCookie] = useCookies(["user"])
+
+
+    const onSubmitF = async (data) => {
+        
+        try{
+            
+            console.log(data);
+            if ( data.password == data.password_confirm){
+
+                const url = process.env.SERVER_HOST+"login/createUser";
+                const userData = await axios.post(url,
+                    {"first_name":data.first_name,
+                    "password":data.password,
+                    "email":data.email,
+                    "nickname":data.apelido,
+                    "user_type":1,
+                    "last_name":"",
+                })
+                .then(response => response.data);
+    
+                if ( userData.login ){
+                    
+                    setCookie("user", JSON.stringify(userData), {
+                        path: "/",
+                        sameSite: true
+                    });
+    
+                    router.prefetch("/home");
+                    router.push("/home");
+                }
+            }
+            else{
+                alert("Erro: Senhas não iguais");
+            }
+
+        }catch(error){
+            alert(error.message);
+        }
+    }
+
     return(
         <Div>
             <Container maxWidth="sm">
-                <form>
+                <form onSubmit={handleSubmit(onSubmitF)}>
                     <TextField 
                         id="cadastro-professor-email" 
                         label="Email" 
@@ -14,6 +62,7 @@ const FormularioCadastroProfessor = ({}) => {
                         required 
                         fullWidth
                         margin="normal"
+                        {...register("email")}
                     />
 
                     <TextField 
@@ -23,6 +72,7 @@ const FormularioCadastroProfessor = ({}) => {
                         required 
                         fullWidth
                         margin="normal"
+                        {...register("first_name")}
                     />
 
                     <TextField 
@@ -32,6 +82,7 @@ const FormularioCadastroProfessor = ({}) => {
                         required 
                         fullWidth
                         margin="normal"
+                        {...register("apelido")}
                     />
                     
                     <TextField 
@@ -41,6 +92,7 @@ const FormularioCadastroProfessor = ({}) => {
                         required 
                         fullWidth
                         margin="normal"
+                        {...register("password")}
                     />
 
                     <TextField 
@@ -50,11 +102,12 @@ const FormularioCadastroProfessor = ({}) => {
                         required 
                         fullWidth
                         margin="normal"
+                        {...register("password_confirm")}
                     />
 
                     <Grid container xs={12}>
                         <Grid item={true} xs={12} className="centraliza">
-                            <Button className="m-12" variant="contained" color="primary" type="submit" size="large">
+                            <Button className="m-12" variant="contained" type="submit" color="primary" size="large">
                                 Realizar cadastro
                             </Button>
                         </Grid>

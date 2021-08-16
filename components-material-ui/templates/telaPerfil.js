@@ -2,6 +2,10 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Container, Grid, TextField, Button, makeStyles, Modal, Backdrop, Fade } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
+
 
 const useStyles = makeStyles((theme) => ({
     centralizaEsquerda:{
@@ -33,9 +37,72 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const TelaPerfil = ({userCookie}) => {
+
     const classes = useStyles();
     const [openModalEmail, setOpenModalEmail] = React.useState(false);
     const [openModalSenha, setOpenModalSenha] = React.useState(false);
+
+    const {register,handleSubmit} = useForm();
+    const [cookies,setCookies] = useCookies(['user']);
+
+    const onSubmitEmail = async (data) => {
+        
+        try{
+
+            if (userCookie.user.login){
+
+                if ( data.email != data.email_confirm){
+                    alert("Emails não são iguais");
+                }
+                else{
+                    
+                    const url = process.env.SERVER_HOST+"editEmail/"+userCookie.user.id;
+                    const userData = await axios.post(url,{"email":data.email})
+                    .then(response => response.data);
+                   
+                    setOpenModalEmail(false);
+                    var cookieUpdate = cookies.user;
+                    cookieUpdate.email = data.email;
+                    
+                    setCookies("user", JSON.stringify(cookieUpdate), {
+                        path: "/",
+                        sameSite: true
+                    });
+
+                    alert("Email trocado com sucesso!");
+                }
+            }
+        }
+        catch(error){
+            alert(error.message)
+        }
+    }
+
+    const onSubmitPassword = async (data) => {
+
+        try{
+
+            if (userCookie.user.login){
+
+                if ( data.password_new != data.password_confirm){
+                    alert("Senhas não são iguais");
+                }
+                else{
+                    
+                    const url = process.env.SERVER_HOST+"editPassword/"+userCookie.user.id;
+                    const userData = await axios.post(url,{"password":data.password_new,"password_old":data.password_old})
+                    .then(response => response.data);
+                   
+                    setOpenModalPassword(false);
+                    alert("Senha trocado com sucesso!");
+                }
+            }
+        }
+        catch(error){
+            alert(error.message)
+        }
+
+    }
 
     const handleOpenModalEmail = () => {
             setOpenModalEmail(true);
@@ -139,7 +206,7 @@ const TelaPerfil = ({userCookie}) => {
             >
                 <Fade in={openModalEmail}>
                     <div className={classes.paper}>
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmitEmail)}>
                             <h2 id="perfil-modal-email">Alteração de E-mail</h2>
                             <Grid container spacing={3} className={classes.centralizaItens}>
                                 <Grid item={true} sm={12}>
@@ -149,6 +216,7 @@ const TelaPerfil = ({userCookie}) => {
                                         fullWidth
                                         type="email"
                                         required
+                                        {...register("email")}
                                     />
                                 </Grid>
 
@@ -159,6 +227,7 @@ const TelaPerfil = ({userCookie}) => {
                                         fullWidth
                                         type="email"
                                         required
+                                        {...register("email_confirm")}
                                     />
                                 </Grid>
                                 
@@ -187,7 +256,7 @@ const TelaPerfil = ({userCookie}) => {
             >
                 <Fade in={openModalSenha}>
                     <div className={classes.paper}>
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmitPassword)}>
                             <h2 id="perfil-modal-senha">Alteração de senha</h2>
                             <Grid container spacing={3} className={classes.centralizaItens}>
                                 <Grid item={true} sm={12}>
@@ -197,6 +266,7 @@ const TelaPerfil = ({userCookie}) => {
                                         fullWidth
                                         type="password"
                                         required
+                                        {...register("password_old")}
                                     />
                                 </Grid>
                                 
@@ -207,6 +277,8 @@ const TelaPerfil = ({userCookie}) => {
                                         fullWidth
                                         type="password"
                                         required
+                                        {...register("password_new")}
+
                                     />
                                 </Grid>
 
@@ -217,6 +289,7 @@ const TelaPerfil = ({userCookie}) => {
                                         fullWidth
                                         type="password"
                                         required
+                                        {...register("password_confirm")}
                                     />
                                 </Grid>
                                 

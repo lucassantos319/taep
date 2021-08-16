@@ -28,12 +28,13 @@ const MeusProjetos = (props) => {
 			//          
 
 			return (
-				<Layout tipo={userCookie.user.user_type}>
-					<TelaMeusProjetos 
-						projects={props.projects}
-						usuario={userCookie.user.user_type}
-					/>
-				</Layout>
+ 
+					<Layout tipo={userCookie.user.user_type}>
+						<TelaMeusProjetos 
+							projects={props.projects}
+							usuario={userCookie.user.user_type}
+						/>
+					</Layout> 
 			)	
 		}
 		else
@@ -53,12 +54,20 @@ const MeusProjetos = (props) => {
 
 export async function getServerSideProps(context) {
 
-	const parsedCookies = cookie.parse(context.req.headers.cookie);
-	// console.log(parsedCookies);
-	const user = JSON.parse(parsedCookies.user);
-	const url = process.env.SERVER_HOST+"project/"+user.id;
-	const projects = await axios.get(url).then(response=>response.data);
-	return { props: { projects } }
+	try{
+		const parsedCookies = cookie.parse(context.req.headers.cookie);
+		// console.log(parsedCookies);
+		const user = JSON.parse(parsedCookies.user);
+		const url = process.env.SERVER_HOST+"project/"+user.id;
+		const projects = await axios.get(url).then(response=>response.data);
+		console.log(projects);
+		return { props: { projects } }
+
+	}
+	catch(error){
+		const projects = []
+		return {props:{ projects }}
+	}
 	
 }
 

@@ -10,11 +10,13 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 import TextField from '@material-ui/core/TextField';
 import { useForm } from "react-hook-form";
-
+import DescricaoProjeto from '../../components-material-ui/organism/descricaoProjeto'
 import UsuariosProjetos from "./usuariosProjeto";
 import axios from 'axios';
+import AvisoProjeto from '../../components-material-ui/organism/avisoProjeto'
+import MensagensAviso from "./messageAviso";
 
-function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
+function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,avisos}){
     
     const {register,handleSubmit} = useForm();
     const [cookie, setCookie] = useCookies(["atividade"])
@@ -24,9 +26,21 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
     
     const [isOpenAtividade, setIsOpenAtividade] = useState(false);
     const [isOpenUsuario, setIsOpenUsuario] = useState(false);
+    const [isOpenAvaliacao, setIsOpenAvaliacao] = useState(false);
+    const [isOpenAviso, setIsOpenAviso] = useState(false);
+
 
     const showModalAtividade = () => {
       setIsOpenAtividade(true);
+    };
+
+
+    const showModalAvaliacao = () => {
+        setIsOpenAvaliacao(true);
+      };
+
+    const showModalAviso = () => {
+        setIsOpenAviso(true);
     };
 
     const showModalUsuario = () => {
@@ -41,12 +55,20 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
         setIsOpenUsuario(false);
     };
 
+    const hideModalAvaliacao = () => {
+        setIsOpenAvaliacao(false);
+      };
+
+    const hideModalAviso = () => {
+        setIsOpenAviso(false);
+    };
 
     const pushAtividade = (data) => {
         
         const atividade = {
             "titulo":data.title,
-            "description":data.description
+            "description":data.description,
+            "projectId":projectInfo.id
         }
 
         setCookie("atividade", JSON.stringify(atividade), {
@@ -78,9 +100,52 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
     }
 
 
+    const pushAvaliacao = async (data) => {
+       
+
+        const atividade = {
+            "titulo":data.title,
+            "description":data.description
+        }
+
+        setCookie("atividade", JSON.stringify(atividade), {
+            path: "/",
+            sameSite: true
+        });
+
+        router.prefetch("/criacao-atividade");
+        router.push("/criacao-atividade");
+       
+    }
+
+
+    const pushAviso = async (data) => {
+       
+
+        const url = process.env.SERVER_HOST+"project/"+id+"/CreateNotice";
+        
+        try{
+
+            if ( Object.keys(cookieUser).length !== 0 ){
+                if ( cookieUser.user.login ){
+                    
+                    const x = await axios.post(url,{"title":data.titulo,"description":data.descricao,"userId":cookieUser.user.id})
+                    .then(response => response.data);
+                    
+                
+                }
+            }
+        }
+        catch(error){
+            alert(error.message)
+        }
+        hideModalAviso();
+
+    }
+
     return(
         <>
-            <Modal show={isOpenAtividade} onHide={hideModalAtividade}>
+            <Modal style={{marginTop:"7%"}} show={isOpenAtividade} onHide={hideModalAtividade}>
 
             <Modal.Header>
                 <Modal.Title>Criar atividade</Modal.Title>
@@ -108,7 +173,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
             </Modal.Footer>
             </Modal>
 
-            <Modal show={isOpenUsuario} onHide={hideModalUsuario}>
+            <Modal style={{marginTop:"7%"}} show={isOpenUsuario} onHide={hideModalUsuario}>
             <Modal.Header>
                 <Modal.Title>Vincular usuário</Modal.Title>
             </Modal.Header>
@@ -129,6 +194,41 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
 
             </Modal.Footer>
             </Modal>
+
+            <Modal style={{marginTop:"7%"}} show={isOpenAviso} onHide={hideModalAviso}>
+            <Modal.Header>
+                <Modal.Title>Criar aviso</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <form>
+                    <div style={{padding:"20px"}}>
+
+                        <div style={{marginBottom:"30px"}}>
+                            <TextField {...register("title")} id="title"  style={{ width:"100%"}} required label="Titulo" variant="outlined"/>
+
+                        </div>
+                        <div>
+                        <TextField 
+                                label="Descrição"
+                                fullWidth
+                                type="text"
+                                multiline
+                                maxRows={6}
+                                variant="outlined"
+                                {...register("description")}
+                            />
+                        </div>
+                    </div>
+                </form>
+
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={handleSubmit(pushAviso)}>Criar</Button>
+
+                <Button onClick={hideModalAviso}>Cancel</Button>
+            </Modal.Footer>
+            </Modal>
+
         
         <Div1>
             <Tabs>
@@ -143,14 +243,20 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
                 {/*Descrição*/}
                 <TabPanel>
                     <DivInterna>
-                        <h2>Any content 1</h2>
+                        <DescricaoProjeto projectInfo={projectInfo}/>
                     </DivInterna>
                 </TabPanel>
 
                 {/* Alunos */}
                 <TabPanel>
                     <DivInterna>
-                        <UsuariosProjetos onClick={showModalUsuario} usuarios={usuarios}/>
+                        <UsuariosProjetos 
+                            projectInfo={projectInfo}
+                            type={cookieUser.user.user_type}
+                            onClick={showModalUsuario}
+                            usuarios={usuarios}
+                            userId={cookieUser.user.id}
+                        />
 
                     </DivInterna>
                 </TabPanel>
@@ -158,11 +264,13 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
                 {/*Atividade*/}
                 <TabPanel>
                     <DivInterna>
-                        <div >
-
-                            <Button onClick={showModalAtividade}>Criar Atividades</Button> 
-
-                        </div>
+                        {
+                            cookieUser.user.user_type == 1 && cookieUser.user.id == projectInfo.userCreator.id ? 
+                                <div style={{marginTop:"14px",marginBottom:"25px"}} >
+                                    <Button onClick={showModalAtividade}>Criar Atividades</Button> 
+                                </div>:
+                                <div></div>
+                        }
                        <Mensagens messagesData={atividadeData}></Mensagens>
                     </DivInterna>
                 </TabPanel>
@@ -171,14 +279,28 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes}){
                 {/* Avaliação */}
                 <TabPanel>
                     <DivInterna>
-                        <h2>Any content 4</h2>
+                        {
+                            cookieUser.user.user_type == 1 && cookieUser.user.id == projectInfo.userCreator.id ? 
+                                <div style={{marginTop:"14px",marginBottom:"25px"}}>
+                                    <Button onClick={showModalAvaliacao}>Criar Atividades</Button> 
+                                </div>:
+                                <div></div>
+                        }
+                        <Mensagens messagesData={avaliacoes}></Mensagens>
                     </DivInterna>
                 </TabPanel>
 
                 {/* Avisos */}
                 <TabPanel>
                     <DivInterna>
-                        <h2>Any content 5</h2>
+                        {
+                            cookieUser.user.user_type == 1 && cookieUser.user.id == projectInfo.userCreator.id ? 
+                                <div style={{marginTop:"14px",marginBottom:"25px"}}>
+                                    <Button onClick={showModalAviso}>Criar aviso</Button> 
+                                </div>:
+                                <div></div>
+                        }
+                        <MensagensAviso messagesData={avisos}></MensagensAviso>                      
                     </DivInterna>
                 </TabPanel>
             </Tabs>

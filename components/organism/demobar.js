@@ -44,8 +44,6 @@ export default class  Demobar extends React.Component {
     
     const { postUrl } = this.props;
     
-    console.log(JSON.parse(this.state.atividade))
-    console.log(this.state);
     const atividade = JSON.parse(this.state.atividade)
   
     console.log(atividade.titulo)
@@ -53,7 +51,8 @@ export default class  Demobar extends React.Component {
       title:atividade.titulo,
       description:atividade.description,
       userIdCreator:this.props.userIdCreator,
-      dataForm:this.state.data
+      dataForm:this.state.data,
+      projetoId:atividade.projectId
     }
     console.log("data: ",data)
     post(postUrl,data).then();

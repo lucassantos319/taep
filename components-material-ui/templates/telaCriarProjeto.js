@@ -1,8 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Grid, Container, TextField, Button, Chip, makeStyles, TextareaAutosize } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { useForm } from 'react-hook-form';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,7 +18,58 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TelaCriarProjeto = ({projects, usuario}) => {
+    
     const classes = useStyles();
+    const [cookies,setCookie] = useCookies(["user"])
+
+    const router = useRouter();
+    const [selectedOptionsDisciplinas, setSelectedOptionsDisciplinas] = useState([]);
+    const [selectedOptionsTags, setSelectedOptionsTags] = useState([]);
+
+    const handleChangeTags = (event, value) => setSelectedOptionsTags(value);
+    const handleChangeDisciplinas = (event, value) => setSelectedOptionsDisciplinas(value);
+
+    const onSubmit = async (data) => {
+        
+        try{
+          
+            const url = process.env.SERVER_HOST+"project/createProjects";
+            var data = {
+               
+                "title":data.title,
+                "turma":data.turma,
+                "disciplina":data.disciplina,
+                "description":data.description,
+                "tecnologias":data.tecnologias,
+                "objective":data.objetivo,
+                "material_apoio":data.material_apoio,
+                "userId":cookies.user.id,
+                "disciplinas_relacionais":[],
+                "tags":[]
+            };
+
+            data["disciplinas_relacionais"] = selectedOptionsDisciplinas;
+            data["tags"] = selectedOptionsTags;
+
+            console.log(data);
+            const projectData = await axios.post(url,data)   
+            .then(response => response.data);
+            
+            // if ( cookies.user.login ){
+                // setCookie("user", JSON.stringify(userData), {
+            //         path: "/",
+            //         maxAge: 3600, // Expires after 1hr
+            //         sameSite: true
+            //     });
+            router.prefetch("/meus-projetos");
+            router.push("/meus-projetos");
+            // }
+            
+        }
+        catch(error){
+            alert(error.message);
+        }
+    }
 
     const disciplinas = [
         { disciplina: 'Biologia'},
@@ -66,12 +121,15 @@ const TelaCriarProjeto = ({projects, usuario}) => {
 
         { competencia: 'Outra'},
       ];
+
+    const {register,handleSubmit} = useForm()
+    
     return(
         <Tela>
             <Container maxWidth="md">
                 <h1>Criação de projeto</h1>
 
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={3}>
                         <Grid item={true} xs={12} sm={6}>
                             <TextField
@@ -81,6 +139,8 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 type="text"
                                 placeholder="Insira o titulo do projeto"
                                 required
+                                {...register("title")}
+
                             />
                         </Grid>
 
@@ -92,6 +152,8 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 type="text"
                                 placeholder="Insira a turma de aplicação do projeto"
                                 required
+                                {...register("turma")}
+
                             />
                         </Grid>
 
@@ -108,6 +170,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                         label="Disciplina do projeto"
                                         placeholder="Escolha uma disciplina"
                                         required
+                                        {...register("disciplina")}
                                     />
                                     )}
                                 />
@@ -122,6 +185,8 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 type="text"
                                 placeholder="Informe o conteúdo do projeto"
                                 required
+                                {...register("description")}
+
                             />
                         </Grid>
                         
@@ -131,6 +196,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                     multiple
                                     id="cadastrar-projeto-disciplinas-relacionadas"
                                     options={disciplinas}
+                                    onChange={(event,value)=>handleChangeDisciplinas(event,value)}
                                     getOptionLabel={(option) => option.disciplina}
                                     filterSelectedOptions
                                     renderInput={(params) => (
@@ -138,7 +204,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                         {...params}
                                         label="Disciplinas relacionadas"
                                         placeholder="Escolha uma disciplina"
-                                    />
+                                        />
                                     )}
                                 />
                             </div>
@@ -152,12 +218,13 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                     options={competencias}
                                     getOptionLabel={(option) => option.competencia}
                                     filterSelectedOptions
+                                    onChange={(event,value) => handleChangeTags(event,value)}
                                     renderInput={(params) => (
                                     <TextField
                                         {...params}
                                         label="Competências relacionadas"
                                         placeholder="Escolha uma competência"
-                                    />
+                                        />
                                     )}
                                 />
                             </div>
@@ -173,6 +240,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 required
                                 multiline
                                 maxRows={6}
+                                {...register("tecnologias")}
                             />
                         </Grid>
 
@@ -186,6 +254,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 required
                                 multiline
                                 maxRows={6}
+                                {...register("objetivo")}
                             />
                         </Grid>
 
@@ -198,6 +267,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 placeholder="Informe materiais de apoio para o projeto (será visivel para os alunos)"
                                 multiline
                                 maxRows={6}
+                                {...register("material_apoio")}
                             />
                         </Grid>
 

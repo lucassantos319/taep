@@ -7,12 +7,15 @@ import * as FaIcons from "react-icons/fa";
 import Link from 'next/link'
 
 import {makeStyles, List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core'
+import { useCookies } from 'react-cookie';
 
 const NavbarProfessor = ({}) => {
+    
+    // const [cookies, setCookies, removeCookies] = useCookies(['user'])
     return(
         <Div>
             <List>
-                <Link href="home">
+                <Link href="/home">
                     <ListItem button className="hover-item-nav" key='home'>
                             <ListItemIcon>
                                 <FaIcons.FaHome className="text-nav"/>
@@ -48,7 +51,7 @@ const NavbarProfessor = ({}) => {
                     </ListItem>
                 </Link>
 
-                <Link href="cadastrar-aluno">
+                <Link href="/cadastrar-aluno">
                     <ListItem button className="hover-item-nav" key='cadastrar-aluno'>
                         <ListItemIcon>
                             <FaIcons.FaCog className="text-nav"/>
@@ -57,7 +60,7 @@ const NavbarProfessor = ({}) => {
                     </ListItem>
                 </Link>
 
-                <Link href="sair">
+                <Link href="/sair" >
                     <ListItem button className="hover-item-nav" key='sair'>
                         <ListItemIcon>
                             <FaIcons.FaSignOutAlt className="text-nav"/>
