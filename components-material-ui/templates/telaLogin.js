@@ -40,6 +40,7 @@ const Tela = styled.div`
     display: flex;
     justify-content: center;
 
+    
     //criação do backgournd gradiente (animado????)
     background: linear-gradient(45deg, #142850, #27496D, #0C7B93, #00A8CC);
     background-size: 300% 300%;

@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import { useCookies } from 'react-cookie';
+// import { useRouter } from 'next/router';
+// import { useCookies } from 'react-cookie';
 
 const Sair = ({}) => {
 

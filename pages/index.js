@@ -9,7 +9,6 @@ const Login = ({}) => {
     const router = useRouter();
     
     if ( Object.keys(userCookie).length !== 0 ){
-        router.prefetch("/home");
         router.push("/home");
         return(
             <>
