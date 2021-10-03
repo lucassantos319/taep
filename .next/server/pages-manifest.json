@@ -1,7 +1,21 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
+  "/api/hello": "pages/api/hello.js",
+  "/cadastrar-aluno": "pages/cadastrar-aluno.html",
+  "/cadastrar-professor": "pages/cadastrar-professor.html",
+  "/configuracoes": "pages/configuracoes.html",
+  "/criacao-atividade": "pages/criacao-atividade.html",
+  "/criar-projeto": "pages/criar-projeto.html",
+  "/home": "pages/home.html",
+  "/": "pages/index.html",
+  "/meus-projetos/[id]": "pages/meus-projetos/[id].js",
+  "/meus-projetos": "pages/meus-projetos.js",
+  "/perfil": "pages/perfil.html",
+  "/projetos": "pages/projetos.js",
+  "/projetos/[id]": "pages/projetos/[id].js",
+  "/sair": "pages/sair.html",
+  "/teste": "pages/teste.html",
   "/_error": "pages/_error.js",
-  "/home": "pages/home.js",
-  "/": "pages/index.js"
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
 }
