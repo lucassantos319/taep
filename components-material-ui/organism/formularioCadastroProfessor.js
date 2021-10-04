@@ -19,7 +19,7 @@ const FormularioCadastroProfessor = ({}) => {
             console.log(data);
             if ( data.password == data.password_confirm){
 
-                const url = process.env.SERVER_HOST+"login/createUser";
+                const url = "https://taep-backend.herokuapp.com/login/createUser";
                 const userData = await axios.post(url,
                     {"first_name":data.first_name,
                     "password":data.password,
