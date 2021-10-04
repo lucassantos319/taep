@@ -6,7 +6,32 @@ import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
+export async function getServerSideProps(context) {
+    
+    // const parsedCookies = cookie.parse(context.req.headers.cookie);
+    // // console.log(parsedCookies);
+    // const user = JSON.parse(parsedCookies.user);
 
+    const {id} = context.query;
+    const atividadesUrl = "https://taep-backend.herokuapp.com/project/"+id+"/atividades";
+    const usuariosUrl = "https://taep-backend.herokuapp.com/project/"+id+"/usuarios"
+    const infoUrl = "https://taep-backend.herokuapp.com/project/"+id+"/info";
+    const avisoUrl = "https://taep-backend.herokuapp.com/project/"+id+"/avisos";
+    
+    const messagesData = await axios.get(atividadesUrl).then(response=>response.data);
+    const usuarios = await axios.get(usuariosUrl).then(response=>response.data);
+    const projectInfo = await axios.get(infoUrl).then(response=>response.data);
+    const avisos = await axios.get(avisoUrl).then(response=>response.data)
+
+    return { 
+        props: { 
+            messagesData ,
+            usuarios,
+            projectInfo,
+            avisos
+        }
+     }
+}
 
 const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
 
@@ -17,19 +42,16 @@ const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
     
  
     if ( Object.keys(userCookie).length !== 0 ){
-		const userInfoLogin= userCookie.user.login;
+		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
        
 			return (
                 <>
                     <Layout>
-        
-                        {userCookie.user.user_type==1?
-
+                        {userCookie.user.data.user_type==1?
                             <TabsProjetoProfessor avisos={avisos} atividadeData={messagesData} usuarios={usuarios} projectInfo={projectInfo} idProjeto={id}/>
                             :<TabsProjetoAluno idProjeto={id}/>
                         }
-                    
                     </Layout>
                 </>
 			)	
@@ -49,31 +71,5 @@ const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
    
 }
 
-export async function getServerSideProps(context) {
-    
-    // const parsedCookies = cookie.parse(context.req.headers.cookie);
-	// // console.log(parsedCookies);
-	// const user = JSON.parse(parsedCookies.user);
-
-    const {id} = context.query;
-    const atividadesUrl = process.env.SERVER_HOST+"project/"+id+"/atividades";
-    const usuariosUrl = process.env.SERVER_HOST+"project/"+id+"/usuarios"
-    const infoUrl = process.env.SERVER_HOST+"project/"+id+"/info";
-    const avisoUrl = process.env.SERVER_HOST+"project/"+id+"/avisos";
-    
-    const messagesData = await axios.get(atividadesUrl).then(response=>response.data);
-    const usuarios = await axios.get(usuariosUrl).then(response=>response.data);
-    const projectInfo = await axios.get(infoUrl).then(response=>response.data);
-    const avisos = await axios.get(avisoUrl).then(response=>response.data)
-
-    return { 
-        props: { 
-            messagesData ,
-            usuarios,
-            projectInfo,
-            avisos
-        }
-     }
-}
 
 export default ProjetoPageDefault;

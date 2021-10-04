@@ -1,17 +1,16 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Grid, Container, Button } from '@material-ui/core';
-import Link from 'next/link'  
 
 import BoxProjeto from '../molecules/boxProjeto';
 import { useRouter } from 'next/router';
 
-const TelaTodosProjetos = ({projects, usuario}) => {
+const TelaTodosProjetos = ({projects}) => {
     
     const router = useRouter();
     return(
         <Tela>
-            <h1>TODOS OS PROJETOSSSSSSSSSSSSSSSSSSSSS</h1>
+            <h1>TODOS OS PROJETOS</h1>
             <Container maxWidth="lg">
                 <Grid container spacing={4}>
                     {projects.map((item, i) => (

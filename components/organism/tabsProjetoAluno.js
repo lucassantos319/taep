@@ -5,7 +5,6 @@ import Mensagens from "./mensagens";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 import Button from 'react-bootstrap/Button'
-import { useForm } from "react-hook-form";
 import DescricaoProjeto from '../../components-material-ui/organism/descricaoProjeto'
 import UsuariosProjetos from "./usuariosProjeto";
 

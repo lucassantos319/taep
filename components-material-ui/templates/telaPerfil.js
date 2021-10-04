@@ -49,7 +49,7 @@ const TelaPerfil = ({userCookie}) => {
         
         try{
 
-            if (userCookie.user.login){
+            if (userCookie.user.data.login){
 
                 if ( data.email != data.email_confirm){
                     alert("Emails não são iguais");
@@ -59,8 +59,9 @@ const TelaPerfil = ({userCookie}) => {
                     const url = process.env.SERVER_HOST+"editEmail/"+userCookie.user.id;
                     const userData = await axios.post(url,{"email":data.email})
                     .then(response => response.data);
-                   
+
                     setOpenModalEmail(false);
+
                     var cookieUpdate = cookies.user;
                     cookieUpdate.email = data.email;
                     
@@ -123,14 +124,14 @@ const TelaPerfil = ({userCookie}) => {
     return(
         <Tela>
             <Container maxWidth="md">
-                <h1>Informações de usuário - {userCookie.user.user_type==1? 'Professor':'Aluno'}</h1>
+                <h1>Informações de usuário - {userCookie.user.data.user_type==1? 'Professor':'Aluno'}</h1>
 
                 <Grid container spacing={3}>
                     <Grid item={true} xs={12} sm={6}>
                         <TextField
                             id="perfil-nome-sobrenome"
                             label="Nome"
-                            defaultValue={userCookie.user.first_name + ' ' + userCookie.user.last_name}
+                            defaultValue={userCookie.user.data.first_name + ' ' + userCookie.user.data.last_name}
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -143,7 +144,7 @@ const TelaPerfil = ({userCookie}) => {
                         <TextField
                             id="perfil-apelido"
                             label="Apelido"
-                            defaultValue={userCookie.user.nickname}
+                            defaultValue={userCookie.user.data.nickname}
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -156,7 +157,7 @@ const TelaPerfil = ({userCookie}) => {
                         <TextField
                             id="perfil-email"
                             label="E-mail"
-                            defaultValue={userCookie.user.email}
+                            defaultValue={userCookie.user.data.email}
                             InputProps={{
                                 readOnly: true,
                             }}

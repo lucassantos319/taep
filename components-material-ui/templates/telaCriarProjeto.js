@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Grid, Container, TextField, Button, Chip, makeStyles, TextareaAutosize } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useForm } from 'react-hook-form';
 import { useCookies } from 'react-cookie';
@@ -33,7 +32,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
         
         try{
           
-            const url = process.env.SERVER_HOST+"project/createProjects";
+            const url = "https://taep-backend.herokuapp.com/project/createProjects";
             var data = {
                
                 "title":data.title,

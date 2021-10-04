@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Paragrafo from "../atoms/tipografia/paragrafo";
-import FormShower from "./formShower";
+
 const CardAviso = ({id, messagesData,className}) => {
     
     var messageData;

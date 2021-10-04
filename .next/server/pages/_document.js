@@ -264,6 +264,7 @@ const loadScript = props => {
     onLoad = () => {},
     dangerouslySetInnerHTML,
     children = '',
+    strategy = 'afterInteractive',
     onError
   } = props;
   const cacheKey = id || src; // Script has already loaded
@@ -321,6 +322,7 @@ const loadScript = props => {
     el.setAttribute(attr, value);
   }
 
+  el.setAttribute('data-nscript', strategy);
   document.body.appendChild(el);
 };
 
@@ -365,7 +367,8 @@ function Script(props) {
 
   const {
     updateScripts,
-    scripts
+    scripts,
+    getIsSsr
   } = (0, _react).useContext(_headManagerContext.HeadManagerContext);
   (0, _react).useEffect(() => {
     if (strategy === 'afterInteractive') {
@@ -383,7 +386,10 @@ function Script(props) {
         onError
       }, restProps)]);
       updateScripts(scripts);
-    } else {
+    } else if (getIsSsr && getIsSsr()) {
+      // Script has already loaded during SSR
+      LoadCache.add(restProps.id || src);
+    } else if (getIsSsr && !getIsSsr()) {
       loadScript(props);
     }
   }
@@ -401,7 +407,9 @@ exports.default = _default;
 
 
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+const _excluded = ["strategy"];
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -441,8 +449,6 @@ var _react = _interopRequireWildcard(__webpack_require__(9297));
 var _server = _interopRequireDefault(__webpack_require__(1168));
 
 var _constants = __webpack_require__(6044);
-
-var _documentContext = __webpack_require__(5163);
 
 var _utils = __webpack_require__(7620);
 
@@ -523,12 +529,13 @@ function getPreNextScripts(context, props) {
     const {
       strategy
     } = file,
-          scriptProps = _objectWithoutProperties(file, ["strategy"]);
+          scriptProps = _objectWithoutProperties(file, _excluded);
 
     return /*#__PURE__*/_react.default.createElement("script", Object.assign({}, scriptProps, {
       key: scriptProps.src || index,
       defer: !disableOptimizedLoading,
       nonce: props.nonce,
+      "data-nscript": "beforeInteractive",
       crossOrigin: props.crossOrigin || undefined
     }));
   });
@@ -602,12 +609,6 @@ class Document1 extends _react.Component {
     };
   }
 
-  static renderDocument(DocumentComponent, props) {
-    return /*#__PURE__*/_react.default.createElement(_documentContext.DocumentContext.Provider, {
-      value: props
-    }, /*#__PURE__*/_react.default.createElement(DocumentComponent, Object.assign({}, props)));
-  }
-
   render() {
     return /*#__PURE__*/_react.default.createElement(Html, null, /*#__PURE__*/_react.default.createElement(Head, null), /*#__PURE__*/_react.default.createElement("body", null, /*#__PURE__*/_react.default.createElement(Main, null), /*#__PURE__*/_react.default.createElement(NextScript, null)));
   }
@@ -621,7 +622,7 @@ function Html(props) {
     inAmpMode,
     docComponentsRendered,
     locale
-  } = (0, _react).useContext(_documentContext.DocumentContext);
+  } = (0, _react).useContext(_utils.HtmlContext);
   docComponentsRendered.Html = true;
   return /*#__PURE__*/_react.default.createElement("html", Object.assign({}, props, {
     lang: props.lang || locale || undefined,
@@ -970,22 +971,18 @@ class Head extends _react.Component {
 }
 
 exports.Head = Head;
-Head.contextType = _documentContext.DocumentContext;
+Head.contextType = _utils.HtmlContext;
 
 function Main() {
   const {
     inAmpMode,
-    html,
     docComponentsRendered
-  } = (0, _react).useContext(_documentContext.DocumentContext);
+  } = (0, _react).useContext(_utils.HtmlContext);
   docComponentsRendered.Main = true;
-  if (inAmpMode) return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, _constants.AMP_RENDER_TARGET);
+  if (inAmpMode) return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, _constants.BODY_RENDER_TARGET);
   return /*#__PURE__*/_react.default.createElement("div", {
-    id: "__next",
-    dangerouslySetInnerHTML: {
-      __html: html
-    }
-  });
+    id: "__next"
+  }, _constants.BODY_RENDER_TARGET);
 }
 
 class NextScript extends _react.Component {
@@ -1005,10 +1002,10 @@ class NextScript extends _react.Component {
     return getPolyfillScripts(this.context, this.props);
   }
 
-  static getInlineScriptSource(documentProps) {
+  static getInlineScriptSource(context) {
     const {
       __NEXT_DATA__
-    } = documentProps;
+    } = context;
 
     try {
       const data = JSON.stringify(__NEXT_DATA__);
@@ -1081,7 +1078,7 @@ class NextScript extends _react.Component {
 }
 
 exports.NextScript = NextScript;
-NextScript.contextType = _documentContext.DocumentContext;
+NextScript.contextType = _utils.HtmlContext;
 NextScript.safariNomoduleFix = '!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()},!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();';
 
 function getAmpPath(ampPath, asPath) {
@@ -1115,13 +1112,6 @@ module.exports = require("next/dist/server/utils.js");
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/constants.js");
-
-/***/ }),
-
-/***/ 5163:
-/***/ ((module) => {
-
-module.exports = require("next/dist/shared/lib/document-context.js");
 
 /***/ }),
 

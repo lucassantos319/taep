@@ -1,5 +1,3 @@
-
-
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,7 +7,7 @@ const CardUser = ({ usuario }) => {
    
     var userType;
 
-    if ( usuario.user_type == 1)
+    if ( usuario.data.user_type == 1)
         userType = "Professor"
     else
         userType = "Aluno"
@@ -20,11 +18,11 @@ const CardUser = ({ usuario }) => {
             <Card style={{marginTop:"20px"}}>
                 <CardContent>
                     <Typography variant="h7" gutterBottom>
-                        {usuario.first_name+" "+usuario.last_name}
+                        {usuario.data.first_name+" "+usuario.data.last_name}
                     </Typography>
                     
                     <Typography color="textSecondary">
-                        {usuario.email+" - "+ userType}
+                        {usuario.data.email+" - "+ userType}
                     </Typography>
                     
                 </CardContent>
@@ -34,4 +32,5 @@ const CardUser = ({ usuario }) => {
         </>
     );
 }
+
 export default CardUser;

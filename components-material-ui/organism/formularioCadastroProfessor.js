@@ -12,7 +12,6 @@ const FormularioCadastroProfessor = ({}) => {
     const router = useRouter();
     const [cookie, setCookie] = useCookies(["user"])
 
-
     const onSubmitF = async (data) => {
         
         try{

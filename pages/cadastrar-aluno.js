@@ -1,13 +1,13 @@
-import Head from 'next/head';
 import { useCookies } from 'react-cookie';
 
 import Layout from '../components-material-ui/templates/layout';
 import TelaCadastrarAluno from '../components-material-ui/templates/telaCadastrarAluno';
+
 const Perfil = ({}) => {
 
 	const [userCookie, setCookie] = useCookies(["user"]);
 	if ( Object.keys(userCookie).length !== 0 ){
-		const userInfoLogin= userCookie.user.login;
+		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
 
 			return (

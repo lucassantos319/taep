@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Div from "../atoms/div/div"
 import CardAvaliacao from "../molecules/cardAvaliacao";
 import CardAviso from "../molecules/cardAviso";
-import CardTexto from "../molecules/cardTexto";
 
 const MensagensAviso = ({messagesData}) => {
     const [selected, setSelected] = useState(null)

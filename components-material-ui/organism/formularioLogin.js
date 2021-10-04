@@ -42,7 +42,8 @@ const FormularioLogin = ({}) => {
             
             setLoading(true);
             const url = "https://taep-backend.herokuapp.com/login";
-            const userData = await axios.post(url,{"email":data.email,"password":data.password});
+            const userData = await axios.post(
+                url,{"email":data.email,"password":data.password});
             console.log(userData.data);
             if ( userData.data.login ){
                 setCookie("user", JSON.stringify(userData), {

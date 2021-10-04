@@ -9,7 +9,7 @@ const CriarProjeto = ({}) => {
 	const [userCookie,setCookie] = useCookies(['user']);
 	
 	if ( Object.keys(userCookie).length !== 0 ){
-		const userInfoLogin= userCookie.user.login;
+		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
 			//          
 			return (

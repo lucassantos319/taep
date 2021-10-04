@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Paragrafo from "../atoms/tipografia/paragrafo";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Mensagens from "./mensagens";
@@ -13,7 +12,6 @@ import { useForm } from "react-hook-form";
 import DescricaoProjeto from '../../components-material-ui/organism/descricaoProjeto'
 import UsuariosProjetos from "./usuariosProjeto";
 import axios from 'axios';
-import AvisoProjeto from '../../components-material-ui/organism/avisoProjeto'
 import MensagensAviso from "./messageAviso";
 
 function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,avisos}){

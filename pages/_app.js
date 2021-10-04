@@ -4,11 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { CookiesProvider } from "react-cookie";
 
 function MyApp({ Component, pageProps }) {
-  return(
+  return (
     <CookiesProvider>
       <Component {...pageProps} />
     </CookiesProvider>
-  ); 
+  );
 }
 
 export default MyApp
