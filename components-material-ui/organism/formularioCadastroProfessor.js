@@ -28,9 +28,9 @@ const FormularioCadastroProfessor = ({}) => {
                     "user_type":1,
                     "last_name":"",
                 })
-                .then(response => response.data);
+                .then(response => response);
     
-                if ( userData.login ){
+                if ( userData.data.login ){
                     
                     setCookie("user", JSON.stringify(userData), {
                         path: "/",
