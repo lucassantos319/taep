@@ -5,20 +5,15 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/uhtcsDp9f-4Iqk-2-Qnmj/_buildManifest.js",
-    "static/uhtcsDp9f-4Iqk-2-Qnmj/_ssgManifest.js"
+    "static/5GeM4M0SM01qm3pF8lPH9/_buildManifest.js",
+    "static/5GeM4M0SM01qm3pF8lPH9/_ssgManifest.js"
   ],
   "pages": {
     "/": [
       "static/chunks/webpack-171ceb2659cae37a0c20.js",
       "static/chunks/framework-2f612445bd50b211f15a.js",
       "static/chunks/main-8af3309d1a9bc71624bc.js",
-      "static/chunks/76-6342b84598ce8f284808.js",
-      "static/chunks/238-e0b1560125cae6b7ade2.js",
-      "static/chunks/439-59f009d3e87b00e6eea7.js",
-      "static/chunks/814-c845160ffc8c62b95387.js",
-      "static/chunks/175-2fe226232a10d3470a64.js",
-      "static/chunks/pages/index-9f84d5b836a431c22000.js"
+      "static/chunks/pages/index-3ae498302375a529f3fc.js"
     ],
     "/_app": [
       "static/chunks/webpack-171ceb2659cae37a0c20.js",
@@ -53,7 +48,7 @@
       "static/chunks/439-59f009d3e87b00e6eea7.js",
       "static/chunks/814-c845160ffc8c62b95387.js",
       "static/chunks/175-2fe226232a10d3470a64.js",
-      "static/chunks/pages/cadastrar-professor-a35ebe6d83aa48008c23.js"
+      "static/chunks/pages/cadastrar-professor-d7dd1b1f5fa02ec7eb13.js"
     ],
     "/criacao-atividade": [
       "static/chunks/webpack-171ceb2659cae37a0c20.js",
@@ -88,6 +83,17 @@
       "static/chunks/238-e0b1560125cae6b7ade2.js",
       "static/chunks/908-86150a2852cbbf44ba59.js",
       "static/chunks/pages/home-5d0446d906712106dd0d.js"
+    ],
+    "/login": [
+      "static/chunks/webpack-171ceb2659cae37a0c20.js",
+      "static/chunks/framework-2f612445bd50b211f15a.js",
+      "static/chunks/main-8af3309d1a9bc71624bc.js",
+      "static/chunks/76-6342b84598ce8f284808.js",
+      "static/chunks/238-e0b1560125cae6b7ade2.js",
+      "static/chunks/439-59f009d3e87b00e6eea7.js",
+      "static/chunks/814-c845160ffc8c62b95387.js",
+      "static/chunks/175-2fe226232a10d3470a64.js",
+      "static/chunks/pages/login-924d4c9ef0204579cc35.js"
     ],
     "/meus-projetos": [
       "static/chunks/webpack-171ceb2659cae37a0c20.js",
