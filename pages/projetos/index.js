@@ -25,7 +25,7 @@ const Projetos = (props) => {
 				<Layout tipo={userCookie.user.user_type}>
 					<TelaTodosProjetos 
 						projects={props.projects}
-						usuario={userCookie.user.user_type}
+						usuario={userCookie.user.data}
 					/>
 				</Layout>
 			)	

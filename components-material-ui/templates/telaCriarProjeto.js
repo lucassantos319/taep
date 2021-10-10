@@ -42,7 +42,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                 "tecnologias":data.tecnologias,
                 "objective":data.objetivo,
                 "material_apoio":data.material_apoio,
-                "userId":cookies.user.id,
+                "userId":cookies.user.data.id,
                 "disciplinas_relacionais":[],
                 "tags":[]
             };

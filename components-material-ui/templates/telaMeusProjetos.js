@@ -10,7 +10,7 @@ const TelaMeusProjetos = ({projects, usuario}) => {
     const router = useRouter();
     return(
         <Tela>
-            {usuario == 1? 
+            {usuario.user_type == 1? 
                 <Container maxWidth="lg">
                     <Link href="criar-projeto">
                         <Div>
@@ -33,7 +33,8 @@ const TelaMeusProjetos = ({projects, usuario}) => {
                                         id={item.id}
                                         // imgProjeto = {img1}
                                         titulo = {item.titulo}
-                                        professor = {item.userCreator.first_name+' '+item.userCreator.last_name}
+                                        professor = {item.userCreator}
+                                        user={usuario}
                                         // imagemConteudoProjeto = {conteudoProjeto}
                                         status = {item.status}
                                         descricao = { item.descricao.lenght>35?
@@ -56,8 +57,9 @@ const TelaMeusProjetos = ({projects, usuario}) => {
 export default TelaMeusProjetos;
 
 const Tela = styled.div`
-padding: 12px;
 
+    padding-left:10px;
+    margin-top:20px;
 @media screen and (min-width : 0px) and (max-width : 767px){
 }
 `

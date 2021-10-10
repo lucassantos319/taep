@@ -5,7 +5,7 @@ import { Grid, Container, Button } from '@material-ui/core';
 import BoxProjeto from '../molecules/boxProjeto';
 import { useRouter } from 'next/router';
 
-const TelaTodosProjetos = ({projects}) => {
+const TelaTodosProjetos = ({projects,usuario}) => {
     
     const router = useRouter();
     return(
@@ -19,7 +19,8 @@ const TelaTodosProjetos = ({projects}) => {
                                 id='teste'
                                 // imgProjeto = {img1}
                                 titulo = {item.titulo}
-                                professor = {item.userCreator.first_name+' '+item.userCreator.last_name}
+                                professor = {item.userCreator}
+                                user={usuario}
                                 // imagemConteudoProjeto = {conteudoProjeto}
                                 status = {item.status}
                                 descricao = { item.descricao.lenght>35?

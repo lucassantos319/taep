@@ -31,10 +31,10 @@ const MeusProjetos = (props) => {
 		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
 			return (
-                <Layout tipo={userCookie.user.user_type}>
+                <Layout tipo={userCookie.user.data.user_type}>
                     <TelaMeusProjetos 
                         projects={props.projects}
-                        usuario={userCookie.user.data.user_type}
+                        usuario={userCookie.user.data}
                     />
                 </Layout> 
 			)	

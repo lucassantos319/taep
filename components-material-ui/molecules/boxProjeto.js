@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import { CardHeader, Icon, IconButton } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import * as FaIcons from "react-icons/fa";
 import Typography from '@material-ui/core/Typography';
 
 import img from '../../public/img/conteudoProjeto.jpg'
@@ -22,11 +24,29 @@ const useStyles = makeStyles({
     },
 });
 
-const BoxProjeto = ({id, imgProjeto=false, titulo, professor, status, descricao, onClick}) => {
+function deleteProject(id){
+    console.log(document.getElementById(String(id)))
+}
+
+const BoxProjeto = ({id, imgProjeto=false, user,titulo, professor, status, descricao, onClick}) => {
     const classes = useStyles();
     return(
         <Div id={id}>
             <Card className="root">
+                {
+                    user.id == professor.id ?
+                        <CardHeader 
+                            style={{padding:11}}
+                            action={
+                                <IconButton onClick={deleteProject(id)}>
+                                    <FaIcons.FaTrash size="23px"/>
+                                </IconButton>
+                            }
+                        >
+                        </CardHeader>
+                        
+                    : null
+                }
                 <CardActionArea>
                     <Image height={215} width={345} src={imgProjeto==false? img: imgProjeto}></Image>
                     <Typography className="m-box" variant="body2" color="textSecondary" component="p">
@@ -37,7 +57,7 @@ const BoxProjeto = ({id, imgProjeto=false, titulo, professor, status, descricao,
                             {titulo[0].toUpperCase() + titulo.substr(1)}
                         </Typography>
                         <Typography variant="body1" color="textSecondary" component="p">
-                        <strong>Professor:</strong> {professor} 
+                        <strong>Professor:</strong> {professor.first_name+" "+professor.last_name} 
                         </Typography>
                         <Typography className="m-top" variant="body2" color="textSecondary" component="p">
                             <strong>Descrição:</strong> {descricao}
