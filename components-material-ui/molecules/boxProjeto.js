@@ -6,13 +6,11 @@ import { CardHeader, Icon, IconButton } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import * as FaIcons from "react-icons/fa";
 import Typography from '@material-ui/core/Typography';
-
+import axios from 'axios';
 import img from '../../public/img/conteudoProjeto.jpg'
-
 import Image from 'next/image'
 
 const useStyles = makeStyles({
@@ -24,11 +22,15 @@ const useStyles = makeStyles({
     },
 });
 
-function deleteProject(id){
-    
-    var removeDiv = document.getElementById(id);
-    removeDiv.parentNode.removeChild(removeDiv);
 
+async function deleteProject(confirm,id){
+
+    if (confirm){
+        await axios.post("http://localhost:5000/project/"+id+"/deleteProject")
+        return true;
+    }
+
+    return false;
 }
 
 const BoxProjeto = ({id, imgProjeto=false, user,titulo, professor, status, descricao, onClick}) => {
@@ -41,7 +43,7 @@ const BoxProjeto = ({id, imgProjeto=false, user,titulo, professor, status, descr
                         <CardHeader 
                             style={{padding:11}}
                             action={
-                                <IconButton onClick={deleteProject(id)}>
+                                <IconButton onClick={ () => deleteProject(confirm("Deseja mesmo deletar o projeto ?"),id)? document.getElementById(id).remove():null }>
                                     <FaIcons.FaTrash size="23px"/>
                                 </IconButton>
                             }

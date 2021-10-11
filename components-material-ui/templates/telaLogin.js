@@ -4,6 +4,21 @@ import Image from 'next/image'
 
 import logo from '../../public/img/logo-taep.png'
 
+const TelaLogin = ({}) => {
+    return(
+        <Tela>
+            <BoxInputLogin>
+                <div className="centraliza">
+                    <Image height={120} width={120} src={logo}></Image>
+                </div>
+                <h1 className="h1">Bem-vindo ao TAEP 4.0</h1>
+                <FormularioLogin />
+            </BoxInputLogin>
+        </Tela>
+    )   
+};
+export default TelaLogin;
+
 const colors = keyframes`
     0%{
         background-position 0% 50%;
@@ -63,17 +78,4 @@ const BoxInputLogin = styled.div`
         top: 50%;
     }
 `
-const TelaLogin = ({}) => {
-    return(
-        <Tela>
-            <BoxInputLogin>
-                <div className="centraliza">
-                    <Image height={120} width={120} src={logo}></Image>
-                </div>
-                <h1 className="h1">Bem-vindo ao TAEP 4.0</h1>
-                <FormularioLogin />
-            </BoxInputLogin>
-        </Tela>
-    )   
-};
-export default TelaLogin;
+
