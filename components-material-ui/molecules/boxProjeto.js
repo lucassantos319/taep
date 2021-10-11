@@ -25,11 +25,14 @@ const useStyles = makeStyles({
 });
 
 function deleteProject(id){
-    console.log(document.getElementById(String(id)))
+    
+    var removeDiv = document.getElementById(id);
+    removeDiv.parentNode.removeChild(removeDiv);
+
 }
 
 const BoxProjeto = ({id, imgProjeto=false, user,titulo, professor, status, descricao, onClick}) => {
-    const classes = useStyles();
+    
     return(
         <Div id={id}>
             <Card className="root">

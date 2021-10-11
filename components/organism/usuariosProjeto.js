@@ -12,9 +12,9 @@ const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
             } 
             <div>
                 {
-                    usuarios.data.map((item) => (
-                        <CardUser usuario={item} />
-                    ))
+                    // usuarios.data.map((item) => (
+                    //     <CardUser usuario={item} />
+                    // ))
                 }
             </div>
 
