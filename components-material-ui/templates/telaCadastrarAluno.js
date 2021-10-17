@@ -1,64 +1,13 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Grid, Container, TextField, Button } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
-
+import FormularioCadastroAluno from '../organism/formularioCadastroAluno';
 
 const TelaCadastrarAluno = ({projects, usuario}) => {
-     return(
+    
+    return(
         <Tela>
-            <Container maxWidth="md">
-                <h1>Cadastrar Aluno no TAEP4.0</h1>
-                <form>
-                    <Grid container spacing={3}>
-                        <Grid item={true} xs={12} sm={6}>
-                            <TextField
-                                id="cadastrar-aluno-nome"
-                                name="nomeAluno"
-                                label="Nome"
-                                fullWidth
-                                type="text"
-                                required
-                            />
-                        </Grid>
-
-                        <Grid item={true} xs={12} sm={6}>
-                            <TextField
-                                id="cadastrar-aluno-apelido"
-                                name="apelidoAluno"
-                                label="Apelido"
-                                fullWidth
-                                type="text"
-                                required
-                            />
-                        </Grid>
-
-                        <Grid item={true} xs={12} sm={6}>
-                            <TextField
-                                id="cadastrar-aluno-email"
-                                name="emailAluno"
-                                label="Email"
-                                fullWidth
-                                type="email"
-                                required
-                            />
-                        </Grid>
-                    </Grid>
-
-                    <Grid container spacing={3}>
-                        <Grid item={true} xs={12} sm={6}>
-                            <Button variant="contained" color="primary" type="submit" size="large">
-                                Confirmar Cadastro
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-                <Div>
-                    <Alert id="cadastro-aluno-alerta" variant="filled" severity="success">
-                        This is a success alert — check it out!
-                    </Alert>
-                </Div>
-            </Container>
+            <h1>Cadastrar Aluno no TAEP4.0</h1>
+                <FormularioCadastroAluno/>
         </Tela>
     )
 };

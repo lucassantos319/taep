@@ -16,8 +16,7 @@ const FormularioCadastroProfessor = ({}) => {
         
         try{
             
-            console.log(data);
-            if ( data.password == data.password_confirm){
+            if ( data.password == data.password_confirm && data.password.length >= 6){
 
                 const url = "https://taep-backend.herokuapp.com/login/createUser";
                 const userData = await axios.post(url,
@@ -27,6 +26,9 @@ const FormularioCadastroProfessor = ({}) => {
                     "nickname":data.apelido,
                     "user_type":1,
                     "last_name":"",
+                    "emails":[
+                        data.email,
+                    ]
                 })
                 .then(response => response);
     
@@ -42,7 +44,10 @@ const FormularioCadastroProfessor = ({}) => {
                 }
             }
             else{
-                alert("Erro: Senhas não iguais");
+                if ( userData.password.length < 6) 
+                    alert("A senha precisa conter pelo menos 6 caracteres! ");
+                else
+                    alert("Erro: Senhas não iguais");
             }
 
         }catch(error){
