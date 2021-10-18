@@ -1,10 +1,12 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import PropTypes from 'prop-types';
-import { Container, Grid, TextField, Button, makeStyles, Modal, Backdrop, Fade } from '@material-ui/core';
+import { Container, Grid, TextField, Button, makeStyles, Modal, Backdrop, Fade, IconButton } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import Image from 'next/image'
 import { useCookies } from 'react-cookie';
+import perfil from '../../public/img/img-perfil-teste.png';
+import * as FaIcons from "react-icons/fa";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -123,76 +125,103 @@ const TelaPerfil = ({userCookie}) => {
 
     return(
         <Tela>
-            <Container maxWidth="md">
-                <h1>Informações de usuário - {userCookie.user.data.user_type==1? 'Professor':'Aluno'}</h1>
+            <div style={{display:'flex'}}>
+                <div style={{display:'inline-flex',justifyContent:'center',alignItems:'center', width:'25%', border:'1px solid black'}}>
+                    <Image width={200} height={200} src={perfil}></Image>
+                </div>
+                <div style={{marginLeft:'12px',width:'85%',border:'1px solid black'}}>
+                    
+                    <div style={{marginTop:'14px'}}>
+                        <div>
+                            <span style={{fontSize:'30px'}}>{userCookie.user.data.first_name+' '+userCookie.user.data.last_name}</span>
+                        </div>
+                        <div>
+                            <span style={{fontSize:'18px',color:'gray'}}>{userCookie.user.data.user_type==1? 'Professor':'Aluno'}</span>
+                        </div>
+                    </div>
+                    <div style={{marginTop:'30px'}}>
+                        <div style={{border:'1px solid black'}}>
+                            <span style={{fontSize:'16px',}}>Email: </span>
+                            <span style={{fontSize:'16px', marginLeft:'10px'}}>{userCookie.user.data.email}</span>
+                                <IconButton size={10} style={{float:'right'}}>
+                                    <FaIcons.FaEdit/>
+                                </IconButton>
 
-                <Grid container spacing={3}>
-                    <Grid item={true} xs={12} sm={6}>
-                        <TextField
-                            id="perfil-nome-sobrenome"
-                            label="Nome"
-                            defaultValue={userCookie.user.data.first_name + ' ' + userCookie.user.data.last_name}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            fullWidth
-                            type="text"
-                        />
-                    </Grid>
+                        </div>
+                    </div>
+                    {/* <Container maxWidth="md">
+                        <h2> {userCookie.user.data.user_type==1? 'Professor':'Aluno'}</h2>
 
-                    <Grid item={true} xs={12} sm={6}>
-                        <TextField
-                            id="perfil-apelido"
-                            label="Apelido"
-                            defaultValue={userCookie.user.data.nickname}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            fullWidth
-                            type="text"
-                        />
-                    </Grid>
+                        <Grid container spacing={3}>
+                            <Grid item={true} xs={12} sm={6}>
+                                <TextField
+                                    id="perfil-nome-sobrenome"
+                                    label="Nome"
+                                    defaultValue={userCookie.user.data.first_name + ' ' + userCookie.user.data.last_name}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    fullWidth
+                                    type="text"
+                                />
+                            </Grid>
 
-                    <Grid item={true} xs={6} sm={6}>
-                        <TextField
-                            id="perfil-email"
-                            label="E-mail"
-                            defaultValue={userCookie.user.data.email}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            fullWidth
-                            type="email"
-                        />
-                    </Grid>
+                            <Grid item={true} xs={12} sm={6}>
+                                <TextField
+                                    id="perfil-apelido"
+                                    label="Apelido"
+                                    defaultValue={userCookie.user.data.nickname}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    fullWidth
+                                    type="text"
+                                />
+                            </Grid>
 
-                    <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
-                        <Button color="primary" onClick={handleOpenModalEmail}>
-                            Alterar o e-mail
-                        </Button>
-                    </Grid>
+                            <Grid item={true} xs={6} sm={6}>
+                                <TextField
+                                    id="perfil-email"
+                                    label="E-mail"
+                                    defaultValue={userCookie.user.data.email}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    fullWidth
+                                    type="email"
+                                />
+                            </Grid>
 
-                    <Grid item={true} xs={6} sm={6}>
-                        <TextField
-                            id="perfil-senha"
-                            label="Senha"
-                            defaultValue="trolei nao é a senha"
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            fullWidth
-                            type="password"
-                        />
-                    </Grid>
+                            <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
+                                <Button color="primary" onClick={handleOpenModalEmail}>
+                                    Alterar o e-mail
+                                </Button>
+                            </Grid>
 
-                    <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
-                        <Button color="primary" onClick={handleOpenModalSenha}>
-                            Alterar a senha
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Container>
-                                
+                            <Grid item={true} xs={6} sm={6}>
+                                <TextField
+                                    id="perfil-senha"
+                                    label="Senha"
+                                    defaultValue="trolei nao é a senha"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    fullWidth
+                                    type="password"
+                                />
+                            </Grid>
+
+                            <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
+                                <Button color="primary" onClick={handleOpenModalSenha}>
+                                    Alterar a senha
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Container>
+                                         */}
+                </div>
+            </div>
+                
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -225,6 +254,7 @@ const TelaPerfil = ({userCookie}) => {
                                     <TextField
                                         id="perfil-modal-confirmar-novo-email"
                                         label="Confirmar E-mail"
+ 
                                         fullWidth
                                         type="email"
                                         required
@@ -319,5 +349,6 @@ const Tela = styled.div`
             font-size: 12px;
         }
     }
+   
 `
 

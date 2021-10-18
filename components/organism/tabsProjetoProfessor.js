@@ -81,16 +81,15 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
 
     const pushUsuario = async (data) => {
        
-
-        const url = process.env.SERVER_HOST+"project/"+id+"/linkUsuario";
+        const url = "https://taep-backend.herokuapp.com/project/"+id+"/linkUsuario";
         
         if ( Object.keys(cookieUser).length !== 0 ){
-            if ( cookieUser.user.login ){
+            if ( cookieUser.user.data.login ){
                 
-                const x = await axios.post(url,{"userEmail":data.email,"userRequestId":cookieUser.user.id})
+                const x = await axios.post(url,{"userEmail":data.email,"userRequestId":cookieUser.user.data.id})
                 .then(response => response.data);
                 
-                console.log(x);
+                alert(x);
             }
         }
 
@@ -125,7 +124,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
         try{
 
             if ( Object.keys(cookieUser).length !== 0 ){
-                if ( cookieUser.user.login ){
+                if ( cookieUser.user.data.login ){
                     
                     const x = await axios.post(url,{"title":data.titulo,"description":data.descricao,"userId":cookieUser.user.id})
                     .then(response => response.data);

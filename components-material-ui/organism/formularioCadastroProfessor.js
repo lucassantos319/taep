@@ -20,7 +20,7 @@ const FormularioCadastroProfessor = ({}) => {
             if ( data.password == data.password_confirm && data.password.length >= 6){
 
                 console.log('entrei');
-                const url = "http://34.95.205.248:5000/login/createUser";
+                const url = "https://taep-backend.herokuapp.com/login/createUser";
                 const userData = await axios.post(url,
                     {"first_name":data.first_name,
                     "password":data.password,

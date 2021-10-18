@@ -1,13 +1,15 @@
+import { IconButton } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import * as FaIcons from "react-icons/fa";
 import Typography from '@material-ui/core/Typography';
 
-const CardUser = ({ usuario }) => {
+const CardUser = ({ usuario,id }) => {
    
     var userType;
 
-    if ( usuario.data.user_type == 1)
+    if ( usuario.user_type == 1)
         userType = "Professor"
     else
         userType = "Aluno"
@@ -15,19 +17,27 @@ const CardUser = ({ usuario }) => {
     return (
         <>
 
-            <Card style={{marginTop:"20px"}}>
+            <Card id={id} style={{marginTop:"20px"}}>
                 <CardContent>
-                    <Typography variant="h7" gutterBottom>
-                        {usuario.data.first_name+" "+usuario.data.last_name}
-                    </Typography>
-                    
-                    <Typography color="textSecondary">
-                        {usuario.data.email+" - "+ userType}
-                    </Typography>
-                    
+                    <div style={{display:'flex'}}>
+                        <div style={{flex:1, width:'60%'}}>
+                            <Typography variant="h6" gutterBottom>
+                                {usuario.first_name+" "+usuario.last_name}
+                            </Typography>
+                            
+                            <Typography color="textSecondary">
+                                {usuario.email+" - "+ userType}
+                            </Typography>
+                            
+                        </div>
+                        <div style={{float:'right'}}>
+                            <IconButton aria-label="Delete person">
+                                <FaIcons.FaTrash/>
+                            </IconButton>
+                        </div>
+
+                    </div>
                 </CardContent>
-                <CardActions>
-                </CardActions>
             </Card>
         </>
     );
