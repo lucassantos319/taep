@@ -2,6 +2,7 @@ import CardUser from "../molecules/cardUsuario";
 
 const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
     
+    const i= 0;
     return(
         
         <div >
@@ -12,9 +13,11 @@ const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
             } 
             <div>
                 {
-                    usuarios.map((item,i) => (
-                        <CardUser id={i} usuario={item} />
-                    ))
+                    
+                    usuarios.array.forEach(element => {
+                        i++;
+                        <CardUser id={i} usuario={element} />
+                    })
                 }
             </div>
 

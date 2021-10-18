@@ -39,13 +39,13 @@ const Login = ({num}) => {
                     pathname: "cadastrar-professor",
                     query: {num: 1}
                 });
-            }); 
-
-            return (
-                <>
-                </>
-            );
+            });
+        
         }
+        return (
+            <>
+            </>
+        );
     }
 }
 
