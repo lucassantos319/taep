@@ -27,6 +27,7 @@ const MeusProjetos = (props) => {
 	
 	const router = useRouter();
     const [userCookie,setCookie] = useCookies(["user"]);
+	
 	if ( Object.keys(userCookie).length !== 0 ){
 		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){

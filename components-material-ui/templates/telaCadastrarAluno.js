@@ -7,7 +7,7 @@ const TelaCadastrarAluno = ({projects, usuario}) => {
     return(
         <Tela>
             <h1>Cadastrar Aluno no TAEP4.0</h1>
-                <FormularioCadastroAluno/>
+                <FormularioCadastroAluno professor={usuario}/>
         </Tela>
     )
 };

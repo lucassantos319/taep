@@ -6,6 +6,7 @@ import TelaCadastrarAluno from '../components-material-ui/templates/telaCadastra
 const Perfil = ({}) => {
 
 	const [userCookie, setCookie] = useCookies(["user"]);
+
 	if ( Object.keys(userCookie).length !== 0 ){
 		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
@@ -13,7 +14,7 @@ const Perfil = ({}) => {
 			return (
 				<>
 					<Layout tipo={userCookie.user.user_type}>		
-						<TelaCadastrarAluno/>
+						<TelaCadastrarAluno usuario={userCookie.user.data.first_name+' '+userCookie.user.data.last_name}/>
 					</Layout>
 				</>
 	

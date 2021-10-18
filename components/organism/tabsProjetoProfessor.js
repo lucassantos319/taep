@@ -250,10 +250,10 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     <DivInterna>
                         <UsuariosProjetos 
                             projectInfo={projectInfo}
-                            type={cookieUser.user.user_type}
+                            type={cookieUser.user.data.user_type}
                             onClick={showModalUsuario}
                             usuarios={usuarios}
-                            userId={cookieUser.user.id}
+                            userId={cookieUser.user.data.id}
                         />
 
                     </DivInterna>

@@ -23,6 +23,7 @@ export async function getServerSideProps(context) {
     const projectInfo = await axios.get(infoUrl).then(response=>response.data);
     const avisos = await axios.get(avisoUrl).then(response=>response.data)
 
+    console.log(usuarios,projectInfo);
     return { 
         props: { 
             messagesData ,
@@ -47,6 +48,9 @@ const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
        
 			return (
                 <>
+                    <Head>
+                        <title>{}</title>
+                    </Head>
                     <Layout>
                         {userCookie.user.data.user_type==1?
                             <TabsProjetoProfessor avisos={avisos} atividadeData={messagesData} usuarios={usuarios} projectInfo={projectInfo} idProjeto={id}/>

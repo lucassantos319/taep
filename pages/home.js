@@ -15,6 +15,7 @@ const Home = ({}) => {
 			//          
 			return (
 				<>
+					<Head><title>Home</title></Head>
 					<Layout tipo={userCookie.user.data.user_type}>
 						<TelaHome/>
 					</Layout>

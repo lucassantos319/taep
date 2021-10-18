@@ -3,43 +3,42 @@ import { Container, Grid, TextField, Button } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-const handleForm = async (data) => {
-    
-    try{
-        
-        
-        if ( data.Nome.length > 0 ){
 
-            const url = "http://34.95.205.248:5000/login/createUser";
-            const userData = await axios.post(url,
-                {"first_name":data.Nome,
-                "password": Math.random().toString(36).slice(-8),
-                "email":data.Email,
-                "nickname":data.Apelido,
-                "user_type":2,
-                "last_name":"",
-                "emails":[
-                    data.Email
-                ]
-            })
-            .then(response => response);
-            
-            console.log(userData)
-            if (userData.data.login){
-                alert("Usuario criado com sucesso !");
+const FormularioCadastroAluno = ({professor}) => {
+    
+    const {register,handleSubmit} = useForm();
+    const handleForm = async (data) => {
+        
+        try{
+            if ( data.Nome.length > 0 ){
+    
+                const url = "http://34.95.205.248:5000/login/createUser";
+                const userData = await axios.post(url,
+                    {"first_name":data.Nome,
+                    "password": Math.random().toString(36).slice(-8),
+                    "email":data.Email,
+                    "nickname":data.Apelido,
+                    "user_type":2,
+                    "last_name":"",
+                    "emails":[
+                        data.Email
+                    ],
+                    "professor":professor
+                })
+                .then(response => response);
+                
+    
+                if (userData.data.login){
+                    alert("Usuario criado com sucesso !");
+                }
             }
         }
+        catch(error){
+            alert(error)
+        }
+    
     }
-    catch(error){
-        alert(error)
-    }
-
-}
-
-const FormularioCadastroAluno = ({}) => {
-   
-    const {register,handleSubmit} = useForm();
-
+    
     return(
         <Div>
             <Container maxWidth="md">
