@@ -125,12 +125,12 @@ const TelaPerfil = ({userCookie}) => {
 
     return(
         <Tela>
-            <div style={{display:'flex'}}>
+            <div style={{display:'flex', marginTop:'20px'}}>
                 <div style={{display:'inline-flex',justifyContent:'center',alignItems:'center', width:'25%'}}>
                     <Image className="avatar" width={250} height={250} src={perfil} ></Image>
                     <style jsx global>{`
                         .avatar {
-                        border-radius: 50%;
+                            border-radius: 50%;
                         }
                     `}</style>
                 </div>
@@ -141,7 +141,7 @@ const TelaPerfil = ({userCookie}) => {
                             <span style={{fontSize:'30px'}}>{userCookie.user.data.first_name+' '+userCookie.user.data.last_name}</span>
                         </div>
                         <div>
-                            <span style={{fontSize:'18px',color:'gray'}}>{userCookie.user.data.user_type==1? 'Professor':'Aluno'}</span>
+                            <span style={{fontSize:'18px',color:'gray',marginTop:'5px'}}>{userCookie.user.data.user_type==1? 'Professor':'Aluno'}</span>
                         </div>
                     </div>
                     <hr/>
@@ -163,13 +163,10 @@ const TelaPerfil = ({userCookie}) => {
                                 <span style={{fontSize:'16px'}}>Apelido: </span>
                                 <span style={{fontSize:'16px', marginLeft:'10px'}}>{userCookie.user.data.nickname==""?'--Vazio--':userCookie.user.data.nickname}</span>
                             </div>
-                            <IconButton size={10} style={{marginLeft:'20px',float:'right'}}>
-                                <FaIcons.FaEdit/>
-                            </IconButton>
                         </div>
                     </div>
 
-                    <div style={{display: 'flex', marginTop:'10px'}}>
+                    <div style={{display: 'flex', marginTop:'20px'}}>
                         <Button color="primary" onClick={handleOpenModalSenha}>
                             Alterar a senha
                         </Button>

@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 async function deleteProject(confirm,id){
 
     if (confirm){
-        await axios.post("http://localhost:5000/project/"+id+"/deleteProject")
+        await axios.post("https://taep-backend.herokuapp.com/project/"+id+"/deleteProject")
         return true;
     }
 
