@@ -16,7 +16,9 @@ const Perfil = ({}) => {
 			console.log(userCookie.user.data);
 			return (
 				<>
-
+					<Head>
+                        <title>Seu perfil</title>
+                    </Head>  
 					<Layout tipo={userCookie.user.data.user_type}>		
 						<TelaPerfil userCookie={userCookie}/>
 					</Layout>

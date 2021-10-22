@@ -26,7 +26,6 @@ const Perfil = ({}) => {
 			)	
 	}
 	
-	router.push('/');
 	return (
 		<>
 			<h1>problema com o cookie</h1>

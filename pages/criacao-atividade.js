@@ -35,7 +35,6 @@ const CriacaoAtividade = ({}) => {
         }
 	}
 
-    router.push('/');
     return (
         <>
             <h2>Cookie não encontrado.. será redirecionado para o login</h2>

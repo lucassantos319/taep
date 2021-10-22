@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import * as cookie from 'cookie';
+import Head from 'next/head';
 
 export async function getServerSideProps(context) {
 
@@ -32,12 +33,17 @@ const MeusProjetos = (props) => {
 		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
 			return (
-                <Layout tipo={userCookie.user.data.user_type}>
-                    <TelaMeusProjetos 
-                        projects={props.projects}
-                        usuario={userCookie.user.data}
-                    />
-                </Layout> 
+				<>
+					<Head>
+						<title>Meus projetos</title>
+					</Head>
+					<Layout tipo={userCookie.user.data.user_type}>
+						<TelaMeusProjetos 
+							projects={props.projects}
+							usuario={userCookie.user.data}
+						/>
+					</Layout> 
+				</>
 			)	
 		}
 		else

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import Layout from '../../components-material-ui/templates/layout';
+import Head from 'next/head';
 
 export async function getServerSideProps() {
 
@@ -22,12 +23,17 @@ const Projetos = (props) => {
 		if ( userInfoLogin ){
 			//          
 			return (
-				<Layout tipo={userCookie.user.user_type}>
-					<TelaTodosProjetos 
-						projects={props.projects}
-						usuario={userCookie.user.data}
-					/>
-				</Layout>
+				<>
+					<Head>
+						<title>Todos os projetos</title>
+					</Head>
+					<Layout tipo={userCookie.user.user_type}>
+						<TelaTodosProjetos 
+							projects={props.projects}
+							usuario={userCookie.user.data}
+						/>
+					</Layout>
+				</>
 			)	
 		}
 		else

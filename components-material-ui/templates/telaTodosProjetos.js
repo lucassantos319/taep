@@ -10,8 +10,7 @@ const TelaTodosProjetos = ({projects,usuario}) => {
     const router = useRouter();
     return(
         <Tela>
-            <h1>TODOS OS PROJETOS</h1>
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" style={{marginTop:'40px'}}>
                 <Grid container spacing={4}>
                     {projects.map((item, i) => (
                         <Grid item={true} xs={12} sm={4}>

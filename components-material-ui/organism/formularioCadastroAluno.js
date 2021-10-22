@@ -12,7 +12,7 @@ const FormularioCadastroAluno = ({professor}) => {
         try{
             if ( data.Nome.length > 0 ){
     
-                const url = "http://34.95.205.248:5000/login/createUser";
+                const url = "http://taep-backend.herokuapp.com/login/createUser";
                 const userData = await axios.post(url,
                     {"first_name":data.Nome,
                     "password": Math.random().toString(36).slice(-8),
@@ -26,7 +26,6 @@ const FormularioCadastroAluno = ({professor}) => {
                     "professor":professor
                 })
                 .then(response => response);
-                
     
                 if (userData.data.login){
                     alert("Usuario criado com sucesso !");
@@ -42,6 +41,7 @@ const FormularioCadastroAluno = ({professor}) => {
     return(
         <Div>
             <Container maxWidth="md">
+                <h3 style={{marginLeft:'9em',marginTop:'20px',marginBottom:'30px'}}>Cadastrar Aluno no TAEP4.0</h3>
                 <form onClick={handleSubmit(handleForm)}>
                     <Grid container spacing={3}>
                         <Grid item={true} xs={12} sm={6}>
@@ -80,9 +80,9 @@ const FormularioCadastroAluno = ({professor}) => {
                         </Grid>
                     </Grid>
 
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} style={{marginTop:'40px'}}>
                         <Grid item={true} xs={12} sm={6}>
-                            <Button variant="contained" color="primary" type="submit" size="large">
+                            <Button style={{width:'205%'}} variant="contained" color="primary" type="submit" size="large">
                                 Confirmar Cadastro
                             </Button>
                         </Grid>

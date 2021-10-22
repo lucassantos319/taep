@@ -58,6 +58,7 @@ const FormularioLogin = ({}) => {
         catch(error){
             setError(true);
             setErrorMessage(handleError(error));
+            setLoading(false);
         }
     }
 
