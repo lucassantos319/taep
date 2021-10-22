@@ -20,7 +20,7 @@ const Login = ({num}) => {
     
     else
     {
-        if ( router.query.num != null )
+        if ( router.query.ready != null )
         {
             return (
                 <>
@@ -37,7 +37,7 @@ const Login = ({num}) => {
             useEffect(()=>{
                 router.push({
                     pathname: "cadastrar-professor",
-                    query: {num: 1}
+                    query: {ready: 1}
                 });
             });
         

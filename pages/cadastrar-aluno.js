@@ -1,12 +1,12 @@
 import { useCookies } from 'react-cookie';
-
+import { useRouter } from 'next/router';
 import Layout from '../components-material-ui/templates/layout';
 import TelaCadastrarAluno from '../components-material-ui/templates/telaCadastrarAluno';
 
 const Perfil = ({}) => {
 
 	const [userCookie, setCookie] = useCookies(["user"]);
-
+	const router = useRouter();
 	if ( Object.keys(userCookie).length !== 0 ){
 		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
@@ -26,9 +26,9 @@ const Perfil = ({}) => {
 			)	
 	}
 	
+	router.push('/');
 	return (
 		<>
-
 			<h1>problema com o cookie</h1>
 
 		</>

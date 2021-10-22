@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import router, { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 
 import Layout from '../components-material-ui/templates/layout';
@@ -7,10 +8,12 @@ import TelaPerfil from '../components-material-ui/templates/telaPerfil';
 const Perfil = ({}) => {
 
 	const [userCookie, setCookie] = useCookies(["user"]);
+
 	if ( Object.keys(userCookie).length !== 0 ){
+
 		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
-
+			console.log(userCookie.user.data);
 			return (
 				<>
 
@@ -27,6 +30,7 @@ const Perfil = ({}) => {
 			)	
 	}
 	
+	router.push("/");
 	return (
 		<>
 			<h1>problema com o cookie</h1>

@@ -3,12 +3,14 @@ import FormBuilder from 'react-form-builder2';
 import 'react-form-builder2/dist/app.css';
 import DemoBar from '../components/organism/demobar'; 
 import { useCookies } from 'react-cookie';
+import {useRouter} from 'next/router';
 
 const CriacaoAtividade = ({}) => {
 
     const [userCookie, setCookie] = useCookies(["user"]);
     const [atividadeCookie, setAtividadeCookie] = useCookies(["atividade"])
-	console.log(atividadeCookie);
+    const router = useRouter();
+    
     if ( Object.keys(userCookie).length !== 0 ){
 		const userInfoLogin= userCookie.user.login;
 		if ( userInfoLogin ){
@@ -32,6 +34,8 @@ const CriacaoAtividade = ({}) => {
             )
         }
 	}
+
+    router.push('/');
     return (
         <>
             <h2>Cookie não encontrado.. será redirecionado para o login</h2>

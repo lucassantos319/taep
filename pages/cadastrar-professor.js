@@ -6,11 +6,11 @@ const CadastrarProfessor = ({num}) => {
 	
 	const router = useRouter();
 	console.log(num)
-	if ( router.query.num == 1 ){
+	if ( router.query.ready == 1 ){
 
 		router.push({
 			pathname:'/',
-			query:{num:1}
+			query:{ready:1}
 		})
 
 		return (<></>);

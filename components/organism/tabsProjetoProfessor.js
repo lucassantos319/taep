@@ -262,7 +262,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                 <TabPanel>
                     <DivInterna>
                         {
-                            cookieUser.user.user_type == 1 && cookieUser.user.id == projectInfo.userCreator.id ? 
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ? 
                                 <div style={{marginTop:"14px",marginBottom:"25px"}} >
                                     <Button onClick={showModalAtividade}>Criar Atividades</Button> 
                                 </div>:
@@ -277,7 +277,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                 <TabPanel>
                     <DivInterna>
                         {
-                            cookieUser.user.user_type == 1 && cookieUser.user.id == projectInfo.userCreator.id ? 
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
                                 <div style={{marginTop:"14px",marginBottom:"25px"}}>
                                     <Button onClick={showModalAvaliacao}>Criar Atividades</Button> 
                                 </div>:
@@ -291,7 +291,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                 <TabPanel>
                     <DivInterna>
                         {
-                            cookieUser.user.user_type == 1 && cookieUser.user.id == projectInfo.userCreator.id ? 
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
                                 <div style={{marginTop:"14px",marginBottom:"25px"}}>
                                     <Button onClick={showModalAviso}>Criar aviso</Button> 
                                 </div>:

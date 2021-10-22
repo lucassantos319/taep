@@ -126,10 +126,15 @@ const TelaPerfil = ({userCookie}) => {
     return(
         <Tela>
             <div style={{display:'flex'}}>
-                <div style={{display:'inline-flex',justifyContent:'center',alignItems:'center', width:'25%', border:'1px solid black'}}>
-                    <Image width={200} height={200} src={perfil}></Image>
+                <div style={{display:'inline-flex',justifyContent:'center',alignItems:'center', width:'25%', border:'1px solid black',borderRadius:"50%"}}>
+                    <Image className={avatar} width={200} height={200} src={perfil} ></Image>
+                    <style jsx global>{`
+                        .avatar {
+                        border-radius: 50%;
+                        }
+                    `}</style>
                 </div>
-                <div style={{marginLeft:'12px',width:'85%',border:'1px solid black'}}>
+                <div style={{marginLeft:'12px',width:'85%'}}>
                     
                     <div style={{marginTop:'14px'}}>
                         <div>
@@ -139,86 +144,37 @@ const TelaPerfil = ({userCookie}) => {
                             <span style={{fontSize:'18px',color:'gray'}}>{userCookie.user.data.user_type==1? 'Professor':'Aluno'}</span>
                         </div>
                     </div>
-                    <div style={{marginTop:'30px'}}>
-                        <div style={{border:'1px solid black'}}>
-                            <span style={{fontSize:'16px',}}>Email: </span>
-                            <span style={{fontSize:'16px', marginLeft:'10px'}}>{userCookie.user.data.email}</span>
-                                <IconButton size={10} style={{float:'right'}}>
-                                    <FaIcons.FaEdit/>
-                                </IconButton>
-
+                    <hr/>
+                    <div style={{ display:'flex', marginTop:'30px'}}>
+                        <div style={{ display:'flex'}}>
+                            <div style={{marginTop:'12px'}}>
+                                <span style={{fontSize:'16px'}}>Email: </span>
+                                <span style={{fontSize:'16px', marginLeft:'10px'}}>{userCookie.user.data.email}</span>
+                            </div>
+                            <IconButton size={10} style={{marginLeft:'20px',float:'right'}}>
+                                <FaIcons.FaEdit/>
+                            </IconButton>
                         </div>
                     </div>
-                    {/* <Container maxWidth="md">
-                        <h2> {userCookie.user.data.user_type==1? 'Professor':'Aluno'}</h2>
+                    
+                    <div style={{ display:'flex',}}>
+                        <div style={{ display:'flex'}}>
+                            <div style={{marginTop:'12px'}}>
+                                <span style={{fontSize:'16px'}}>Apelido: </span>
+                                <span style={{fontSize:'16px', marginLeft:'10px'}}>{userCookie.user.data.nickname==""?'--Vazio--':userCookie.user.data.nickname}</span>
+                            </div>
+                            <IconButton size={10} style={{marginLeft:'20px',float:'right'}}>
+                                <FaIcons.FaEdit/>
+                            </IconButton>
+                        </div>
+                    </div>
 
-                        <Grid container spacing={3}>
-                            <Grid item={true} xs={12} sm={6}>
-                                <TextField
-                                    id="perfil-nome-sobrenome"
-                                    label="Nome"
-                                    defaultValue={userCookie.user.data.first_name + ' ' + userCookie.user.data.last_name}
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    fullWidth
-                                    type="text"
-                                />
-                            </Grid>
+                    <div style={{display: 'flex', marginTop:'10px'}}>
+                        <Button color="primary" onClick={handleOpenModalSenha}>
+                            Alterar a senha
+                        </Button>
 
-                            <Grid item={true} xs={12} sm={6}>
-                                <TextField
-                                    id="perfil-apelido"
-                                    label="Apelido"
-                                    defaultValue={userCookie.user.data.nickname}
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    fullWidth
-                                    type="text"
-                                />
-                            </Grid>
-
-                            <Grid item={true} xs={6} sm={6}>
-                                <TextField
-                                    id="perfil-email"
-                                    label="E-mail"
-                                    defaultValue={userCookie.user.data.email}
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    fullWidth
-                                    type="email"
-                                />
-                            </Grid>
-
-                            <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
-                                <Button color="primary" onClick={handleOpenModalEmail}>
-                                    Alterar o e-mail
-                                </Button>
-                            </Grid>
-
-                            <Grid item={true} xs={6} sm={6}>
-                                <TextField
-                                    id="perfil-senha"
-                                    label="Senha"
-                                    defaultValue="trolei nao é a senha"
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    fullWidth
-                                    type="password"
-                                />
-                            </Grid>
-
-                            <Grid item={true} xs={6} sm={6} className={classes.centralizaEsquerda}>
-                                <Button color="primary" onClick={handleOpenModalSenha}>
-                                    Alterar a senha
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </Container>
-                                         */}
+                    </div>
                 </div>
             </div>
                 
