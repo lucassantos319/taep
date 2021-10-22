@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/1yD8RPSY9EBUldLMUdO-L/_buildManifest.js",
-    "static/1yD8RPSY9EBUldLMUdO-L/_ssgManifest.js"
+    "static/ScTpCKKZ5JvgmpeOM8m4y/_buildManifest.js",
+    "static/ScTpCKKZ5JvgmpeOM8m4y/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -66,7 +66,7 @@
       "static/chunks/446-2b09ba11b6ea34623d66.js",
       "static/chunks/855-0e44e1f8ac169fe41611.js",
       "static/css/40f9ead8639751efd376.css",
-      "static/chunks/pages/criacao-atividade-fa915ed97d2458d977fa.js"
+      "static/chunks/pages/criacao-atividade-5daf455791a6786bf05e.js"
     ],
     "/criar-projeto": [
       "static/chunks/webpack-171ceb2659cae37a0c20.js",
