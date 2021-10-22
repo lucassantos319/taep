@@ -17,15 +17,13 @@ const CriacaoAtividade = ({}) => {
             return (
                 <>
                     <Head>
+                        <title>Criação de atividade</title>
                         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
                         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous" />
                     </Head>  
         
                     <div style={{marginLeft:"15%",marginTop:"2%",width:"70%"}}>
-        
-
-                        <DemoBar userIdCreator={userCookie.user.id} postUrl={process.env.SERVER_HOST+"project/"+atividadeCookie.atividade.projectId+"/criarAtividade"} />
-
+                        <DemoBar userIdCreator={userCookie.user.id} postUrl={"https://taep-backend.herokuapp.com/project/"+atividadeCookie.atividade.projectId+"/criarAtividade"} />
                         <FormBuilder.ReactFormBuilder /> 
                     </div>
                     
