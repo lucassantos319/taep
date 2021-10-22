@@ -126,8 +126,8 @@ const TelaPerfil = ({userCookie}) => {
     return(
         <Tela>
             <div style={{display:'flex'}}>
-                <div style={{display:'inline-flex',justifyContent:'center',alignItems:'center', width:'25%', border:'1px solid black',borderRadius:"50%"}}>
-                    <Image className={avatar} width={200} height={200} src={perfil} ></Image>
+                <div style={{display:'inline-flex',justifyContent:'center',alignItems:'center', width:'25%'}}>
+                    <Image className="avatar" width={250} height={250} src={perfil} ></Image>
                     <style jsx global>{`
                         .avatar {
                         border-radius: 50%;
