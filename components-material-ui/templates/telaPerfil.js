@@ -58,7 +58,7 @@ const TelaPerfil = ({userCookie}) => {
                 }
                 else{
                     
-                    const url = process.env.SERVER_HOST+"editEmail/"+userCookie.user.id;
+                    const url = "https://taep-backend.herokuapp.com/editEmail/"+userCookie.user.id;
                     const userData = await axios.post(url,{"email":data.email})
                     .then(response => response.data);
 
@@ -92,7 +92,7 @@ const TelaPerfil = ({userCookie}) => {
                 }
                 else{
                     
-                    const url = process.env.SERVER_HOST+"editPassword/"+userCookie.user.id;
+                    const url = "https://taep-backend.herokuapp.com/editPassword/"+userCookie.user.id;
                     const userData = await axios.post(url,{"password":data.password_new,"password_old":data.password_old})
                     .then(response => response.data);
                    
