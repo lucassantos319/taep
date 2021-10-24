@@ -101,7 +101,6 @@ const Navbar = ({children, tipo, aberto=true}) => {
                         <FaIcons.FaBars />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        HELLO WORLD
                     </Typography>
                 </Toolbar>
             </AppBar>
