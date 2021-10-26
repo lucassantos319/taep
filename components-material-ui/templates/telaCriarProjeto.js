@@ -53,13 +53,9 @@ const TelaCriarProjeto = ({projects, usuario}) => {
             console.log(data);
             const projectData = await axios.post(url,data)   
             .then(response => response.data);
-            
-            // if ( cookies.user.login ){
-                // setCookie("user", JSON.stringify(userData), {
-            //         path: "/",
-            //         maxAge: 3600, // Expires after 1hr
-            //         sameSite: true
-            //     });
+         
+            alert("Projeto criado com sucesso !");
+
             router.prefetch("/meus-projetos");
             router.push("/meus-projetos");
             // }
@@ -71,17 +67,17 @@ const TelaCriarProjeto = ({projects, usuario}) => {
     }
 
     const disciplinas = [
-        { disciplina: 'Biologia'},
-        { disciplina: 'Espanhol'},
-        { disciplina: "Física"},
-        { disciplina: 'Geografia'},
-        { disciplina: 'História'},
-        { disciplina: 'Informática'},
-        { disciplina: 'Inglês'},
-        { disciplina: 'Matemática'},
-        { disciplina: 'Português'},
-        { disciplina: 'Química'},
-        { disciplina: 'Outra...'},
+        { disciplina: 'Biologia' },
+        { disciplina: 'Espanhol' },
+        { disciplina: "Física" },
+        { disciplina: 'Geografia' },
+        { disciplina: 'História' },
+        { disciplina: 'Informática' },
+        { disciplina: 'Inglês' },
+        { disciplina: 'Matemática' },
+        { disciplina: 'Português' },
+        { disciplina: 'Química' },
+        { disciplina: 'Outra...' },
       ];
 
       const competencias = [
@@ -96,18 +92,18 @@ const TelaCriarProjeto = ({projects, usuario}) => {
         { competencia: 'Paciência'},
         { competencia: 'Responsabilidade'},
 
-        { competencia: 'Agilidade Para Tomar Decisões'},
-        { competencia: 'Empreendedorismo'},
-        { competencia: 'Generalização'},
-        { competencia: 'Interpretação'},
-        { competencia: 'Pensamento Abstrato'},
-        { competencia: 'Pensamento Crítico'},
-        { competencia: 'Reflexão'},
-        { competencia: 'Solução de Problemas'},
+        { competencia: 'Agilidade Para Tomar Decisões' },
+        { competencia: 'Empreendedorismo' },
+        { competencia: 'Generalização' },
+        { competencia: 'Interpretação' },
+        { competencia: 'Pensamento Abstrato' },
+        { competencia: 'Pensamento Crítico' },
+        { competencia: 'Reflexão' },
+        { competencia: 'Solução de Problemas' },
 
-        { competencia: 'Gerenciar tempo'},
-        { competencia: 'Liderança'},
-        { competencia: 'Planejamento'},
+        { competencia: 'Gerenciar tempo' },
+        { competencia: 'Liderança' },
+        { competencia: 'Planejamento' },
 
         { competencia: 'Iniciativa'},
         { competencia: 'Criatividade'},
@@ -161,6 +157,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 <Autocomplete
                                     id="cadastrar-projeto-disciplinas-relacionadas"
                                     options={disciplinas}
+                                    freeSolo
                                     getOptionLabel={(option) => option.disciplina}
                                     filterSelectedOptions
                                     renderInput={(params) => (
@@ -195,6 +192,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                     multiple
                                     id="cadastrar-projeto-disciplinas-relacionadas"
                                     options={disciplinas}
+                                    freeSolo
                                     onChange={(event,value)=>handleChangeDisciplinas(event,value)}
                                     getOptionLabel={(option) => option.disciplina}
                                     filterSelectedOptions

@@ -1,19 +1,7 @@
 {
   "/_app": "pages/_app.js",
-  "/api/hello": "pages/api/hello.js",
-  "/cadastrar-aluno": "pages/cadastrar-aluno.js",
-  "/cadastrar-professor": "pages/cadastrar-professor.js",
-  "/criacao-atividade": "pages/criacao-atividade.js",
-  "/criar-projeto": "pages/criar-projeto.js",
-  "/home": "pages/home.js",
-  "/": "pages/index.js",
-  "/login": "pages/login.js",
-  "/meus-projetos/[id]": "pages/meus-projetos/[id].js",
-  "/meus-projetos": "pages/meus-projetos.js",
-  "/perfil": "pages/perfil.js",
-  "/projetos/[id]": "pages/projetos/[id].js",
-  "/projetos": "pages/projetos.js",
-  "/sair": "pages/sair.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js"
+  "/_document": "pages/_document.js",
+  "/home": "pages/home.js",
+  "/criar-projeto": "pages/criar-projeto.js"
 }

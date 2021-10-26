@@ -58,7 +58,7 @@ const TelaPerfil = ({userCookie}) => {
                 }
                 else{
                     
-                    const url = "https://taep-backend.herokuapp.com/editEmail/"+userCookie.user.id;
+                    const url = "https://taep-backend.herokuapp.com/editEmail/"+userCookie.user.data.id;
                     const userData = await axios.post(url,{"email":data.email})
                     .then(response => response.data);
 
@@ -85,18 +85,17 @@ const TelaPerfil = ({userCookie}) => {
 
         try{
 
-            if (userCookie.user.login){
+            if (userCookie.user.data.login){
 
                 if ( data.password_new != data.password_confirm){
                     alert("Senhas não são iguais");
                 }
                 else{
                     
-                    const url = "https://taep-backend.herokuapp.com/editPassword/"+userCookie.user.id;
+                    const url = "https://taep-backend.herokuapp.com/editPassword/"+userCookie.user.data.id;
                     const userData = await axios.post(url,{"password":data.password_new,"password_old":data.password_old})
                     .then(response => response.data);
                    
-                    setOpenModalPassword(false);
                     alert("Senha trocado com sucesso!");
                 }
             }

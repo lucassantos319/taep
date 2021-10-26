@@ -48,7 +48,6 @@ const FormularioLogin = ({}) => {
             if ( userData.data.login ){
                 setCookie("user", JSON.stringify(userData), {
                     path: "/",
-                    maxAge: 3600, // Expires after 1hr
                     sameSite: true
                 });
              
