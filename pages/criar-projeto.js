@@ -19,7 +19,7 @@ const CriarProjeto = ({}) => {
 					<Head>
 						<title>Criação do projeto</title>
 					</Head>
-					<Layout tipo={userCookie.user.user_type}>
+					<Layout tipo={userCookie.user.data.user_type}>
 						<TelaCriarProjeto/>
 					</Layout>
 				</>
