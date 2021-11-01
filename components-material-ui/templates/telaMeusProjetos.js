@@ -10,19 +10,7 @@ const TelaMeusProjetos = ({projects, usuario}) => {
     const router = useRouter();
     return(
         <Tela>
-            {usuario.user_type == 1? 
-                <Container maxWidth="lg">
-                    <Link href="criar-projeto">
-                        <Div>
-                            <Button variant="contained" color="primary" size="large">
-                                Criar novo projeto
-                            </Button>
-                        </Div>
-                    </Link>
-                </Container>
-            :
-                ""
-            }
+          
             {
                 projects.length > 0 ?
                     <Container maxWidth="lg">

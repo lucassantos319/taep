@@ -1,41 +1,78 @@
 import { TextField } from '@material-ui/core';
-import Checkbox from "@material-ui/core/Checkbox";
-import InputLabel from "@material-ui/core/InputLabel";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
+import { useTheme } from '@mui/material/styles';
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import React,{useState} from 'react';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Chip from '@mui/material/Chip';
 import { useForm } from 'react-hook-form';
 import Collapsible from 'react-collapsible';
 import EscopoDescription from '../../organism/planning/escopoDescription';
-import Image from 'next/image';
-import img from '../../../public/img/ods/ods-1.png'
 import AllODS from '../../organism/planning/AllODS';
+import { Button } from 'react-bootstrap';
 
-import { MenuProps, useStyles, options, options2 } from "./utils";
 
+function getStyles(name, personName, theme) {
+    return {
+        fontWeight:
+        personName.indexOf(name) === -1
+            ? theme.typography.fontWeightRegular
+            : theme.typography.fontWeightMedium,
+    };
+}
 
 const TelaEscopo = ({escopo}) => {
     
-    console.log(escopo)
-    escopo={'teste':12}
     const {register,handleSubmit} = useForm();
-    const classes = useStyles();
-    const [selected, setSelected] = useState([]);
-    const isAllSelected =
-      options.length > 0 && selected.length === options.length;
-  
-    const handleChange = (event) => {
-      const value = event.target.value;
-      if (value[value.length - 1] === "all") {
-        setSelected(selected.length === options.length ? [] : options);
-        return;
-      }
-      setSelected(value);
+    const [selectStream,setSelectStream] = useState([]);
+    const [selectSkill,setSelectSkill] = useState([]);
+
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                width: 500,
+            },
+        },
     };
 
+    var stream = [
+       'Ciências',
+       'Tecnologia',
+       'Engenharia',
+       'Artes',
+       'Matemática'
+    ];
+
+    var habilidades = [
+        'Socioemotional',
+        'Cognitive',
+        'Organizational',
+        'Behavioral',
+        'Communicative'
+    ];
+    
+    const theme = useTheme();
+    const handleChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setSelectStream(
+            // On autofill we get a the stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+
+    const handleChange2 = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setSelectSkill(
+            // On autofill we get a the stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
 
     return(
         <>
@@ -50,10 +87,10 @@ const TelaEscopo = ({escopo}) => {
                     <EscopoDescription/>
                 </Collapsible>
             </div>
-            <div style={{marginTop:'20px',paddingBottom:'20px',border:'1px solid black'}}>
+            <div style={{marginTop:'20px',paddingBottom:'20px',borderRadius:'10px',border:'1px solid black'}}>
                 <div style={{marginTop:'24px',marginLeft:'20px'}}>
-                    <div style={{fontSize:'20px'}}>
-                        <span>Documento de escopo</span>
+                    <div style={{fontSize:'20px',textAlign:'center'}}>
+                        <h5>Documento de escopo</h5>
                     </div>
                     <div style={{}}>
                         <form>
@@ -62,6 +99,7 @@ const TelaEscopo = ({escopo}) => {
                                 <TextField
                                     style={{width:'50%'}}
                                     placeholder="Disciplina do projeto"
+                                    multiple
                                     required
                                     {...register("disciplina")}/>
                             </div>
@@ -69,99 +107,72 @@ const TelaEscopo = ({escopo}) => {
                                 <div style={{display:'flex',marginTop:'20px'}}>
                                     <span style={{marginRight:'20px',marginTop:'5px'}}>2. Quais temas relacionados aos ODS você pode incluir em sua proposta de aula?</span>
                                 </div>
-                                <div style={{display:'inline-block',marginTop:'30px',border:'1px solid black'}}>
+                                <div style={{display:'inline-block',marginTop:'20px'}}>
                                     <AllODS />
                                 </div>
                             </div>
                             <div>
                                 <div style={{marginTop:'20px'}}>
                                     <span >3. Quais áreas do STEAM você pretende trabalhar em sala de aula?</span>
-                                    <div style={{}}>
-                                        <FormControl className={classes.formControl}>
-                                            <InputLabel id="mutiple-select-label">STEAM</InputLabel>
+                                    <div style={{width:'80%', marginTop:'12px'}}>
+                                        <FormControl style={{width:'100%'}}>
                                             <Select
-                                                labelId="mutiple-select-label"
+                                                style={{width:'40%'}}
                                                 multiple
-                                                value={selected}
+                                                value={selectStream}
                                                 onChange={handleChange}
-                                                renderValue={(selected) => selected.join(", ")}
-                                                MenuProps={MenuProps}
+                                                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                                                renderValue={(selected) => (
+                                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                                      {selected.map((value) => (
+                                                        <Chip key={value} label={value} />
+                                                      ))}
+                                                    </Box>
+                                                  )}
+                                                  MenuProps={MenuProps}
                                             >
-                                                <MenuItem
-                                                value="all"
-                                                classes={{
-                                                    root: isAllSelected ? classes.selectedAll : ""
-                                                }}
-                                                >
-                                                <ListItemIcon>
-                                                    <Checkbox
-                                                    classes={{ indeterminate: classes.indeterminateColor }}
-                                                    checked={isAllSelected}
-                                                    indeterminate={
-                                                        selected.length > 0 && selected.length < options.length
-                                                    }
-                                                    />
-                                                </ListItemIcon>
-                                                <ListItemText
-                                                    classes={{ primary: classes.selectAllText }}
-                                                    primary="Select All"
-                                                />
-                                                </MenuItem>
-                                                {options.map((option) => (
-                                                <MenuItem key={option} value={option}>
-                                                    <ListItemIcon>
-                                                    <Checkbox checked={selected.indexOf(option) > -1} />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={option} />
-                                                </MenuItem>
+                                                {stream.map((name) => (
+                                                    <MenuItem
+                                                        key={name}
+                                                        value={name}
+                                                        style={getStyles(name, selectStream, theme)}
+                                                        >
+                                                            {name}
+                                                    </MenuItem>
                                                 ))}
                                             </Select>
                                         </FormControl>
                                     </div>
-
                                 </div>
                             </div>
                             <div>
-                                <div style={{marginTop:'20px'}}>
+                                <div style={{marginTop:'24px'}}>
                                     <span >4. Quais habilidades e competências do século 21 você deseja desenvolver?</span>
-                                    <div style={{width:'80%'}}>
-                                        <FormControl className={classes.formControl}>
-                                            <InputLabel id="mutiple-select-label"></InputLabel>
+                                    <div style={{width:'80%',marginTop:'12px'}}>
+                                        <FormControl style={{width:'100%'}}>
                                             <Select
-                                                labelId="mutiple-select-label"
+                                                style={{width:'40%'}}
                                                 multiple
-                                                value={selected}
-                                                onChange={handleChange}
-                                                renderValue={(selected) => selected.join(", ")}
-                                                MenuProps={MenuProps}
+                                                value={selectSkill}
+                                                onChange={handleChange2}
+                                                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                                                renderValue={(selected) => (
+                                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                                      {selected.map((value) => (
+                                                        <Chip key={value} label={value} />
+                                                      ))}
+                                                    </Box>
+                                                  )}
+                                                  MenuProps={MenuProps}
                                             >
-                                                <MenuItem
-                                                value="all"
-                                                classes={{
-                                                    root: isAllSelected ? classes.selectedAll : ""
-                                                }}
-                                                >
-                                                <ListItemIcon>
-                                                    <Checkbox
-                                                    classes={{ indeterminate: classes.indeterminateColor }}
-                                                    checked={isAllSelected}
-                                                    indeterminate={
-                                                        selected.length > 0 && selected.length < options2.length
-                                                    }
-                                                    />
-                                                </ListItemIcon>
-                                                <ListItemText
-                                                    classes={{ primary: classes.selectAllText }}
-                                                    primary="Select All"
-                                                />
-                                                </MenuItem>
-                                                {options2.map((options2) => (
-                                                <MenuItem key={options2} value={options2}>
-                                                    <ListItemIcon>
-                                                    <Checkbox checked={selected.indexOf(options2) > -1} />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={options2} />
-                                                </MenuItem>
+                                                {habilidades.map((name) => (
+                                                    <MenuItem
+                                                        key={name}
+                                                        value={name}
+                                                        style={getStyles(name, selectStream, theme)}
+                                                        >
+                                                            {name}
+                                                    </MenuItem>
                                                 ))}
                                             </Select>
                                         </FormControl>

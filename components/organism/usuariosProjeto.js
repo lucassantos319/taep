@@ -12,7 +12,6 @@ const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
             } 
             <div>
                 {
-                    
                     usuarios.map((item,i) => {
                         <CardUser id={i} usuario={item} />
                     })

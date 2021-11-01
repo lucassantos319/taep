@@ -42,6 +42,15 @@ const NavbarProfessor = ({}) => {
                     </ListItem>
                 </Link>
 
+                <Link href="/criar-projeto">
+                    <ListItem button className="hover-item-nav" key='criar-projeto'>
+                        <ListItemIcon>
+                            <FaIcons.FaPlusSquare className="text-nav"/>
+                        </ListItemIcon>
+                        <ListItemText className="text-nav" primary="Criar projeto" />
+                    </ListItem>
+                </Link>
+
                 <Link href="/projetos">
                     <ListItem button className="hover-item-nav" key='projetos'>
                         <ListItemIcon>

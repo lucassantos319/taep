@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Mensagens from "./mensagens";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
-import {useState} from 'react'
+import { useState   } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 import TextField from '@material-ui/core/TextField';
@@ -13,9 +13,18 @@ import DescricaoProjeto from '../../components-material-ui/organism/descricaoPro
 import UsuariosProjetos from "./usuariosProjeto";
 import axios from 'axios';
 import MensagensAviso from "./messageAviso";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 
 function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,avisos}){
     
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     const {register,handleSubmit} = useForm();
     const [cookie, setCookie] = useCookies(["atividade"])
     const [cookieUser, setCookieUser] = useCookies(["user"])
@@ -115,7 +124,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
        
     }
 
-
+    const [value, setValue] = useState('1');
     const pushAviso = async (data) => {
        
 
@@ -228,7 +237,66 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
 
         
         <Div1>
-            <Tabs>
+            <Box sx={{ width: '100%', typography: 'body1' }}>
+                <TabContext value={value}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <TabList onChange={handleChange} aria-label="lab API tabs example">
+                            <Tab label="Descrição" value="1" />
+                            <Tab label="Alunos" value="2" />
+                            <Tab label="Atividades" value="3" />
+                            <Tab label="Avaliações do projeto" value="4" />
+                            <Tab label="Avisos" value="5" />
+
+                        </TabList>
+                    </Box>
+                   
+                    <TabPanel value="1">
+                        <DescricaoProjeto projectInfo={projectInfo}/>
+                    </TabPanel>
+                    <TabPanel value="2">
+                        <UsuariosProjetos 
+                            projectInfo={projectInfo}
+                            type={cookieUser.user.data.user_type}
+                            onClick={showModalUsuario}
+                            usuarios={usuarios}
+                            userId={cookieUser.user.data.id}
+                        />
+                    </TabPanel>
+                    <TabPanel value="3">
+                        {
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ? 
+                                <div style={{marginTop:"14px",marginBottom:"25px"}} >
+                                    <Button onClick={showModalAtividade}>Criar Atividades</Button> 
+                                </div>:
+                                <div></div>
+                        }
+                        
+                       <Mensagens messagesData={atividadeData}></Mensagens>
+                    </TabPanel>
+                    <TabPanel value="4">
+                        {
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
+                                <div style={{marginTop:"14px",marginBottom:"25px"}}>
+                                    <Button onClick={showModalAvaliacao}>Criar Atividades</Button> 
+                                </div>:
+                                <div></div>
+                        }
+                        <Mensagens messagesData={avaliacoes}></Mensagens>
+                    </TabPanel>
+                    <TabPanel value="5">
+                        {
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
+                                <div style={{marginTop:"14px",marginBottom:"25px"}}>
+                                    <Button onClick={showModalAviso}>Criar aviso</Button> 
+                                </div>:
+                                <div></div>
+                        }
+                        <MensagensAviso messagesData={avisos}></MensagensAviso>  
+                    </TabPanel>
+
+                </TabContext>
+            </Box>
+            {/* <Tabs>
                 <TabList>
                     <Tab>Descrição</Tab>
                     <Tab>Alunos</Tab>
@@ -237,14 +305,12 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     <Tab>Avisos</Tab>
                 </TabList>
 
-                {/*Descrição*/}
                 <TabPanel>
                     <DivInterna>
                         <DescricaoProjeto projectInfo={projectInfo}/>
                     </DivInterna>
                 </TabPanel>
 
-                {/* Alunos */}
                 <TabPanel>
                     <DivInterna>
                         <UsuariosProjetos 
@@ -258,7 +324,6 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     </DivInterna>
                 </TabPanel>
 
-                {/*Atividade*/}
                 <TabPanel>
                     <DivInterna>
                         {
@@ -272,8 +337,6 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     </DivInterna>
                 </TabPanel>
                 
-
-                {/* Avaliação */}
                 <TabPanel>
                     <DivInterna>
                         {
@@ -287,7 +350,6 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     </DivInterna>
                 </TabPanel>
 
-                {/* Avisos */}
                 <TabPanel>
                     <DivInterna>
                         {
@@ -300,7 +362,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                         <MensagensAviso messagesData={avisos}></MensagensAviso>                      
                     </DivInterna>
                 </TabPanel>
-            </Tabs>
+            </Tabs> */}
         </Div1>
         </>
     )

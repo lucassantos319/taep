@@ -28,6 +28,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/criar-projeto.js"
+    ],
+    "/meus-projetos/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/meus-projetos/[id].js"
     ]
   },
   "ampFirstPages": []

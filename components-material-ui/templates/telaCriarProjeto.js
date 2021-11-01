@@ -8,6 +8,9 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import ProgressBar from './progressBar';
 import TelaEscopo from './planning/telaEscopo';
+import TelaVerificaTec from './planning/telaVerificaTec';
+import TelaDesafio from './planning/telaDesafio';
+import TelaProjeto from './planning/telaProjeto';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -120,7 +123,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
     //   ];
 
     const {register,handleSubmit} = useForm()
-    const [progressValue,setProgressValue] = useState(14.28);
+    const [progressValue,setProgressValue] = useState(20);
     const [buttonDescription, setButtonText] = useState("Proximo")
     const [avanca,setAvanca] = useState(false);
     var escopo = {}
@@ -129,27 +132,26 @@ const TelaCriarProjeto = ({projects, usuario}) => {
 
         <Tela>
             <ProgressBar progressValue={progressValue}/>
-            <Container maxWidth="1" style={{marginTop:'80px',borderRadius:'20px',border:'1px solid black',paddingBottom:'45px'}}>
+            <Container maxWidth="1" style={{marginTop:'80px',borderRadius:'20px',border:'1px solid black',paddingBottom:'60px'}}>
 
-                { progressValue == 14.28 ? <TelaEscopo escopo={escopo}/>:null }
-                { progressValue == (14.28*2) ? <TelaEscopo escopo={escopo}/>:null }
-                { progressValue == (14.28*3) ? <TelaEscopo/>:null }
-                { progressValue == (14.56*4) ? <TelaEscopo/>:null }
-                { progressValue == (14.56*5) ? <TelaEscopo/>:null }
-                { progressValue == (14.56*6) ? <TelaEscopo/>:null }
+                { progressValue == 20 ? <TelaEscopo escopo={escopo}/>:null }
+                { progressValue == (20*2) ? <TelaVerificaTec/>:null }
+                { progressValue == (20*3) ? <TelaDesafio/>:null }
+                { progressValue == (20*4) ? <TelaProjeto/>:null }
+                { progressValue == (20*5) ? <TelaEscopo/>:null }
 
-                <div style={{float:'right'}}>
+                <div style={{float:'right', marginTop:'15px'}}>
                     <Button onClick={()=>{ 
                         console.log("old => " + progressValue)
-                        if ( progressValue != 87.08){
-                            setProgressValue(progressValue+14.28)
+                        if ( progressValue != 100){
+                            setProgressValue(progressValue+20)
                             console.log("new => " + progressValue)
                             console.log(escopo)
                         }
                         else{
                         
                             if ( !avanca ){
-                                setProgressValue(progressValue+14.28)
+                                setProgressValue(progressValue+20)
                                 setAvanca(true)
                                 setButtonText("Concluir")
                             }
@@ -157,7 +159,20 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 router.push('/meus-projetos');
                         }
                     }}>{buttonDescription}</Button>
-                </div>                
+                </div>    
+
+                {progressValue != 20? 
+                    <div style={{float:'left', marginTop:'15px'}}>
+                        <Button onClick={()=>{ 
+                            console.log(progressValue)
+                            if ( progressValue > 20)
+                                setProgressValue(progressValue-20)
+                            console.log(progressValue)
+                        }}>Retornar</Button>
+                    </div> : null
+                
+                }
+                                           
                 
             </Container>
         </Tela>
