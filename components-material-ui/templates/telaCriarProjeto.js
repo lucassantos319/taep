@@ -11,6 +11,7 @@ import TelaEscopo from './planning/telaEscopo';
 import TelaVerificaTec from './planning/telaVerificaTec';
 import TelaDesafio from './planning/telaDesafio';
 import TelaProjeto from './planning/telaProjeto';
+import TelaMaterialApoio from './planning/telaMaterialApoio';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -138,15 +139,14 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                 { progressValue == (20*2) ? <TelaVerificaTec/>:null }
                 { progressValue == (20*3) ? <TelaDesafio/>:null }
                 { progressValue == (20*4) ? <TelaProjeto/>:null }
-                { progressValue == (20*5) ? <TelaEscopo/>:null }
+                { progressValue == (20*5) ? <TelaMaterialApoio/>:null }
 
                 <div style={{float:'right', marginTop:'15px'}}>
                     <Button onClick={()=>{ 
-                        console.log("old => " + progressValue)
-                        if ( progressValue != 100){
+                        if ( progressValue != 80){
                             setProgressValue(progressValue+20)
-                            console.log("new => " + progressValue)
-                            console.log(escopo)
+                            setButtonText("Proximo")
+                            setAvanca(false)
                         }
                         else{
                         
@@ -155,8 +155,18 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 setAvanca(true)
                                 setButtonText("Concluir")
                             }
-                            else
-                                router.push('/meus-projetos');
+                            else{
+
+                                var escopo = JSON.parse(localStorage.getItem("escopo"));
+                                var recurso = JSON.parse(localStorage.getItem("recurso"));
+                                var projetoInfo = JSON.parse(localStorage.getItem("projetoInfo"));
+                                
+                                console.log(escopo);
+                                console.log(recurso);
+                                console.log(projetoInfo)
+
+                                // router.push('/meus-projetos');
+                            }
                         }
                     }}>{buttonDescription}</Button>
                 </div>    
@@ -164,10 +174,8 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                 {progressValue != 20? 
                     <div style={{float:'left', marginTop:'15px'}}>
                         <Button onClick={()=>{ 
-                            console.log(progressValue)
                             if ( progressValue > 20)
                                 setProgressValue(progressValue-20)
-                            console.log(progressValue)
                         }}>Retornar</Button>
                     </div> : null
                 

@@ -87,21 +87,22 @@ const TelaEscopo = ({escopo}) => {
                     <EscopoDescription/>
                 </Collapsible>
             </div>
-            <div style={{marginTop:'20px',paddingBottom:'20px',borderRadius:'10px',border:'1px solid black'}}>
+            <form >
+            <div style={{marginTop:'20px',paddingBottom:'60px',borderRadius:'10px',border:'1px solid black'}}>
                 <div style={{marginTop:'24px',marginLeft:'20px'}}>
                     <div style={{fontSize:'20px',textAlign:'center'}}>
                         <h5>Documento de escopo</h5>
                     </div>
                     <div style={{}}>
-                        <form>
+                        <form >
                             <div style={{display:'flex',marginTop:'20px'}}>
                                 <span style={{marginRight:'20px',marginTop:'5px'}}>1. Quais disciplinas serão trabalhadas ?</span>
                                 <TextField
+                                    id="Disciplinas"
                                     style={{width:'50%'}}
                                     placeholder="Disciplina do projeto"
-                                    multiple
                                     required
-                                    {...register("disciplina")}/>
+                                />
                             </div>
                             <div>
                                 <div style={{display:'flex',marginTop:'20px'}}>
@@ -180,10 +181,33 @@ const TelaEscopo = ({escopo}) => {
 
                                 </div>
                             </div>
+                            <div style={{float:'right',marginRight:'20px'}}>
+                                <Button onClick={() => {
+
+                                    var trueODS = [];
+                                   
+                                    var allODS = document.getElementsByClassName("radio_check");
+                                    for ( var i = 0 ; i < allODS.length ; i++ )
+                                        if ( allODS[i].checked )
+                                            trueODS.push(i+1);
+                                    
+                                    const obj = {
+                                        "disciplinas":document.getElementById("Disciplinas").value,
+                                        "ods": trueODS,
+                                        "stream":selectStream,
+                                        "skills":selectSkill
+                                    };
+                                   
+                                    localStorage.setItem("escopo",JSON.stringify(obj)); 
+                                    alert("Salvo com sucesso");
+
+                                }}>Salvar</Button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
+        </form>
             
         </>
     )   

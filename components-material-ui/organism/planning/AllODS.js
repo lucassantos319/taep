@@ -30,27 +30,27 @@ const AllODS = ({}) => {
         
             <div style={{display:'flex'}}>
                 <div>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img1} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img2} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img3} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img4} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img5} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img6} height={150} width={150}></Image>
                 </div>
             </div>
@@ -58,50 +58,50 @@ const AllODS = ({}) => {
 
             <div style={{display:'flex', marginTop:'10px'}}>
                 <div>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img7} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img8} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img9} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img10} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img11} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img12} height={150} width={150}></Image>
                 </div>
             </div>
 
             <div style={{display: 'flex', marginTop:'10px'}}>
                 <div>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img13} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img14} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img15} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img16} height={150} width={150}></Image>
                 </div>
                 <div style={{marginLeft:'20px'}}>
-                    <input type="radio" /> 
+                    <input class="radio_check" type="radio" /> 
                     <Image src={img17} height={150} width={150}></Image>
                 </div>
             </div>

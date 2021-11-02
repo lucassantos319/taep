@@ -8,35 +8,69 @@ const TelaProjeto = ({}) => {
    
     return (
         <>
-            <div style={{textAlign:'center',marginTop:'20px',marginBottom:'20px'}}>
+            <div style={{textAlign:'center',marginTop:'40px',marginBottom:'20px'}}>
                 <h3>Criação de projeto</h3>
             </div>
             <div>
                 <div>
-                    <Collapsible
-                        triggerStyle={{padding:'10px',marginBottom:'20px',backgroundColor:'#c8c8c8'}}
-                        trigger="Educação por projeto"
-                    >
-                        <ProjetoDescription/>
-                    </Collapsible>
-                    <div style={{marginTop:'15px',marginBottom:'15px'}}>
-                        <div>
-                            <form>
-                                <div>
-                                    <TextField
-                                        required
-                                        label="Titulo do projeto"
-                                        style={{marginTop:'20px',width:"40%"}}
-                                        // {...register("titulo")}
-                                    >
+                    <div style={{marginTop:'15px',marginBottom:'40px'}}>
+                        <div style={{marginBottom:'20px',marginBottom:'80px'}}>
+                            <div style={{
+                                marginLeft:'25%'
+                            }}>
+                                <TextField
+                                    required
+                                    id="titulo"
+                                    label="Titulo do projeto"
+                                    style={{marginTop:'20px',width:"35%"}}
+                                >
+                                </TextField>
+                                <TextField
+                                    required
+                                    id="objetivo"
+                                    label="Objetivo"
+                                    style={{marginTop:'20px',marginLeft:'20px',width:"35%"}}
+                                >
+                                </TextField>
+                            </div>
+                            <div style={{
+                                marginLeft:'25%'
+                            }}>
+                                <TextField
+                                    required
+                                    id="description"
+                                    label="Descrição do projeto"
+                                    multiline
+                                    style={{marginTop:'20px',width:"72%"}}
+                                >
+                                </TextField>
+                            </div>
 
-                                    </TextField>
-                                </div>
-                            </form>
                         </div>
-                        <div>
+                        <div style={{float:'right',marginRight:'20px'}}>
+                            <Button onClick={() => {
+                                var title = document.getElementById("titulo").value;
+                                var objective = document.getElementById("objetivo").value;
+                                var description = document.getElementById("description").value;
 
+                                var obj = {
+                                    "title":title,
+                                    "objective":objective,
+                                    "description":description
+                                }
+
+                                localStorage.setItem("projetoInfo",JSON.stringify(obj));
+                                alert("Salvo com sucesso");
+
+                            }}
+                            >Salvar</Button>
                         </div>
+                        <Collapsible
+                            triggerStyle={{padding:'10px',marginBottom:'20px',backgroundColor:'#c8c8c8'}}
+                            trigger="Educação por projeto"
+                        >
+                            <ProjetoDescription/>
+                        </Collapsible>
                     </div>
                 </div>
             </div>
