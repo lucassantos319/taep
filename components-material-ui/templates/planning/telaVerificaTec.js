@@ -31,19 +31,19 @@ const TelaVerificaTec = ({tipo, children}) => {
                                 <li style={{marginTop:'10px'}}>
                                     <div>
                                         <input class="radio_check_tec" type="radio"  />
+                                        <a style={{marginLeft:'10px'}} href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/programa%C3%A7%C3%A3o-em-blocos?authuser=0">Programação em bloco </a>
+                                    </div>
+                                </li>
+                                <li style={{marginTop:'10px'}}>
+                                    <div>
+                                        <input class="radio_check_tec" type="radio"  />
                                         <a style={{marginLeft:'10px'}} href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/rob%C3%B3tica-educacional?authuser=0">Robótica Educacional</a>
                                     </div>
                                 </li>
                                 <li style={{marginTop:'10px'}}>
                                     <div>
                                         <input class="radio_check_tec" type="radio"  />
-                                        <a style={{marginLeft:'10px'}} href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/programa%C3%A7%C3%A3o-em-blocos?authuser=0">Programação</a>
-                                    </div>
-                                </li>
-                                <li style={{marginTop:'10px'}}>
-                                    <div>
-                                        <input class="radio_check_tec" type="radio"  />
-                                        <a style={{marginLeft:'10px'}} href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/realidade-aumentada?authuser=0">Realidade Aumentada</a>
+                                        <a style={{marginLeft:'10px'}} href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/realidade-aumentada?authuser=0">Realidade aumentada</a>
                                     </div>
                                 </li>
 
@@ -62,8 +62,9 @@ const TelaVerificaTec = ({tipo, children}) => {
 
                             var tecRadio = [];
                             var tec = document.getElementsByClassName("radio_check_tec");
+                            
                             for ( var i = 0 ; i < tec.length; i++ )
-                                if ( tec.checked )
+                                if ( tec[i].checked )
                                     tecRadio.push(i+1);
 
                             var obj = {

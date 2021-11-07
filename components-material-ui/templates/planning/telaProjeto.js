@@ -45,6 +45,18 @@ const TelaProjeto = ({}) => {
                                 >
                                 </TextField>
                             </div>
+                            <div style={{
+                                marginLeft:'25%'
+                            }}>
+                                <TextField
+                                    required
+                                    id="turma"
+                                    label="Turma"
+                                    multiline
+                                    style={{marginTop:'30px',width:"72%"}}
+                                >
+                                </TextField>
+                            </div>
 
                         </div>
                         <div style={{float:'right',marginRight:'20px'}}>
@@ -52,11 +64,13 @@ const TelaProjeto = ({}) => {
                                 var title = document.getElementById("titulo").value;
                                 var objective = document.getElementById("objetivo").value;
                                 var description = document.getElementById("description").value;
+                                var turma = document.getElementById("turma").value;
 
                                 var obj = {
                                     "title":title,
                                     "objective":objective,
-                                    "description":description
+                                    "description":description,
+                                    "turma":turma,
                                 }
 
                                 localStorage.setItem("projetoInfo",JSON.stringify(obj));

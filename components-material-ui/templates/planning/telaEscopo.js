@@ -170,7 +170,7 @@ const TelaEscopo = ({escopo}) => {
                                                     <MenuItem
                                                         key={name}
                                                         value={name}
-                                                        style={getStyles(name, selectStream, theme)}
+                                                        style={getStyles(name, selectSkill, theme)}
                                                         >
                                                             {name}
                                                     </MenuItem>
@@ -194,7 +194,7 @@ const TelaEscopo = ({escopo}) => {
                                     const obj = {
                                         "disciplinas":document.getElementById("Disciplinas").value,
                                         "ods": trueODS,
-                                        "stream":selectStream,
+                                        "steam":selectStream,
                                         "skills":selectSkill
                                     };
                                    

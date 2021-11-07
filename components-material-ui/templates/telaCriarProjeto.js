@@ -31,40 +31,34 @@ const TelaCriarProjeto = ({projects, usuario}) => {
     const [selectedOptionsDisciplinas, setSelectedOptionsDisciplinas] = useState([]);
     const [selectedOptionsTags, setSelectedOptionsTags] = useState([]);
 
-    const handleChangeTags = (event, value) => setSelectedOptionsTags(value);
-    const handleChangeDisciplinas = (event, value) => setSelectedOptionsDisciplinas(value);
-
-    const onSubmit = async (data) => {
+    const onSubmit = async (escopo,recurso,projetoInfo) => {
         
         try{
-          
-            const url = "https://taep-backend.herokuapp.com/project/createProjects";
+            console.log(escopo,recurso,projetoInfo)
+           
+            const url = "https://taep.backend.herokuapp/project/createProjects";
             var data = {
-               
-                "title":data.title,
-                "turma":data.turma,
-                "disciplina":data.disciplina,
-                "description":data.description,
-                "tecnologias":data.tecnologias,
-                "objective":data.objetivo,
-                "material_apoio":data.material_apoio,
+                "disciplinas":escopo.disciplinas,
+                "ods":escopo.ods,
+                "steam":escopo.steam,
+                "skills":escopo.skills,
+                "tecnologias":recurso.tecRadio,
+                "title":projetoInfo.title,
+                "turma":projetoInfo.turma,
+                "description":projetoInfo.description,
+                "objective":projetoInfo.objective,
                 "userId":cookies.user.data.id,
-                "disciplinas_relacionais":[],
-                "tags":[]
             };
 
-            data["disciplinas_relacionais"] = selectedOptionsDisciplinas;
-            data["tags"] = selectedOptionsTags;
-
-            console.log(data);
             const projectData = await axios.post(url,data)   
             .then(response => response.data);
          
-            alert("Projeto criado com sucesso !");
+            if (projectData)
+                alert("Projeto criado com sucesso !");
 
             router.prefetch("/meus-projetos");
             router.push("/meus-projetos");
-            // }
+            
             
         }
         catch(error){
@@ -143,7 +137,7 @@ const TelaCriarProjeto = ({projects, usuario}) => {
 
                 <div style={{float:'right', marginTop:'15px'}}>
                     <Button onClick={()=>{ 
-                        if ( progressValue != 80){
+                        if ( progressValue < 80){
                             setProgressValue(progressValue+20)
                             setButtonText("Proximo")
                             setAvanca(false)
@@ -161,10 +155,8 @@ const TelaCriarProjeto = ({projects, usuario}) => {
                                 var recurso = JSON.parse(localStorage.getItem("recurso"));
                                 var projetoInfo = JSON.parse(localStorage.getItem("projetoInfo"));
                                 
-                                console.log(escopo);
-                                console.log(recurso);
-                                console.log(projetoInfo)
-
+                                onSubmit(escopo,recurso,projetoInfo);
+                                
                                 // router.push('/meus-projetos');
                             }
                         }

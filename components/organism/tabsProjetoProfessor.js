@@ -374,7 +374,7 @@ export default TabsProjetoProfessor
 const Div1 = styled.div`
 padding: 36px;
 height: 100%;
-width: 80%;
+width: 100%;
 
 ul{
     margin: 0px;
