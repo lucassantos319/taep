@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
     const {id} = context.query;
     const atividadesUrl = "https://taep-backend.herokuapp.com/project/"+id+"/atividades";
     const usuariosUrl = "https://taep-backend.herokuapp.com/project/"+id+"/usuarios"
-    const infoUrl = "https://taep-backend.herokuapp.com/project/"+id+"/info";
+    const infoUrl = "http://localhost:5000/project/"+id+"/info";
     const avisoUrl = "https://taep-backend.herokuapp.com/project/"+id+"/avisos";
     
     const messagesData = await axios.get(atividadesUrl).then(response=>response.data);

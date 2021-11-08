@@ -15,7 +15,7 @@ const VerificaTec = ({}) => {
                             <li><a href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/gamifica%C3%A7%C3%A3o?authuser=0">Gamificação</a></li>
                         </div>
                         <li><a href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/rob%C3%B3tica-educacional?authuser=0">Robótica Educacional</a></li>
-                        <li><a href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/programa%C3%A7%C3%A3o-em-blocos?authuser=0">Programação</a></li>
+                        <li><a href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/programa%C3%A7%C3%A3o-em-blocos?authuser=0">Programação em blocos</a></li>
                         <li><a href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/realidade-aumentada?authuser=0">Realidade Aumentada</a></li>
                         <li><a href="https://sites.google.com/view/taep/Planejamento/planning/verificar-recursos-tecnol%C3%B3gicos/storytelling-digital?authuser=0">Storytelling Digital</a></li>
 

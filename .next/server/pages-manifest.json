@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/meus-projetos": "pages/meus-projetos.js",
-  "/meus-projetos/[id]": "pages/meus-projetos/[id].js"
+  "/meus-projetos/[id]": "pages/meus-projetos/[id].js",
+  "/criacao-atividade": "pages/criacao-atividade.js"
 }

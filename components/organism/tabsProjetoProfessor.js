@@ -75,7 +75,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
         const atividade = {
             "titulo":data.title,
             "description":data.description,
-            "projectId":projectInfo.id
+            "projectId":projectInfo.projects.id
         }
 
         setCookie("atividade", JSON.stringify(atividade), {
@@ -127,18 +127,15 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
     const [value, setValue] = useState('1');
     const pushAviso = async (data) => {
        
-
-        const url = process.env.SERVER_HOST+"project/"+id+"/CreateNotice";
-        
+        const url = "http://localhost:5000/project/"+id+"/CreateNotice";
         try{
 
             if ( Object.keys(cookieUser).length !== 0 ){
                 if ( cookieUser.user.data.login ){
                     
-                    const x = await axios.post(url,{"title":data.titulo,"description":data.descricao,"userId":cookieUser.user.id})
+                    const x = await axios.post(url,{"title":data.title,"description":data.description,"userId":cookieUser.user.data.id})
                     .then(response => response.data);
                     
-                
                 }
             }
         }
@@ -255,7 +252,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     </TabPanel>
                     <TabPanel value="2">
                         <UsuariosProjetos 
-                            projectInfo={projectInfo}
+                            projectInfo={projectInfo.projects}
                             type={cookieUser.user.data.user_type}
                             onClick={showModalUsuario}
                             usuarios={usuarios}
@@ -264,7 +261,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     </TabPanel>
                     <TabPanel value="3">
                         {
-                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ? 
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.projects.userCreator.id ? 
                                 <div style={{marginTop:"14px",marginBottom:"25px"}} >
                                     <Button onClick={showModalAtividade}>Criar Atividades</Button> 
                                 </div>:
@@ -275,9 +272,9 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     </TabPanel>
                     <TabPanel value="4">
                         {
-                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.projects.userCreator.id ?
                                 <div style={{marginTop:"14px",marginBottom:"25px"}}>
-                                    <Button onClick={showModalAvaliacao}>Criar Atividades</Button> 
+                                    <Button onClick={showModalAvaliacao}>Criar Avaliação</Button> 
                                 </div>:
                                 <div></div>
                         }
@@ -285,7 +282,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     </TabPanel>
                     <TabPanel value="5">
                         {
-                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
+                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.projects.userCreator.id ?
                                 <div style={{marginTop:"14px",marginBottom:"25px"}}>
                                     <Button onClick={showModalAviso}>Criar aviso</Button> 
                                 </div>:

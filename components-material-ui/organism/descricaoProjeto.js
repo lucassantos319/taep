@@ -1,14 +1,13 @@
 import React,{useState} from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Grid, Container, TextField, Button, Chip, makeStyles, TextareaAutosize } from '@material-ui/core';
-
+import { makeStyles } from '@material-ui/core';
+import {EscopoPage} from '../templates/planning/EscopoPage';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-
-
+import {TecPage} from '../templates/planning/TecPage';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,9 +28,9 @@ const DescricaoProjeto = ({projectInfo}) => {
     return(
         <Tela>
             <div style={{textAlign:'center'}}>
-                <h4>Titulo: {projectInfo.titulo}</h4>
+                <h4>Titulo: {projectInfo.projects.titulo}</h4>
 
-                <h6 style={{color:'grey'}}>Criador do projeto: {projectInfo.userCreator.first_name+" "+projectInfo.userCreator.last_name}</h6>
+                <h6 style={{color:'grey'}}>Criador do projeto: {projectInfo.projects.userCreator.first_name+" "+projectInfo.projects.userCreator.last_name}</h6>
             </div>
 
             <div style={{marginTop:'40px'}}>
@@ -44,7 +43,10 @@ const DescricaoProjeto = ({projectInfo}) => {
                     </Box>
                    
                     <TabPanel value="1">
-                        
+                        <EscopoPage escopo={projectInfo.escopo}/>
+                    </TabPanel>
+                    <TabPanel value="2">
+                        <TecPage tec={projectInfo.tec}/>
                     </TabPanel>
                   
                 </TabContext>

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TelaCriarProjeto = ({projects, usuario}) => {
+const  TelaCriarProjeto = ({projects, usuario}) => {
     
     const classes = useStyles();
     const [cookies,setCookie] = useCookies(["user"])
@@ -34,9 +34,8 @@ const TelaCriarProjeto = ({projects, usuario}) => {
     const onSubmit = async (escopo,recurso,projetoInfo) => {
         
         try{
-            console.log(escopo,recurso,projetoInfo)
            
-            const url = "https://taep.backend.herokuapp/project/createProjects";
+            const url = "https://taep-backend.herokuapp.com/project/createProjects";
             var data = {
                 "disciplinas":escopo.disciplinas,
                 "ods":escopo.ods,
