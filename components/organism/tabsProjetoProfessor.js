@@ -127,7 +127,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
     const [value, setValue] = useState('1');
     const pushAviso = async (data) => {
        
-        const url = "http://localhost:5000/project/"+id+"/CreateNotice";
+        const url = "https://taep-backend.herokuapp.com/project/"+id+"/CreateNotice";
         try{
 
             if ( Object.keys(cookieUser).length !== 0 ){

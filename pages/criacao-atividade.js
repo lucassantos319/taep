@@ -12,7 +12,7 @@ const CriacaoAtividade = ({}) => {
     const router = useRouter();
     
     if ( Object.keys(userCookie).length !== 0 ){
-		const userInfoLogin= userCookie.user.login;
+		const userInfoLogin= userCookie.user.data.login;
 		if ( userInfoLogin ){
             return (
                 <>
@@ -23,7 +23,7 @@ const CriacaoAtividade = ({}) => {
                     </Head>  
         
                     <div style={{marginLeft:"15%",marginTop:"2%",width:"70%"}}>
-                        <DemoBar userIdCreator={userCookie.user.id} postUrl={"https://taep-backend.herokuapp.com/project/"+atividadeCookie.atividade.projectId+"/criarAtividade"} />
+                        <DemoBar userIdCreator={userCookie.user.data.id} postUrl={"https://taep-backend.herokuapp.com/project/"+atividadeCookie.atividade.projectId+"/criarAtividade"} />
                         <FormBuilder.ReactFormBuilder /> 
                     </div>
                     

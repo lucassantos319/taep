@@ -5,7 +5,7 @@ const Sair = ({}) => {
 
     const [userCookie,setCookie,removeCookies] = useCookies(["user"]);
     const router = useRouter();
-    console.log('entrei aqui');
+    console.log(userCookie);
     if ( Object.keys(userCookie).length !== 0 ){
         
         removeCookies("user");

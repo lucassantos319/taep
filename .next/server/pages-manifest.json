@@ -2,6 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/meus-projetos/[id]": "pages/meus-projetos/[id].js",
-  "/criacao-atividade": "pages/criacao-atividade.js"
+  "/home": "pages/home.js",
+  "/projetos": "pages/projetos.js",
+  "/sair": "pages/sair.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/": "pages/index.js",
+  "/cadastrar-professor": "pages/cadastrar-professor.js"
 }

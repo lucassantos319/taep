@@ -8,14 +8,11 @@ import axios from 'axios';
 
 export async function getServerSideProps(context) {
     
-    // const parsedCookies = cookie.parse(context.req.headers.cookie);
-    // // console.log(parsedCookies);
-    // const user = JSON.parse(parsedCookies.user);
 
     const {id} = context.query;
     const atividadesUrl = "https://taep-backend.herokuapp.com/project/"+id+"/atividades";
     const usuariosUrl = "https://taep-backend.herokuapp.com/project/"+id+"/usuarios"
-    const infoUrl = "http://localhost:5000/project/"+id+"/info";
+    const infoUrl = "http://taep-backend.herokuapp.com/project/"+id+"/info";
     const avisoUrl = "https://taep-backend.herokuapp.com/project/"+id+"/avisos";
     
     const messagesData = await axios.get(atividadesUrl).then(response=>response.data);
