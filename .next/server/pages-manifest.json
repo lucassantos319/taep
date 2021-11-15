@@ -2,10 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/home": "pages/home.js",
-  "/projetos": "pages/projetos.js",
-  "/sair": "pages/sair.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/": "pages/index.js",
-  "/cadastrar-professor": "pages/cadastrar-professor.js"
+  "/cadastrar-aluno": "pages/cadastrar-aluno.js",
+  "/": "pages/index.js"
 }

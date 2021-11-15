@@ -3,46 +3,51 @@ import { Container, Grid, TextField, Button } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
+const handleForm = async (data) => {
+    
+    try{
+        if ( data.Nome.length > 0 ){
+
+            const professor = localStorage.getItem("professor");
+            console.log(professor);
+            const url = "http://taep-backend.herokuapp.com/login/createUser";
+            const userData = await axios.post(url,
+                {"first_name":data.Nome,
+                "password": Math.random().toString(36).slice(-8),
+                "email":data.Email,
+                "nickname":data.Apelido,
+                "user_type":2,
+                "last_name":"",
+                "emails":[
+                    data.Email
+                ],
+                
+                "professor":professor
+            })
+            .then(response => response);
+
+            if (userData.data.login){
+                alert("Usuario criado com sucesso !");
+            }
+
+            localStorage.removeItem("professor");
+        }
+    }
+    catch(error){
+        alert(error)
+    }
+
+}
 
 const FormularioCadastroAluno = ({professor}) => {
     
     const {register,handleSubmit} = useForm();
-    const handleForm = async (data) => {
-        
-        try{
-            if ( data.Nome.length > 0 ){
-    
-                const url = "http://taep-backend.herokuapp.com/login/createUser";
-                const userData = await axios.post(url,
-                    {"first_name":data.Nome,
-                    "password": Math.random().toString(36).slice(-8),
-                    "email":data.Email,
-                    "nickname":data.Apelido,
-                    "user_type":2,
-                    "last_name":"",
-                    "emails":[
-                        data.Email
-                    ],
-                    "professor":professor
-                })
-                .then(response => response);
-    
-                if (userData.data.login){
-                    alert("Usuario criado com sucesso !");
-                }
-            }
-        }
-        catch(error){
-            alert(error)
-        }
-    
-    }
-    
+
     return(
         <Div>
             <Container maxWidth="md">
                 <h3 style={{marginLeft:'9em',marginTop:'20px',marginBottom:'30px'}}>Cadastrar Aluno no TAEP4.0</h3>
-                <form onClick={handleSubmit(handleForm)}>
+                <form >
                     <Grid container spacing={3}>
                         <Grid item={true} xs={12} sm={6}>
                             <TextField
@@ -82,11 +87,12 @@ const FormularioCadastroAluno = ({professor}) => {
 
                     <Grid container spacing={3} style={{marginTop:'40px'}}>
                         <Grid item={true} xs={12} sm={6}>
-                            <Button style={{width:'205%'}} variant="contained" color="primary" type="submit" size="large">
+                            <Button style={{width:'205%'}} variant="contained" onClick={()=>{localStorage.setItem("professor",professor); handleSubmit(handleForm)}} color="primary" size="large">
                                 Confirmar Cadastro
                             </Button>
                         </Grid>
                     </Grid>
+                    
                 </form>
                 <Div>
                     {/* <Alert id="cadastro-aluno-alerta" variant="filled" severity="success">

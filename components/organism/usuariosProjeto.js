@@ -7,7 +7,7 @@ const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
         <div >
            { type == 1 && projectInfo.userCreator.id==userId?
                 <div>
-                <button style={{width:"100%", padding:"14px"}} onClick={onClick}> Vincular usuario </button>
+                <button style={{width:"100%", padding:"14px"}} onClick={onClick}> Incluir participante </button>
                 </div>:<div></div>
             } 
             <div>

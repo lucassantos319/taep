@@ -2,6 +2,7 @@ import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import Layout from '../components-material-ui/templates/layout';
 import TelaCadastrarAluno from '../components-material-ui/templates/telaCadastrarAluno';
+import Head from 'next/head';
 
 const Perfil = ({}) => {
 
@@ -13,6 +14,7 @@ const Perfil = ({}) => {
 
 			return (
 				<>
+					<Head><title>Cadastro de aluno</title></Head>
 					<Layout tipo={userCookie.user.user_type}>		
 						<TelaCadastrarAluno usuario={userCookie.user.data.first_name+' '+userCookie.user.data.last_name}/>
 					</Layout>
