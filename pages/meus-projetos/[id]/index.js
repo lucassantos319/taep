@@ -45,7 +45,7 @@ const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
 			return (
                 <>
                     <Head>
-                        <title>{}</title>
+                        <title>{projectInfo.projects.titulo}</title>
                     </Head>
                     <Layout>
                         {userCookie.user.data.user_type==1?
