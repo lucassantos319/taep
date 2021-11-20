@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import Layout from '../components-material-ui/templates/layout';
 import {useCookies} from 'react-cookie';
-
 import TelaHome from '../components-material-ui/templates/telaHome';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 
 const Home = ({}) => {
 
