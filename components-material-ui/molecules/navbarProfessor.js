@@ -78,7 +78,7 @@ const NavbarProfessor = ({}) => {
                     </ListItem>
                 </Link>
                
-                <div style={{marginTop:"20%"}}>
+                <div style={{marginTop:"80%"}}>
                     <Link href="/sair" >
                         <ListItem button className="hover-item-nav" key='sair'>
                             <ListItemIcon>

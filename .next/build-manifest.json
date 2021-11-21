@@ -29,10 +29,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/ajuda.js"
     ],
-    "/home": [
+    "/ajuda/ods": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/home.js"
+      "static/chunks/pages/ajuda/ods.js"
+    ],
+    "/meus-projetos": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/meus-projetos.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/next/dist/pages/_error.js"
     ]
   },
   "ampFirstPages": []
