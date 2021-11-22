@@ -29,20 +29,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/ajuda.js"
     ],
-    "/ajuda/ods": [
+    "/ajuda/verifica-tecnologia/programacao-visual": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/ajuda/ods.js"
-    ],
-    "/meus-projetos": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/meus-projetos.js"
-    ],
-    "/next/dist/pages/_error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/next/dist/pages/_error.js"
+      "static/chunks/pages/ajuda/verifica-tecnologia/programacao-visual.js"
     ]
   },
   "ampFirstPages": []

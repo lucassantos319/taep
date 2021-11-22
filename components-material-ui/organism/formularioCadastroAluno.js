@@ -46,7 +46,7 @@ const FormularioCadastroAluno = ({professor}) => {
     return(
         <Div>
             <Container maxWidth="md">
-                <h3 style={{marginLeft:'9em',marginTop:'20px',marginBottom:'30px'}}>Cadastrar Aluno no TAEP4.0</h3>
+                <h1 style={{marginLeft:'9em',marginTop:'20px',marginBottom:'30px'}}>Cadastrar Aluno no TAEP4.0</h1>
                 <form >
                     <Grid container spacing={3}>
                         <Grid item={true} xs={12} sm={6}>

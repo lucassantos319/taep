@@ -2,8 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/ajuda/ods": "pages/ajuda/ods.js",
-  "/meus-projetos": "pages/meus-projetos.js",
   "/ajuda": "pages/ajuda.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/ajuda/verifica-tecnologia/programacao-visual": "pages/ajuda/verifica-tecnologia/programacao-visual.js"
 }

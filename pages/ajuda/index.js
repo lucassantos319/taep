@@ -7,9 +7,11 @@ import { useState } from 'react';
 import { HelpHeader } from '../../components-material-ui/templates/ajuda/HelpHeader';
 import { HelpPassos } from '../../components-material-ui/templates/ajuda/HelpPassos';
 import { HelpPlanejamento } from '../../components-material-ui/templates/ajuda/HelpPlanejamento';
+import { HelpExecucao } from '../../components-material-ui/templates/ajuda/HelpExecucao';
 import Layout from '../../components-material-ui/templates/layout';
 import {useCookies} from 'react-cookie';
 import {useRouter} from 'next/router';
+import { HelpVerificacao } from '../../components-material-ui/templates/ajuda/HelpVerificacao';
 
 const Help = () => {
    
@@ -18,8 +20,6 @@ const Help = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    const [titleValue,setTitle] = useState("");
-
 
     const [userCookie,setCookie] = useCookies(['user']);
 	const router = useRouter();
@@ -34,10 +34,8 @@ const Help = () => {
                                     <TabList onChange={handleChange} aria-label="lab API tabs example">
                                         <Tab label="Passos do TAEP 4.0" value="1" />
                                         <Tab label="Planejamento" value="2" />
-                                        <Tab label="Atividades" value="3" />
+                                        <Tab label="Execução" value="3" />
                                         <Tab label="Avaliações do projeto" value="4" />
-                                        <Tab label="Avisos" value="5" />
-
                                     </TabList>
                                 </Box>
                             
@@ -50,15 +48,13 @@ const Help = () => {
                                     <HelpPlanejamento />
                                 </TabPanel>
                                 <TabPanel value="3">
-
+                                    <HelpHeader title="Execução"/>
+                                    <HelpExecucao />
                                 </TabPanel>
                                 <TabPanel value="4">
-                                    
+                                    <HelpHeader title="Verificação"/>
+                                    <HelpVerificacao/>
                                 </TabPanel>
-                                <TabPanel value="5">
-                                
-                                </TabPanel>
-
                             </TabContext>
                         </Box>
                     </Layout>
