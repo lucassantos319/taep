@@ -293,73 +293,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
 
                 </TabContext>
             </Box>
-            {/* <Tabs>
-                <TabList>
-                    <Tab>Descrição</Tab>
-                    <Tab>Alunos</Tab>
-                    <Tab>Atividades</Tab>
-                    <Tab>Avaliações do Projeto</Tab>
-                    <Tab>Avisos</Tab>
-                </TabList>
-
-                <TabPanel>
-                    <DivInterna>
-                        <DescricaoProjeto projectInfo={projectInfo}/>
-                    </DivInterna>
-                </TabPanel>
-
-                <TabPanel>
-                    <DivInterna>
-                        <UsuariosProjetos 
-                            projectInfo={projectInfo}
-                            type={cookieUser.user.data.user_type}
-                            onClick={showModalUsuario}
-                            usuarios={usuarios}
-                            userId={cookieUser.user.data.id}
-                        />
-
-                    </DivInterna>
-                </TabPanel>
-
-                <TabPanel>
-                    <DivInterna>
-                        {
-                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ? 
-                                <div style={{marginTop:"14px",marginBottom:"25px"}} >
-                                    <Button onClick={showModalAtividade}>Criar Atividades</Button> 
-                                </div>:
-                                <div></div>
-                        }
-                       <Mensagens messagesData={atividadeData}></Mensagens>
-                    </DivInterna>
-                </TabPanel>
-                
-                <TabPanel>
-                    <DivInterna>
-                        {
-                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
-                                <div style={{marginTop:"14px",marginBottom:"25px"}}>
-                                    <Button onClick={showModalAvaliacao}>Criar Atividades</Button> 
-                                </div>:
-                                <div></div>
-                        }
-                        <Mensagens messagesData={avaliacoes}></Mensagens>
-                    </DivInterna>
-                </TabPanel>
-
-                <TabPanel>
-                    <DivInterna>
-                        {
-                            cookieUser.user.data.user_type == 1 && cookieUser.user.data.id == projectInfo.userCreator.id ?
-                                <div style={{marginTop:"14px",marginBottom:"25px"}}>
-                                    <Button onClick={showModalAviso}>Criar aviso</Button> 
-                                </div>:
-                                <div></div>
-                        }
-                        <MensagensAviso messagesData={avisos}></MensagensAviso>                      
-                    </DivInterna>
-                </TabPanel>
-            </Tabs> */}
+            
         </Div1>
         </>
     )
