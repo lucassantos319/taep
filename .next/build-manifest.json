@@ -24,15 +24,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/meus-projetos": [
+    "/ajuda": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/meus-projetos.js"
-    ],
-    "/meus-projetos/[id]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/meus-projetos/[id].js"
+      "static/chunks/pages/ajuda.js"
     ]
   },
   "ampFirstPages": []
