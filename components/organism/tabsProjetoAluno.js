@@ -1,82 +1,69 @@
 import styled from "styled-components";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {useState} from 'react';
 import 'react-tabs/style/react-tabs.css';
 import Mensagens from "./mensagens";
-import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
-import Button from 'react-bootstrap/Button'
+import MensagensAviso from "./messageAviso";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 import DescricaoProjeto from '../../components-material-ui/organism/descricaoProjeto'
 import UsuariosProjetos from "./usuariosProjeto";
 
-function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo}){
+function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,avisos}){
     
     const [cookieUser, setCookieUser] = useCookies(["user"])
-    const router = useRouter();
-
+    
+    const [value, setValue] = useState('1');
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     return(
         <>
 
-        <Div1>
-            <Tabs>
-                <TabList>
-                    <Tab>Descrição</Tab>
-                    <Tab>Alunos</Tab>
-                    <Tab>Atividades</Tab>
-                    <Tab>Avaliações do Projeto</Tab>
-                    <Tab>Avisos</Tab>
-                </TabList>
+            <Div1>
+                <Box>
+                    <TabContext value={value}>
+                        <Box>
+                            <TabList onChange={handleChange} aria-label="lab API tabs example">
+                                <Tab value="1" label="Descrição do projeto"/>
+                                <Tab value="2" label="Usuários do projeto"/>
+                                <Tab value="3" label="Atividades"/>
+                                <Tab value="4" label="Avaliações"/>
+                                <Tab value="5" label="Avisos"/>
+                            </TabList>
+                            
+                        </Box>
+                        <TabPanel value="1">
+                            <DescricaoProjeto projectInfo={projectInfo}/>
+                        </TabPanel>
 
-                {/*Descrição*/}
-                <TabPanel>
-                    <DivInterna>
-                        <DescricaoProjeto projectInfo={projectInfo}/>
-                    </DivInterna>
-                </TabPanel>
+                        <TabPanel value="2">
+                            <UsuariosProjetos 
+                                projectInfo={projectInfo}
+                                type={cookieUser.user.user_type}
+                                usuarios={usuarios}
+                                userId={cookieUser.user.id}
+                            />
+                        </TabPanel>
 
-                {/* Alunos */}
-                <TabPanel>
-                    <DivInterna>
-                        <UsuariosProjetos 
-                            projectInfo={projectInfo}
-                            type={cookieUser.user.user_type}
-                            onClick={showModalUsuario}
-                            usuarios={usuarios}
-                            userId={cookieUser.user.id}
-                        />
+                        <TabPanel value="3">
+                            <Mensagens messagesData={atividadeData}></Mensagens>
+                        </TabPanel>
 
-                    </DivInterna>
-                </TabPanel>
+                        <TabPanel value="4">
+                            <Mensagens messagesData={avaliacoes}></Mensagens>
+                        </TabPanel>
 
-                {/*Atividade*/}
-                <TabPanel>
-                    <DivInterna>
-                        {
-                            cookieUser.user.user_type != 1 ? 
-                                <div></div>:
-                                <div >
-                                    <Button onClick={showModalAtividade}>Criar Atividades</Button> 
-                                </div>
-                        }
-                       <Mensagens messagesData={atividadeData}></Mensagens>
-                    </DivInterna>
-                </TabPanel>
-                
+                        <TabPanel value="5">
+                            <MensagensAviso messagesData={avisos}></MensagensAviso> 
+                        </TabPanel>
 
-                {/* Avaliação */}
-                <TabPanel>
-                    <DivInterna>
-                        <Mensagens messagesData={avaliacoes}></Mensagens>
-                    </DivInterna>
-                </TabPanel>
-
-                {/* Avisos */}
-                <TabPanel>
-                    <DivInterna>
-                        <h2>Any content 5</h2>
-                    </DivInterna>
-                </TabPanel>
-            </Tabs>
-        </Div1>
+                    </TabContext>
+                </Box>
+            </Div1>
         </>
     )
 }
@@ -96,23 +83,3 @@ ul{
     }
 }
 `
-const DivInterna = styled.div`
-padding: 12px;
-border-top-color: transparent;
-border-top-style: solid;
-border-top-width: 1px;
-border-right-color: rgb(170, 170, 170);
-border-right-style: solid;
-    border-right-width: 1px;
-    border-bottom-color: rgb(170, 170, 170);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-left-color: rgb(170, 170, 170);
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-    `

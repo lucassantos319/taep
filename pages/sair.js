@@ -5,23 +5,14 @@ const Sair = ({}) => {
 
     const [userCookie,setCookie,removeCookies] = useCookies(["user"]);
     const router = useRouter();
-    console.log(userCookie);
-    if ( Object.keys(userCookie).length !== 0 ){
+
+    removeCookies("user");
+    router.push("/");
+    return(
+        <>
+        </>
+    );
         
-        removeCookies("user");
-        router.push("/");
-        return(
-            <>
-            </>
-        );
-    }
-        
-    else
-        return (
-            <>
-                <p>Problema na hora de excluir cookie</p>
-            </>
-    	)
 }
 
 

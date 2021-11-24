@@ -47,10 +47,10 @@ const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
                     <Head>
                         <title>{projectInfo.projects.titulo}</title>
                     </Head>
-                    <Layout>
+                    <Layout tipo={userCookie.user.data.user_type}>
                         {userCookie.user.data.user_type==1?
                             <TabsProjetoProfessor avisos={avisos} atividadeData={messagesData} usuarios={usuarios} projectInfo={projectInfo} idProjeto={id}/>
-                            :<TabsProjetoAluno idProjeto={id}/>
+                            :<TabsProjetoAluno idProjeto={id} avisos={avisos} atividadeData={messagesData} usuarios={usuarios} projectInfo={projectInfo}/>
                         }
                     </Layout>
                 </>

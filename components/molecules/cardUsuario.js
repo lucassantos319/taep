@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import * as FaIcons from "react-icons/fa";
 
 
-const CardUser = ({usuario,id }) => {
+const CardUser = ({usuario,id,usuarioCreatorId,usuarioId}) => {
 
     var userType = "";
 
@@ -29,9 +29,13 @@ const CardUser = ({usuario,id }) => {
                             </div>
                         </div>
                         <div style={{float:'right'}}>
-                            <IconButton aria-label="Delete person">
-                                <FaIcons.FaTrash/>
-                            </IconButton>
+                            {
+                                usuarioCreatorId == usuarioId?    
+                                    <IconButton aria-label="Delete person">
+                                        <FaIcons.FaTrash/>
+                                    </IconButton>:
+                                    <div></div>
+                            }
                         </div>
                     </div>
                 </CardContent>

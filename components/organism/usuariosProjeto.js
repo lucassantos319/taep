@@ -1,10 +1,10 @@
 import CardUser from "../molecules/cardUsuario";
 
 const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
-    
+  
     return(
         
-        <div >
+        <div>
            { type == 1 && projectInfo.userCreator.id==userId?
                 <div>
                 <button style={{width:"100%", padding:"14px"}} onClick={onClick}> Incluir participante </button>
@@ -13,7 +13,7 @@ const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
             <div>
                 {
                     usuarios.map((item,i)=>
-                        <CardUser usuario={item} id={i} />
+                        <CardUser usuario={item} id={i} usuarioCreatorId={projectInfo.userCreator.id} usuarioId={userId}/>
                     )
                 }
             </div>
