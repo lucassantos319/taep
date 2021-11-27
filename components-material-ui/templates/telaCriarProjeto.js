@@ -12,6 +12,8 @@ import TelaVerificaTec from './planning/telaVerificaTec';
 import TelaDesafio from './planning/telaDesafio';
 import TelaProjeto from './planning/telaProjeto';
 import TelaMaterialApoio from './planning/telaMaterialApoio';
+import 'rsuite/dist/rsuite.min.css';
+import Steps from 'rsuite/Steps';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,40 +33,7 @@ const  TelaCriarProjeto = ({projects, usuario}) => {
     const [selectedOptionsDisciplinas, setSelectedOptionsDisciplinas] = useState([]);
     const [selectedOptionsTags, setSelectedOptionsTags] = useState([]);
 
-    const onSubmit = async (escopo,recurso,projetoInfo) => {
-        
-        try{
-           
-            const url = "https://taep-backend.herokuapp.com/project/createProjects";
-            var data = {
-                "disciplinas":escopo.disciplinas,
-                "ods":escopo.ods,
-                "steam":escopo.steam,
-                "skills":escopo.skills,
-                "tecnologias":recurso.tecRadio,
-                "title":projetoInfo.title,
-                "turma":projetoInfo.turma,
-                "description":projetoInfo.description,
-                "objective":projetoInfo.objective,
-                "userId":cookies.user.data.id,
-            };
-
-            const projectData = await axios.post(url,data)   
-            .then(response => response.data);
-         
-            if (projectData)
-                alert("Projeto criado com sucesso !");
-
-            router.prefetch("/meus-projetos");
-            router.push("/meus-projetos");
-            
-            
-        }
-        catch(error){
-            alert(error.message);
-        }
-    }
-
+   
     // const disciplinas = [
     //     { disciplina: 'Biologia' },
     //     { disciplina: 'Espanhol' },
@@ -116,68 +85,111 @@ const  TelaCriarProjeto = ({projects, usuario}) => {
     //     { competencia: 'Outra'},
     //   ];
 
-    const {register,handleSubmit} = useForm()
-    const [progressValue,setProgressValue] = useState(20);
-    const [buttonDescription, setButtonText] = useState("Proximo")
-    const [avanca,setAvanca] = useState(false);
-    var escopo = {}
- 
-    return(
+//     const {register,handleSubmit} = useForm()
+//     const [progressValue,setProgressValue] = useState(20);
+//     const [buttonDescription, setButtonText] = useState("Proximo")
+//     const [avanca,setAvanca] = useState(false);
+       var escopo = {}
+//     const step1Content = <h1>Step 1 Content</h1>;
+//     const step2Content = <h1>Step 2 Content</h1>;
+//     const step3Content = <h1>Step 3 Content</h1>;
 
-        <Tela>
-            <ProgressBar progressValue={progressValue}/>
-            <Container maxWidth="1" style={{marginTop:'80px',borderRadius:'20px',border:'1px solid black',paddingBottom:'60px'}}>
+//    
+//     return(
+//         <Tela>
+//             <StepProgressBar startingStep={0} onSubmit={onFormSubmit} steps={steps}/>
+            
+//             <Container maxWidth="1" style={{marginTop:'80px',borderRadius:'20px',border:'1px solid black',paddingBottom:'60px'}}>
 
-                { progressValue == 20 ? <TelaEscopo escopo={escopo}/>:null }
-                { progressValue == (20*2) ? <TelaVerificaTec/>:null }
-                { progressValue == (20*3) ? <TelaDesafio/>:null }
-                { progressValue == (20*4) ? <TelaProjeto/>:null }
-                { progressValue == (20*5) ? <TelaMaterialApoio/>:null }
+//                 { progressValue == 20 ? <TelaEscopo escopo={escopo}/>:null }
+//                 { progressValue == (20*2) ? <TelaVerificaTec/>:null }
+//                 { progressValue == (20*3) ? <TelaDesafio/>:null }
+//                 { progressValue == (20*4) ? <TelaProjeto/>:null }
+//                 { progressValue == (20*5) ? <TelaMaterialApoio/>:null }
 
-                <div style={{float:'right', marginTop:'15px'}}>
-                    <Button onClick={()=>{ 
-                        if ( progressValue < 80){
-                            setProgressValue(progressValue+20)
-                            setButtonText("Proximo")
-                            setAvanca(false)
-                        }
-                        else{
+//                 <div style={{float:'right', marginTop:'15px'}}>
+//                     <Button onClick={()=>{ 
+//                         if ( progressValue < 80){
+//                             setProgressValue(progressValue+20)
+//                             setButtonText("Proximo")
+//                             setAvanca(false)
+//                         }
+//                         else{
                         
-                            if ( !avanca ){
-                                setProgressValue(progressValue+20)
-                                setAvanca(true)
-                                setButtonText("Concluir")
-                            }
-                            else{
+//                             if ( !avanca ){
+//                                 setProgressValue(progressValue+20)
+//                                 setAvanca(true)
+//                                 setButtonText("Concluir")
+//                             }
+//                             else{
 
-                                var escopo = JSON.parse(localStorage.getItem("escopo"));
-                                var recurso = JSON.parse(localStorage.getItem("recurso"));
-                                var projetoInfo = JSON.parse(localStorage.getItem("projetoInfo"));
+//                                 var escopo = JSON.parse(localStorage.getItem("escopo"));
+//                                 var recurso = JSON.parse(localStorage.getItem("recurso"));
+//                                 var projetoInfo = JSON.parse(localStorage.getItem("projetoInfo"));
                                 
-                                onSubmit(escopo,recurso,projetoInfo);
+//                                 onSubmit(escopo,recurso,projetoInfo);
                                 
-                                // router.push('/meus-projetos');
-                            }
-                        }
-                    }}>{buttonDescription}</Button>
-                </div>    
+//                                 router.push('/meus-projetos');
+//                             }
+//                         }
+//                     }}>{buttonDescription}</Button>
+//                 </div>    
 
-                {progressValue != 20? 
-                    <div style={{float:'left', marginTop:'15px'}}>
-                        <Button onClick={()=>{ 
-                            if ( progressValue > 20)
-                                setProgressValue(progressValue-20)
-                        }}>Retornar</Button>
-                    </div> : null
+//                 {progressValue != 20? 
+//                     <div style={{float:'left', marginTop:'15px'}}>
+//                         <Button onClick={()=>{ 
+//                             if ( progressValue > 20)
+//                                 setProgressValue(progressValue-20)
+//                         }}>Retornar</Button>
+//                     </div> : null
                 
-                }
+//                 }
                                            
                 
-            </Container>
-        </Tela>
-    )
+//             </Container>
+//         </Tela>
+//     )
+
+        const [step, setStep] = useState(0);
+        const onChange = nextStep => {
+            setStep(nextStep < 0 ? 0 : nextStep > 6 ? 6 : nextStep);
+        };
+
+        const onNext = () => onChange(step + 1);
+        const onPrevious = () => onChange(step - 1);
+
+        return (
+            <>
+                <div style={{width:"85%",marginTop:"3rem",marginLeft:"5rem"}}>
+                    <Steps current={step}>
+                        <Steps.Item title="Escopo"  />
+                        <Steps.Item title="Verificação de tecnologia"  />
+                        <Steps.Item title="Desafio Problema" />
+                        <Steps.Item title="Definir Projeto" />
+                        <Steps.Item title="Material de Apoio" />
+                    </Steps>
+                </div>
+                <div>
+                    <Container maxWidth="1" style={{marginTop:'65px'}}>
+
+                        { step == 0 ? <TelaEscopo escopo={escopo} setStep={setStep} step={step}/>:null }
+                        { step == 1 ? <TelaVerificaTec setStep={setStep} step={step}/>:null }
+                        { step == 2 ? <TelaDesafio setStep={setStep} step={step}/>:null }
+                        { step == 3 ? <TelaProjeto setStep={setStep} step={step}/>:null }
+                        { step == 4 ? <TelaMaterialApoio setStep={setStep} step={step}/>:null }
+
+                    </Container>
+                </div>
+                <div style={{marginTop:"2rem"}}></div>
+
+
+            </>
+        )
+
 };
 export default TelaCriarProjeto;
+
+
 
 
 

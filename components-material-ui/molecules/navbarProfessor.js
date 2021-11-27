@@ -78,16 +78,15 @@ const NavbarProfessor = ({}) => {
                     </ListItem>
                 </Link>
                
-                <div style={{marginTop:"80%"}}>
-                    <Link href="/sair" >
-                        <ListItem button className="hover-item-nav" key='sair'>
-                            <ListItemIcon>
-                                <FaIcons.FaSignOutAlt className="text-nav"/>
-                            </ListItemIcon>
-                            <ListItemText className="text-nav" primary="Sair" />
-                        </ListItem>
-                    </Link>
-                </div>
+                
+                <Link href="/sair" >
+                    <ListItem button className="hover-item-nav" key='sair'>
+                        <ListItemIcon>
+                            <FaIcons.FaSignOutAlt className="text-nav"/>
+                        </ListItemIcon>
+                        <ListItemText className="text-nav" primary="Sair" />
+                    </ListItem>
+                </Link>
                 
             </List>
         </Div>

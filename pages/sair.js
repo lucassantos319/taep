@@ -6,10 +6,19 @@ const Sair = ({}) => {
     const [userCookie,setCookie,removeCookies] = useCookies(["user"]);
     const router = useRouter();
 
-    removeCookies("user");
-    router.push("/");
+    if ( Object.keys(userCookie).length !== 0 ){
+        
+        removeCookies("user");
+        router.push("/");
+        return(
+            <>
+            </>
+        );
+    }
+    
     return(
         <>
+            <p>Problema com o cookie</p>
         </>
     );
         

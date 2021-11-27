@@ -3,8 +3,11 @@ import { Button } from 'react-bootstrap';
 import Collapsible from 'react-collapsible';
 import VerificaTec from '../../organism/planning/verificaTec';
 
-const TelaVerificaTec = ({tipo, children}) => {
+const TelaVerificaTec = ({tipo, children,setStep,step}) => {
 
+    const onChange = nextStep => {
+        setStep(nextStep < 0 ? 0 : nextStep > 6 ? 6 : nextStep);
+    };
 
     return (
 		<>
@@ -56,26 +59,36 @@ const TelaVerificaTec = ({tipo, children}) => {
                             </ul>
 
                         </div>
-                    </div>             
-                    <div style={{float:'right',marginTop:'20px',marginRight:'20px'}}>
-                        <Button onClick={() => {
+                    </div>  
+                    <div style={{marginTop:"2rem"}}>
+                                <div style={{float:'left',marginRight:'20px'}}>
+                                    <Button onClick={async () => {
+                                        onChange(step-1);
+                                    }}>Voltar</Button>
+                                </div>
 
-                            var tecRadio = [];
-                            var tec = document.getElementsByClassName("radio_check_tec");
-                            
-                            for ( var i = 0 ; i < tec.length; i++ )
-                                if ( tec[i].checked )
-                                    tecRadio.push(i+1);
+                                
+                                <div style={{float:'right',marginTop:'20px',marginRight:'20px'}}>
+                                    <Button onClick={() => {
 
-                            var obj = {
-                                "tecRadio": tecRadio
-                            }
+                                        var tecRadio = [];
+                                        var tec = document.getElementsByClassName("radio_check_tec");
+                                        
+                                        for ( var i = 0 ; i < tec.length; i++ )
+                                            if ( tec[i].checked )
+                                                tecRadio.push(i+1);
 
-                            localStorage.setItem("recurso",JSON.stringify(obj))
-                            alert("Salvo com sucesso");
+                                        var obj = {
+                                            "tecRadio": tecRadio
+                                        }
 
-                        }}>Salvar</Button>
-                    </div>
+                                        localStorage.setItem("recurso",JSON.stringify(obj))
+                                        alert("Salvo com sucesso");
+                                        onChange(step+1);
+
+                                    }}>Salvar</Button>
+                                </div>
+                            </div>           
                 </div>
             </form>
     	</>

@@ -1,7 +1,13 @@
 import Collapsible from 'react-collapsible';
+import { Button } from 'react-bootstrap';
 import React from 'react'
 
-const TelaDesafio = ({}) => {
+const TelaDesafio = ({setStep,step}) => {
+
+    const onChange = nextStep => {
+        setStep(nextStep < 0 ? 0 : nextStep > 6 ? 6 : nextStep);
+    };
+
     return (
         <>
             <div style={{textAlign:'center',marginTop:'20px',marginBottom:'20px'}}>
@@ -46,6 +52,19 @@ const TelaDesafio = ({}) => {
                             </div>
                         </div>
                     </Collapsible>
+                </div>
+            </div>
+            <div style={{marginTop:"2rem"}}>
+                <div style={{float:'left',marginRight:'20px'}}>
+                    <Button onClick={async () => {
+                        onChange(step-1);
+                    }}>Anterior</Button>
+                </div>
+
+                <div style={{float:'right',marginRight:'20px'}}>
+                    <Button onClick={async () => {
+                        onChange(step+1);
+                    }}>Avancar</Button>
                 </div>
             </div>
 

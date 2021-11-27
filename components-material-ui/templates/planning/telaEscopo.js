@@ -12,6 +12,7 @@ import Collapsible from 'react-collapsible';
 import EscopoDescription from '../../organism/planning/escopoDescription';
 import AllODS from '../../organism/planning/AllODS';
 import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function getStyles(name, personName, theme) {
@@ -23,11 +24,14 @@ function getStyles(name, personName, theme) {
     };
 }
 
-const TelaEscopo = ({escopo}) => {
-    
+const TelaEscopo = ({escopo,setStep,step}) => {
+
     const {register,handleSubmit} = useForm();
     const [selectStream,setSelectStream] = useState([]);
     const [selectSkill,setSelectSkill] = useState([]);
+    const onChange = nextStep => {
+        setStep(nextStep < 0 ? 0 : nextStep > 6 ? 6 : nextStep);
+    };
 
     const MenuProps = {
         PaperProps: {
@@ -52,7 +56,7 @@ const TelaEscopo = ({escopo}) => {
         'Behavioral',
         'Communicative'
     ];
-    
+
     const theme = useTheme();
     const handleChange = (event) => {
         const {
@@ -74,13 +78,14 @@ const TelaEscopo = ({escopo}) => {
         );
     };
 
+
     return(
         <>
             <div style={{textAlign:'center',marginTop:'20px',marginBottom:'20px'}}>
                 <h3>Definindo o escopo</h3>
             </div>
             <div style={{width:'100%'}}>
-                <Collapsible 
+                <Collapsible
                     triggerStyle={{padding:'10px',backgroundColor:"#c8c8c8"}}
                     trigger="O que é a definição de escopo ?"
                     >
@@ -181,35 +186,38 @@ const TelaEscopo = ({escopo}) => {
 
                                 </div>
                             </div>
-                            <div style={{float:'right',marginRight:'20px'}}>
-                                <Button onClick={() => {
+                            <div style={{marginTop:"2rem"}}>
+                                <div style={{float:'right',marginRight:'20px'}}>
+                                    <Button onClick={async () => {
 
-                                    var trueODS = [];
-                                   
-                                    var allODS = document.getElementsByClassName("radio_check");
-                                    for ( var i = 0 ; i < allODS.length ; i++ )
-                                        if ( allODS[i].checked )
-                                            trueODS.push(i+1);
-                                    
-                                    const obj = {
-                                        "disciplinas":document.getElementById("Disciplinas").value,
-                                        "ods": trueODS,
-                                        "steam":selectStream,
-                                        "skills":selectSkill
-                                    };
-                                   
-                                    localStorage.setItem("escopo",JSON.stringify(obj)); 
-                                    alert("Salvo com sucesso");
+                                        var trueODS = [];
 
-                                }}>Salvar</Button>
+                                        var allODS = document.getElementsByClassName("radio_check");
+                                        for ( var i = 0 ; i < allODS.length ; i++ )
+                                            if ( allODS[i].checked )
+                                                trueODS.push(i+1);
+
+                                        const obj = {
+                                            "disciplinas":document.getElementById("Disciplinas").value,
+                                            "ods": trueODS,
+                                            "steam":selectStream,
+                                            "skills":selectSkill
+                                        };
+
+                                        localStorage.setItem("escopo",JSON.stringify(obj));
+                                        await alert("Salvo com sucesso");
+                                        onChange(step+1);
+
+                                    }}>Salvar</Button>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </form>
-            
+
         </>
-    )   
+    )
 };
 export default TelaEscopo;
