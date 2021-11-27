@@ -1,7 +1,7 @@
 import CardUser from "../molecules/cardUsuario";
 
 const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
-  
+    var i = 0;
     return(
         
         <div>
@@ -12,8 +12,10 @@ const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
             } 
             <div>
                 {
-                    usuarios.map((item,i)=>
-                        <CardUser usuario={item} id={i} usuarioCreatorId={projectInfo.userCreator.id} usuarioId={userId}/>
+                    usuarios.map((item) => {
+                            <CardUser usuario={item} id={i} usuarioCreatorId={projectInfo.userCreator.id} usuarioId={userId}/>
+                            i++;
+                        }
                     )
                 }
             </div>
