@@ -74,6 +74,7 @@ const TelaMaterialApoio = ({setStep,step}) => {
 
                 <div style={{float:'right',marginRight:'20px'}}>
                     <Button onClick={async () => {
+
                         var escopo = JSON.parse(localStorage.getItem("escopo"));
                         var recurso = JSON.parse(localStorage.getItem("recurso"));
                         var projetoInfo = JSON.parse(localStorage.getItem("projetoInfo"));
@@ -82,6 +83,7 @@ const TelaMaterialApoio = ({setStep,step}) => {
                         
                         router.prefetch('/meus-projetos');
                         router.push('/meus-projetos');
+                    
                     }}>Concluir</Button>
                 </div>
             </div>

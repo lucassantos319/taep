@@ -87,7 +87,8 @@ const TelaEscopo = ({escopo,setStep,step}) => {
             <div style={{width:'100%'}}>
                 <Collapsible
                     triggerStyle={{padding:'10px',backgroundColor:"#c8c8c8"}}
-                    trigger="O que é a definição de escopo ?"
+                    trigger="O que é a definição de escopo ? (Clique
+                        para saber mais)"
                     >
                     <EscopoDescription/>
                 </Collapsible>

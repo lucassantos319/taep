@@ -154,10 +154,7 @@ const  TelaCriarProjeto = ({projects, usuario}) => {
         const onChange = nextStep => {
             setStep(nextStep < 0 ? 0 : nextStep > 6 ? 6 : nextStep);
         };
-
-        const onNext = () => onChange(step + 1);
-        const onPrevious = () => onChange(step - 1);
-
+        
         return (
             <>
                 <div style={{width:"85%",marginTop:"3rem",marginLeft:"5rem"}}>

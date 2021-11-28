@@ -20,6 +20,7 @@ export async function getServerSideProps(context) {
     const projectInfo = await axios.get(infoUrl).then(response=>response.data);
     const avisos = await axios.get(avisoUrl).then(response=>response.data)
 
+    console.log(usuarios);
     return { 
         props: { 
             messagesData ,

@@ -7,7 +7,7 @@ const TelaHome = ({}) => {
             <Container maxWidth="md">
                 <Box className="box-info">
                     <div className="div-centralizada">
-                        <h1 className="texto-centralizado">Você já conhece o TAEP 4.0?</h1>
+                        <h1 className="texto-centralizado">Você conhece a plataforma TAEP4.0?</h1>
                         <h3 className="texto-centralizado">O vídeo abaixo pode te contar mais sobre o sistema</h3>
                     </div>
                 </Box>

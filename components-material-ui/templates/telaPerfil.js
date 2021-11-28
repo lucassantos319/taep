@@ -8,7 +8,6 @@ import { useCookies } from 'react-cookie';
 import perfil from '../../public/img/img-perfil-teste.png';
 import * as FaIcons from "react-icons/fa";
 
-
 const useStyles = makeStyles((theme) => ({
     centralizaEsquerda:{
         display: 'flex',
@@ -96,7 +95,7 @@ const TelaPerfil = ({userCookie}) => {
                     const userData = await axios.post(url,{"password":data.password_new,"password_old":data.password_old})
                     .then(response => response.data);
                    
-                    alert("Senha trocado com sucesso!");
+                    alert("Senha trocado com sucesso!\nClique fora para continuar utilizando a plataforma");
                 }
             }
         }
@@ -140,7 +139,7 @@ const TelaPerfil = ({userCookie}) => {
                             <span style={{fontSize:'30px'}}>{userCookie.user.data.first_name+' '+userCookie.user.data.last_name}</span>
                         </div>
                         <div>
-                            <span style={{fontSize:'18px',color:'gray',marginTop:'5px'}}>{userCookie.user.data.user_type==1? 'Professor':'Aluno'}</span>
+                            <span style={{fontSize:'18px',color:'gray',marginTop:'5px'}}>{userCookie.user.data.user_type==1? 'Professor(a)':'Aluno'}</span>
                         </div>
                     </div>
                     <hr/>
@@ -150,7 +149,7 @@ const TelaPerfil = ({userCookie}) => {
                                 <span style={{fontSize:'16px'}}>Email: </span>
                                 <span style={{fontSize:'16px', marginLeft:'10px'}}>{userCookie.user.data.email}</span>
                             </div>
-                            <IconButton size={10} style={{marginLeft:'20px',float:'right'}}>
+                            <IconButton OnClick={handleOpenModalEmail} size={10} style={{marginLeft:'20px',float:'right'}}>
                                 <FaIcons.FaEdit/>
                             </IconButton>
                         </div>

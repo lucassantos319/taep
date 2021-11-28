@@ -21,6 +21,7 @@ import TabPanel from '@mui/lab/TabPanel';
 
 function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,avisos}){
     
+    console.log(usuarios);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
