@@ -38,20 +38,7 @@ const BoxProjeto = ({id, imgProjeto=false, user,titulo, professor, status, descr
     return(
         <Div id={id}>
             <Card className="root">
-                {
-                    user.id == professor.id ?
-                        <CardHeader 
-                            style={{padding:11}}
-                            action={
-                                <IconButton onClick={ () => deleteProject(confirm("Deseja mesmo deletar o projeto ?"),id)? document.getElementById(id).remove():null }>
-                                    <FaIcons.FaTrash size="23px"/>
-                                </IconButton>
-                            }
-                        >
-                        </CardHeader>
-                        
-                    : null
-                }
+                
                 <CardActionArea>
                     <Image height={215} width={345} src={imgProjeto==false? img: imgProjeto}></Image>
                     <Typography className="m-box" variant="body2" color="textSecondary" component="p">
@@ -70,9 +57,22 @@ const BoxProjeto = ({id, imgProjeto=false, user,titulo, professor, status, descr
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button onClick={onClick} variant="contained" color="primary" size="large">
-                        Acessar
-                    </Button>
+                    <div style={{display:"flex"}}>
+                        <Button onClick={onClick} variant="contained" color="primary" size="large">
+                            Acessar
+                        </Button>
+                        {
+                            user.id == professor.id ?
+                                <div style={{marginLeft:"10rem"}}>
+                                    <IconButton onClick={ () => deleteProject(confirm("Deseja mesmo deletar o projeto ?"),id)? document.getElementById(id).remove():null }>
+                                        <FaIcons.FaTrash size="23px"/>
+                                    </IconButton>
+                                </div>
+                                
+                            : null
+                        }
+
+                    </div>
                 </CardActions>
             </Card>
         </Div>
