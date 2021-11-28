@@ -48,42 +48,42 @@ const  TelaCriarProjeto = ({projects, usuario}) => {
     //     { disciplina: 'Outra...' },
     //   ];
 
-    //   const competencias = [
-    //     { competencia: 'Autoconhecimento'},
-    //     { competencia: 'Autoestima'},
-    //     { competencia: 'Autonomia'},
-    //     { competencia: "Colaboração"},
-    //     { competencia: 'Confiança'},
-    //     { competencia: 'Empatia'},
-    //     { competencia: 'Ética'},
-    //     { competencia: 'Felicidade'},
-    //     { competencia: 'Paciência'},
-    //     { competencia: 'Responsabilidade'},
+      const competencias = [
+        { competencia: 'Autoconhecimento'},
+        { competencia: 'Autoestima'},
+        { competencia: 'Autonomia'},
+        { competencia: "Colaboração"},
+        { competencia: 'Confiança'},
+        { competencia: 'Empatia'},
+        { competencia: 'Ética'},
+        { competencia: 'Felicidade'},
+        { competencia: 'Paciência'},
+        { competencia: 'Responsabilidade'},
 
-    //     { competencia: 'Agilidade Para Tomar Decisões' },
-    //     { competencia: 'Empreendedorismo' },
-    //     { competencia: 'Generalização' },
-    //     { competencia: 'Interpretação' },
-    //     { competencia: 'Pensamento Abstrato' },
-    //     { competencia: 'Pensamento Crítico' },
-    //     { competencia: 'Reflexão' },
-    //     { competencia: 'Solução de Problemas' },
+        { competencia: 'Agilidade Para Tomar Decisões' },
+        { competencia: 'Empreendedorismo' },
+        { competencia: 'Generalização' },
+        { competencia: 'Interpretação' },
+        { competencia: 'Pensamento Abstrato' },
+        { competencia: 'Pensamento Crítico' },
+        { competencia: 'Reflexão' },
+        { competencia: 'Solução de Problemas' },
 
-    //     { competencia: 'Gerenciar tempo' },
-    //     { competencia: 'Liderança' },
-    //     { competencia: 'Planejamento' },
+        { competencia: 'Gerenciar tempo' },
+        { competencia: 'Liderança' },
+        { competencia: 'Planejamento' },
 
-    //     { competencia: 'Iniciativa'},
-    //     { competencia: 'Criatividade'},
-    //     { competencia: 'Inovação'},
-    //     { competencia: 'Fluência de Ideias'},
-    //     { competencia: 'Ética e Coerência'},
+        { competencia: 'Iniciativa'},
+        { competencia: 'Criatividade'},
+        { competencia: 'Inovação'},
+        { competencia: 'Fluência de Ideias'},
+        { competencia: 'Ética e Coerência'},
 
-    //     { competencia: 'Negociação'},
-    //     { competencia: 'Comunicação'},
+        { competencia: 'Negociação'},
+        { competencia: 'Comunicação'},
 
-    //     { competencia: 'Outra'},
-    //   ];
+        { competencia: 'Outra'},
+      ];
 
 //     const {register,handleSubmit} = useForm()
 //     const [progressValue,setProgressValue] = useState(20);

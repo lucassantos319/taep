@@ -50,11 +50,35 @@ const TelaEscopo = ({escopo,setStep,step}) => {
     ];
 
     var habilidades = [
-        'Socioemotional',
-        'Cognitive',
-        'Organizational',
-        'Behavioral',
-        'Communicative'
+        'Autoconhecimento',
+        'Autoestima',
+        'Autonomia',
+        'Colaboração',
+        'Confiança',
+        'Empatia',
+        'Ética',
+        'Felicidade',
+        'Paciência',
+        'Responsabilidade',
+        'Agilidade Para Tomar Decisões' ,
+        'Empreendedorismo' ,
+        'Generalização' ,
+        'Interpretação' ,
+        'Pensamento Abstrato' ,
+        'Pensamento Crítico' ,
+        'Reflexão' ,
+        'Solução de Problemas' ,
+        'Gerenciar tempo' ,
+        'Liderança' ,
+        'Planejamento' ,
+        'Iniciativa',
+        'Criatividade',
+        'Inovação',
+        'Fluência de Ideias',
+        'Ética e Coerência',
+        'Negociação',
+        'Comunicação',
+        'Outra',
     ];
 
     const theme = useTheme();
