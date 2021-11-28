@@ -3,13 +3,14 @@ import { Button } from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { TextField } from '@material-ui/core';
 
 const TelaMaterialApoio = ({setStep,step}) => {
     
     const router = useRouter();
     const [cookies,setCookie] = useCookies(["user"])
 
-    const onSubmit = async (escopo,recurso,projetoInfo) => {
+    const onSubmit = async (escopo,recurso,projetoInfo,materialApoio,desafio) => {
         
         try{
            
@@ -24,6 +25,8 @@ const TelaMaterialApoio = ({setStep,step}) => {
                 "turma":projetoInfo.turma,
                 "description":projetoInfo.description,
                 "objective":projetoInfo.objective,
+                "materialApoio":materialApoio,
+                "desafio":desafio,
                 "userId":cookies.user.data.id,
             };
             
@@ -65,6 +68,17 @@ const TelaMaterialApoio = ({setStep,step}) => {
                     </ul>
                 </div>
             </div>
+
+            <div style={{marginTop:"2rem"}}>
+                <TextField
+                        id="material-apoio"
+                        label="Observação sobre material de apoio"
+                        multiline
+                        style={{height:"6rem",marginTop:'30px',width:"40%"}}
+                    >
+                </TextField>
+            </div>
+
             <div style={{marginTop:"2rem"}}>
                 <div style={{float:'left',marginRight:'20px'}}>
                     <Button onClick={async () => {
@@ -78,8 +92,10 @@ const TelaMaterialApoio = ({setStep,step}) => {
                         var escopo = JSON.parse(localStorage.getItem("escopo"));
                         var recurso = JSON.parse(localStorage.getItem("recurso"));
                         var projetoInfo = JSON.parse(localStorage.getItem("projetoInfo"));
+                        var desafio = JSON.parse(localStorage.getItem("desafio"));
+                        var materialApoio = document.getElementById("material-apoio").value;
                         
-                        onSubmit(escopo,recurso,projetoInfo);
+                        onSubmit(escopo,recurso,projetoInfo,materialApoio,desafio);
                         
                         router.prefetch('/meus-projetos');
                         router.push('/meus-projetos');

@@ -1,6 +1,8 @@
-import Collapsible from 'react-collapsible';
-import { Button } from 'react-bootstrap';
 import React from 'react'
+import { Button } from 'react-bootstrap';
+import Collapsible from 'react-collapsible';
+import { TextField } from '@material-ui/core';
+
 
 const TelaDesafio = ({setStep,step}) => {
 
@@ -21,7 +23,7 @@ const TelaDesafio = ({setStep,step}) => {
 
                     <Collapsible
                         triggerStyle={{padding:'10px',backgroundColor:"#c8c8c8"}}
-                        trigger="Sugestões de desafios problemas"
+                        trigger="Sugestões de desafios problemas (Clique para saber mais)"
                     >
                         <div style={{marginTop:'30px'}}>
 
@@ -53,6 +55,15 @@ const TelaDesafio = ({setStep,step}) => {
                         </div>
                     </Collapsible>
                 </div>
+                <div style={{marginTop:"2rem"}}>
+                    <TextField
+                        id="desafio-problema"
+                        label="Observação desafio problema"
+                        multiline
+                        style={{height:"6rem",marginTop:'30px',width:"40%"}}
+                    >
+                    </TextField>
+                </div>
             </div>
             <div style={{marginTop:"2rem"}}>
                 <div style={{float:'left',marginRight:'20px'}}>
@@ -63,8 +74,14 @@ const TelaDesafio = ({setStep,step}) => {
 
                 <div style={{float:'right',marginRight:'20px'}}>
                     <Button onClick={async () => {
+                        
+                        var desafio = document.getElementById("desafio-problema").value;
+                        localStorage.setItem("desafio",JSON.stringify(desafio));
+                        await alert("Salvo com sucesso");
+                        
                         onChange(step+1);
-                    }}>Avancar</Button>
+                        
+                    }}>Salvar</Button>
                 </div>
             </div>
 

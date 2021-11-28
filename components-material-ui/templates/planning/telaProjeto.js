@@ -64,23 +64,26 @@ const TelaProjeto = ({setStep,step}) => {
 
                         </div>
                         <div style={{marginTop:"2rem"}}>
+                    
                             <div style={{float:'left',marginRight:'20px'}}>
-                                        <Button onClick={async () => {
-                                            onChange(step-1);
-                                        }}>Voltar</Button>
-                                    </div>
+                                <Button onClick={async () => {
+                                    onChange(step-1);
+                                }}>Voltar</Button>
+                            </div>
+                    
                             <div style={{float:'right',marginRight:'20px'}}>
                                 <Button onClick={ async () => {
+                                    
                                     var title = document.getElementById("titulo").value;
                                     var objective = document.getElementById("objetivo").value;
                                     var description = document.getElementById("description").value;
                                     var turma = document.getElementById("turma").value;
-
+                                
                                     var obj = {
                                         "title":title,
                                         "objective":objective,
                                         "description":description,
-                                        "turma":turma,
+                                        "turma":turma
                                     }
 
                                     localStorage.setItem("projetoInfo",JSON.stringify(obj));
@@ -90,12 +93,14 @@ const TelaProjeto = ({setStep,step}) => {
                                 >Salvar</Button>
                             </div>
                         </div>
-                        <Collapsible
-                            triggerStyle={{padding:'10px',marginBottom:'20px',backgroundColor:'#c8c8c8'}}
-                            trigger="Educação por projeto"
-                        >
-                            <ProjetoDescription/>
-                        </Collapsible>
+                        <div style={{marginTop:"2rem",marginBottom:"2rem"}}>
+                            <Collapsible
+                                triggerStyle={{padding:'10px',marginBottom:'20px',backgroundColor:'#c8c8c8'}}
+                                trigger="Educação por projeto (Clique para saber mais)"
+                            >
+                                <ProjetoDescription/>
+                            </Collapsible>
+                        </div>
                     </div>
                 </div>
             </div>
