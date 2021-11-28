@@ -139,7 +139,14 @@ const TelaEscopo = ({escopo,setStep,step}) => {
                                     <span style={{marginRight:'20px',marginTop:'5px'}}>2. Quais temas relacionados aos ODS você pode incluir em sua proposta de aula?</span>
                                 </div>
                                 <div style={{display:'inline-block',marginTop:'20px'}}>
-                                    <AllODS />
+                                    <Collapsible
+                                        triggerStyle={{padding:'10px',backgroundColor:"#c8c8c8"}}
+                                        trigger="ODS"
+                                        >
+                                            <div style={{marginTop:"2rem"}}>
+                                                <AllODS />
+                                            </div>
+                                    </Collapsible>
                                 </div>
                             </div>
                             <div>
