@@ -1,7 +1,7 @@
 import CardUser from "../molecules/cardUsuario";
 
 const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
-    console.log(usuarios)
+    console.log(projectInfo)
     return(
         
         <div>

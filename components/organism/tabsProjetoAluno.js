@@ -16,6 +16,7 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
     
     const [cookieUser, setCookieUser] = useCookies(["user"])
     
+    console.log(cookieUser);
     const [value, setValue] = useState('1');
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -42,10 +43,10 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
 
                         <TabPanel value="2">
                             <UsuariosProjetos 
-                                projectInfo={projectInfo}
-                                type={cookieUser.user.user_type}
+                                projectInfo={projectInfo.projects}
+                                type={cookieUser.user.data.user_type}
                                 usuarios={usuarios}
-                                userId={cookieUser.user.id}
+                                userId={cookieUser.user.data.id}
                             />
                         </TabPanel>
 
