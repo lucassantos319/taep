@@ -12,10 +12,12 @@ const UsuariosProjetos = ({projectInfo,usuarios,type,onClick,userId}) => {
             } 
             <div>
                 {
-                    usuarios.map((item) => 
-                            <CardUser usuario={item} usuarioCreatorId={projectInfo.userCreator.id} usuarioId={userId}/>
-                        
-                    )
+                    usuarios.map((item) => (
+                        <div key={item.id}>
+                            <CardUser usuario={item} id={item.id} usuarioCreatorId={projectInfo.userCreator.id} usuarioId={userId}/>
+                        </div>
+
+                    ))
                 }
             </div>
 

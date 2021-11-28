@@ -9,7 +9,7 @@ const CardUser = ({usuario,id,usuarioCreatorId,usuarioId}) => {
     var userType = "";
 
     if ( usuario.user_type == 1)
-        userType = "Professor"
+        userType = "Professor(a)"
     else
         userType = "Aluno"
 
