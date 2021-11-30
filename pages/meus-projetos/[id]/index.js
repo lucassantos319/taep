@@ -14,8 +14,10 @@ export async function getServerSideProps(context) {
     const usuariosUrl = "https://taep-backend.herokuapp.com/project/"+id+"/usuarios"
     const infoUrl = "http://taep-backend.herokuapp.com/project/"+id+"/info";
     const avisoUrl = "https://taep-backend.herokuapp.com/project/"+id+"/avisos";
-    
+    const avaliacaoUrl = "https://taep-backend.herokuapp.com/project/"+id+"/avaliacoes";
+
     const messagesData = await axios.get(atividadesUrl).then(response=>response.data);
+    const avaliacao = await axios.get(avaliacaoUrl).then(response=>response.data);
     const usuarios = await axios.get(usuariosUrl).then(response=>response.data);
     const projectInfo = await axios.get(infoUrl).then(response=>response.data);
     const avisos = await axios.get(avisoUrl).then(response=>response.data)
@@ -26,12 +28,13 @@ export async function getServerSideProps(context) {
             messagesData ,
             usuarios,
             projectInfo,
-            avisos
+            avisos,
+            avaliacao
         }
      }
 }
 
-const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
+const ProjetoPageDefault = ({messagesData,usuarios,projectInfo,avisos,avaliacao}) => {
 
     const router = useRouter();
     const [userCookie,setCookie] = useCookies(['user']);
@@ -50,7 +53,7 @@ const ProjetoPageDefault = ({messagesData,usuarios, projectInfo,avisos}) => {
                     </Head>
                     <Layout tipo={userCookie.user.data.user_type}>
                         {userCookie.user.data.user_type==1?
-                            <TabsProjetoProfessor avisos={avisos} atividadeData={messagesData} usuarios={usuarios} projectInfo={projectInfo} idProjeto={id}/>
+                            <TabsProjetoProfessor avaliacoes={avaliacao} avisos={avisos} atividadeData={messagesData} usuarios={usuarios} projectInfo={projectInfo} idProjeto={id}/>
                             :<TabsProjetoAluno idProjeto={id} avisos={avisos} atividadeData={messagesData} usuarios={usuarios} projectInfo={projectInfo}/>
                         }
                     </Layout>

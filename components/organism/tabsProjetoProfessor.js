@@ -21,7 +21,6 @@ import TabPanel from '@mui/lab/TabPanel';
 
 function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,avisos}){
     
-    console.log(usuarios);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -108,24 +107,25 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
 
 
     const pushAvaliacao = async (data) => {
-       
 
-        const atividade = {
+        const avaliacao = {
             "titulo":data.title,
-            "description":data.description
+            "description":data.description,
+            "projectId":projectInfo.projects.id
         }
 
-        setCookie("atividade", JSON.stringify(atividade), {
+        setCookie("avaliacao", JSON.stringify(avaliacao), {
             path: "/",
             sameSite: true
         });
 
-        router.prefetch("/criacao-atividade");
-        router.push("/criacao-atividade");
+        router.prefetch("/criacao-avaliacao");
+        router.push("/criacao-avaliacao");
        
     }
 
     const [value, setValue] = useState('1');
+   
     const pushAviso = async (data) => {
        
         const url = "https://taep-backend.herokuapp.com/project/"+id+"/CreateNotice";
@@ -150,87 +150,108 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
     return(
         <>
             <Modal style={{marginTop:"7%"}} show={isOpenAtividade} onHide={hideModalAtividade}>
+                <Modal.Header>
+                    <Modal.Title>Criar atividade</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form>
+                        <div style={{padding:"20px"}}>
 
-            <Modal.Header>
-                <Modal.Title>Criar atividade</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <form>
-                    <div style={{padding:"20px"}}>
+                            <div style={{marginBottom:"30px"}}>
+                                <TextField {...register("title")} id="title"  style={{ width:"100%"}} required label="Titulo" variant="outlined"/>
 
-                        <div style={{marginBottom:"30px"}}>
-                            <TextField {...register("title")} id="title"  style={{ width:"100%"}} required label="Titulo" variant="outlined"/>
+                            </div>
+                            <div>
+                                <TextField {...register("description")} required id="description" style={{ width:"100%"}} label="Descrição" variant="outlined"/>
 
+                            </div>
                         </div>
-                        <div>
-                            <TextField {...register("description")} required id="description" style={{ width:"100%"}} label="Descrição" variant="outlined"/>
+                    </form>
 
-                        </div>
-                    </div>
-                </form>
-
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={handleSubmit(pushAtividade)}>Criar</Button>
-
-                <Button onClick={hideModalAtividade}>Cancel</Button>
-            </Modal.Footer>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleSubmit(pushAtividade)}>Criar</Button>
+                    <Button onClick={hideModalAtividade}>Cancel</Button>
+                </Modal.Footer>
             </Modal>
 
-            <Modal style={{marginTop:"7%"}} show={isOpenUsuario} onHide={hideModalUsuario}>
-            <Modal.Header>
-                <Modal.Title>Vincular usuário</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <form>
-                    <div style={{padding:"20px"}}>
-
-                        <div>
-                            <TextField {...register("email")} placeholder="Insira o email a ser vinculado" style={{ width:"100%"}} required label="Email" variant="outlined"/>
+            <Modal style={{marginTop:"7%"}} show={isOpenAvaliacao} onHide={hideModalAvaliacao}>
+                <Modal.Header>
+                    <Modal.Title>Criar Avaliação</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form>
+                        <div style={{padding:"20px"}}>
+                            <div style={{marginBottom:"30px"}}>
+                                <TextField {...register("title")} id="title"  style={{ width:"100%"}} required label="Titulo" variant="outlined"/>
+                            </div>
+                            <div>
+                                <TextField {...register("description")} required id="description" style={{ width:"100%"}} label="Descrição" variant="outlined"/>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
 
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={handleSubmit(pushUsuario)}>Criar</Button>
-                <Button onClick={hideModalUsuario}>Cancel</Button>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleSubmit(pushAvaliacao)}>Criar</Button>
+                    <Button onClick={hideModalAtividade}>Cancel</Button>
+                </Modal.Footer>
+            </Modal>
 
-            </Modal.Footer>
+
+            <Modal style={{marginTop:"7%"}} show={isOpenUsuario} onHide={hideModalUsuario}>
+                <Modal.Header>
+                    <Modal.Title>Vincular usuário</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form>
+                        <div style={{padding:"20px"}}>
+
+                            <div>
+                                <TextField {...register("email")} placeholder="Insira o email a ser vinculado" style={{ width:"100%"}} required label="Email" variant="outlined"/>
+                            </div>
+                        </div>
+                    </form>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleSubmit(pushUsuario)}>Criar</Button>
+                    <Button onClick={hideModalUsuario}>Cancel</Button>
+
+                </Modal.Footer>
             </Modal>
 
             <Modal style={{marginTop:"7%"}} show={isOpenAviso} onHide={hideModalAviso}>
-            <Modal.Header>
-                <Modal.Title>Criar aviso</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <form>
-                    <div style={{padding:"20px"}}>
+                <Modal.Header>
+                    <Modal.Title>Criar aviso</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form>
+                        <div style={{padding:"20px"}}>
 
-                        <div style={{marginBottom:"30px"}}>
-                            <TextField {...register("title")} id="title"  style={{ width:"100%"}} required label="Titulo" variant="outlined"/>
+                            <div style={{marginBottom:"30px"}}>
+                                <TextField {...register("title")} id="title"  style={{ width:"100%"}} required label="Titulo" variant="outlined"/>
 
+                            </div>
+                            <div>
+                            <TextField 
+                                    label="Descrição"
+                                    fullWidth
+                                    type="text"
+                                    multiline
+                                    maxRows={6}
+                                    variant="outlined"
+                                    {...register("description")}
+                                />
+                            </div>
                         </div>
-                        <div>
-                        <TextField 
-                                label="Descrição"
-                                fullWidth
-                                type="text"
-                                multiline
-                                maxRows={6}
-                                variant="outlined"
-                                {...register("description")}
-                            />
-                        </div>
-                    </div>
-                </form>
+                    </form>
 
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={handleSubmit(pushAviso)}>Criar</Button>
-
-                <Button onClick={hideModalAviso}>Cancel</Button>
-            </Modal.Footer>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleSubmit(pushAviso)}>Criar</Button>
+                    <Button onClick={hideModalAviso}>Cancel</Button>
+                </Modal.Footer>
             </Modal>
 
         

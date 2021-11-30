@@ -16,11 +16,11 @@ const EscopoDescription = ({}) => {
                         </li>
                         <li>As áreas da STEAM que serão inseridas <br/>(para permitir que o aluno trabalhe de maneira multidisciplinar)</li>
                         <li>Bem como as competências e habilidades do século XXI que serão desenvolvidas.
-                            <br/>(<a href="https://sites.google.com/view/taep/Planejamento/planning/define-scope/socioemotional-skills?authuser=0">Socialemotional</a>, 
-                            <a href="https://sites.google.com/view/taep/Planejamento/planning/define-scope/cognitive-skills?authuser=0">Cognitive</a>, 
-                            <a href="https://sites.google.com/view/taep/Planejamento/planning/define-scope/behavioral-skills?authuser=0">Behavioral</a>, 
-                            <a href="https://sites.google.com/view/taep/Planejamento/planning/define-scope/organizational-skills?authuser=0">Organizational</a>, 
-                            <a href="https://sites.google.com/view/taep/Planejamento/planning/define-scope/communicative-skills?authuser=0">Communicative</a>
+                            <br/>(<a href="/ajuda/steam/socioemotional-skills" target="_blank">Socialemotional</a>, 
+                            <a href="/ajuda/steam/cognitivas" target="_black">Cognitive</a>, 
+                            <a href="/ajuda/steam/behavioral-skills" target="_blank">Behavioral</a>, 
+                            <a href="/ajuda/steam/organizational-skills" target="_blank">Organizational</a>, 
+                            <a href="/ajuda/steam/communicative-skills" target="_blank">Communicative</a>
                             )
                         </li>
                         

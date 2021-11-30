@@ -4,9 +4,10 @@ import Div from "../atoms/div/div"
 import CardAvaliacao from "../molecules/cardAvaliacao";
 import CardTexto from "../molecules/cardTexto";
 
-const Mensagens = ({messagesData=[]}) => {
+const Mensagens = ({messagesData}) => {
     const [selected, setSelected] = useState(null)
 
+    console.log(messagesData)
     const handleClick = (event, id) => {
         event.preventDefault()
         if(id == selected){

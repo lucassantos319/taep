@@ -29,19 +29,15 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                     <TabContext value={value}>
                         <Box>
                             <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                <Tab value="1" label="Descrição do projeto"/>
-                                <Tab value="2" label="Usuários do projeto"/>
-                                <Tab value="3" label="Atividades"/>
-                                <Tab value="4" label="Avaliações"/>
-                                <Tab value="5" label="Avisos"/>
+                                <Tab value="1" label="Usuários do projeto"/>
+                                <Tab value="2" label="Atividades"/>
+                                <Tab value="3" label="Avaliações"/>
+                                <Tab value="4" label="Avisos"/>
                             </TabList>
                             
                         </Box>
-                        <TabPanel value="1">
-                            <DescricaoProjeto projectInfo={projectInfo}/>
-                        </TabPanel>
 
-                        <TabPanel value="2">
+                        <TabPanel value="1">
                             <UsuariosProjetos 
                                 projectInfo={projectInfo.projects}
                                 type={cookieUser.user.data.user_type}
@@ -50,15 +46,15 @@ function TabsProjetoProfessor ({atividadeData,usuarios,avaliacoes,projectInfo,av
                             />
                         </TabPanel>
 
-                        <TabPanel value="3">
+                        <TabPanel value="2">
                             <Mensagens messagesData={atividadeData}></Mensagens>
                         </TabPanel>
 
-                        <TabPanel value="4">
+                        <TabPanel value="3">
                             <Mensagens messagesData={avaliacoes}></Mensagens>
                         </TabPanel>
 
-                        <TabPanel value="5">
+                        <TabPanel value="4">
                             <MensagensAviso messagesData={avisos}></MensagensAviso> 
                         </TabPanel>
 
